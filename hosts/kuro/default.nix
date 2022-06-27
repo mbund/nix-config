@@ -116,7 +116,6 @@
     '';
 
   networking.hostName = "kuro";
-  networking.networkmanager.enable = true;
 
   nix = {
     gc = {

@@ -21,6 +21,7 @@
     useDHCP = false;
     useNetworkd = true;
     wireguard.enable = true;
+    networkmanager.enable = true;
     networkmanager.dns = "systemd-resolved";
   };
 
