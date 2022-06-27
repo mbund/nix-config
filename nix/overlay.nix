@@ -1,6 +1,7 @@
 { deploy-rs
 , nixpkgs
 , ragenix
+, nur
 , ...
 }:
 
@@ -15,4 +16,5 @@ in
 composeManyExtensions (localOverlays ++ [
   deploy-rs.overlay
   ragenix.overlay
+  nur.overlay
 ])

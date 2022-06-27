@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
-  xsession.enable = true;
-  xsession.pointerCursor = {
+{ config, pkgs, ... }: {
+  home.pointerCursor = {
+    x11.enable = true;
     size = 16;
 
-    package = config.nur.repos.ambroisie.vimix-cursors;
+    package = pkgs.nur.repos.ambroisie.vimix-cursors;
     name = "Vimix-white-cursors";
     # name = "Vimix-cursors";
   };

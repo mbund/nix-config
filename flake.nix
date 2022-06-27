@@ -6,6 +6,8 @@
 
     utils.url = "github:numtide/flake-utils";
 
+    nur.url = "github:nix-community/nur";
+
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;

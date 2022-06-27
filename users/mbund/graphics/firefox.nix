@@ -1,8 +1,8 @@
-{ config, ... }: {
+{ pkgs, ... }: {
   programs.firefox = {
     enable = true;
     # todo: add arkenfox
-    extensions = with config.nur.repos.rycee.firefox-addons; [
+    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin
       skip-redirect
       i-dont-care-about-cookies

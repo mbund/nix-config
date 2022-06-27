@@ -1,4 +1,5 @@
 { self
+, nur
 , home-manager
 , impermanence
 , nixos-hardware
@@ -38,6 +39,7 @@ let
         (hostPkgs localSystem)
         nixRegistry
         netHostMap
+        nur.nixosModules.nur
         home-manager.nixosModules.home-manager
         impermanence.nixosModules.impermanence
         ragenix.nixosModules.age
