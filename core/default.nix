@@ -11,8 +11,6 @@
 
   environment.systemPackages = with pkgs; [
     git
-    btop
-    foot.terminfo
     vim
     helix
     wget

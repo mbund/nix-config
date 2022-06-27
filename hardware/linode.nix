@@ -77,7 +77,11 @@
     interfaces.eth0.useDHCP = true;
   };
 
-  environment.systemPackages = with pkgs; [ inetutils mtr sysstat ];
+  environment.systemPackages = with pkgs; [
+    inetutils
+    mtr
+    sysstat
+  ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     nix-index
+    exa
   ];
 
   programs.zsh = {
@@ -32,9 +33,21 @@
       "UUID" = "$(uuidgen | tr -d \\n)";
     };
 
+    shellAliases = {
+      "nr" = "nix run";
+      "unr" = "NIXPKGS_ALLOW_UNFREE=1 nix run --impure";
+      "ns" = "nix shell";
+      "uns" = "NIXPKGS_ALLOW_UNFREE=1 nix shell --impure";
+      "nd" = "nix develop";
+      "und" = "NIXPKGS_ALLOW_UNFREE=1 nix develop --impure";
+      "ls" = "exa --binary --header --long --classify";
+      "la" = "ls --all";
+      "l" = "ls";
+    };
+
     initExtra = ''
       # create custom command not found handler by searching through nix-index for it
-        
+
       command_not_found_handle() {
         # taken from http://www.linuxjournal.com/content/bash-command-not-found
         # - do not run when inside Midnight Commander or within a Pipe
@@ -63,7 +76,7 @@
         command_not_found_handle $@
         return $?
       }
-      
+
       # send notifications on ending long running commands
       cmdignore=(htop tmux top vim)
 
@@ -94,7 +107,7 @@
         cmd=$1
         cmd_start=`date +%s`
       }
-      
+
       # use powerlevel10k prompt
       # source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
