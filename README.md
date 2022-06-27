@@ -1,2 +1,3 @@
-# nix-config
-Personal NixOS and home-manager configuration for all my machines
+[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
+Heavily inspired by [lovesegfault/nix-config](https://github.com/lovesegfault/nix-config)
