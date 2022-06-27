@@ -34,8 +34,8 @@ with lib;
       ./dev
       ./modules
     ] ++ optionals config.programs.hyprland.enable [
-      ./graphical
-      ./graphical/hyprland
+      ./graphics
+      ./graphics/hyprland
     ];
 
     home.username = config.users.users.mbund.name;

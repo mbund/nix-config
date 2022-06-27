@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   programs.mako =
     let
       homeIcons = "${config.home.homeDirectory}/.nix-profile/share/icons/hicolor";
