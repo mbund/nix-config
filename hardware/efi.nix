@@ -4,6 +4,7 @@
     systemd-boot = {
       enable = true;
       configurationLimit = 15;
+      netbootxyz.enable = true;
     };
     timeout = lib.mkDefault 2;
   };
