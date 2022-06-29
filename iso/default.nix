@@ -27,7 +27,7 @@ in
 utils.lib.eachSystem systems (system: {
   autoinstall-hajimaru = autoInstall system
     (import ../hardware/hajimaru)
-    (import ../hardware/hajimaru/install.nix);
+    (import ../hardware/hajimaru/partition.nix);
 
 
 })

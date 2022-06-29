@@ -2,7 +2,7 @@ set -ex
 
 wait_for () {
   for _ in seq 10; do
-    if $@; then
+    if "$@"; then
       break
     fi
     sleep 1

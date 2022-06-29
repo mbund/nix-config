@@ -2,9 +2,9 @@
 , cryptsetup
 }:
 writeShellApplication {
-  name = "install";
+  name = "partition";
   runtimeInputs = [
     cryptsetup
   ];
-  text = builtins.readFile ./install.sh;
+  text = builtins.readFile ./partition.sh;
 }
