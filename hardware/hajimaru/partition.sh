@@ -22,7 +22,7 @@ sfdisk --wipe=always $dev << EOF
 EOF
 
 wait_for [ -b /dev/disk/by-partlabel/boot ]
-mkfs.ext4 -F -L boot /dev/disk/by-partlabel/boot
+mkfs.vfat -F 32 -n boot /dev/disk/by-partlabel/boot
 
 # encrypt root btrfs partition, with a default key of a single null byte
 wait_for [ -b /dev/disk/by-partlabel/root ]
