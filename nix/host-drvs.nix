@@ -3,7 +3,7 @@
 system:
 
 let
-  inherit (self.nixpkgs.${system}) lib linkFarm;
+  inherit (self.pkgs.${system}) lib linkFarm;
 
   hosts = import ./hosts.nix;
 

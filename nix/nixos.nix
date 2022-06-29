@@ -27,7 +27,7 @@ let
   hostPkgs = localSystem: {
     nixpkgs = {
       localSystem.system = localSystem;
-      pkgs = self.nixpkgs.${localSystem};
+      pkgs = self.pkgs.${localSystem};
     };
   };
 

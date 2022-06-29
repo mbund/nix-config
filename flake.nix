@@ -57,7 +57,7 @@
     homeConfigurations = import ./nix/home-manager.nix inputs;
 
     nixosConfigurations = import ./nix/nixos.nix inputs;
-  } // utils.lib.eachSystem (with utils.lib.system; [ x86_64-linux ]) (system: {
+  } // utils.lib.eachSystem (with utils.lib.system; [ x86_64-linux aarch64-linux ]) (system: {
     checks = import ./nix/checks.nix inputs system;
 
     devShells.default = import ./nix/dev-shell.nix inputs system;
@@ -66,7 +66,7 @@
       default = self.packages.${system}.all;
     } // (import ./nix/host-drvs.nix inputs system) // (import ./iso inputs);
 
-    nixpkgs = import nixpkgs {
+    pkgs = import nixpkgs {
       inherit system;
       overlays = [
         self.overlays.default
