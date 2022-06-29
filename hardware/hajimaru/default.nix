@@ -1,48 +1,59 @@
 { lib, ... }:
 {
-  fileSystems = {
-    "/" = {
-      device = "/dev/mapper/nixos-root";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/mapper/root";
+    fsType = "btrfs";
+    options = [ "subvol=root" "compress=zstd" "noatime" ];
+  };
 
-    "/nix" = {
-      device = "/dev/mapper/nixos-root";
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime" ];
-    };
+  fileSystems."/home" = {
+    device = "/dev/mapper/root";
+    fsType = "btrfs";
+    options = [ "subvol=home" "compress=zstd" ];
+  };
 
-    "/var/log" = {
-      device = "/dev/mapper/nixos-root";
-      fsType = "btrfs";
-      options = [ "subvol=log" "compress=zstd" "noatime" ];
-      neededForBoot = true;
-    };
+  fileSystems."/nix" = {
+    device = "/dev/mapper/root";
+    fsType = "btrfs";
+    options = [ "subvol=nix" "compress=zstd" "noatime" ];
+  };
 
-    "/persist" = {
-      device = "/dev/mapper/nixos-root";
-      fsType = "btrfs";
-      options = [ "subvol=persist" "compress=zstd" "noatime" ];
-      neededForBoot = true;
-    };
+  fileSystems."/persist" = {
+    device = "/dev/mapper/root";
+    fsType = "btrfs";
+    options = [ "subvol=persist" "compress=zstd" "noatime" ];
+    neededForBoot = true;
+  };
 
-    "/home" = {
-      device = "/dev/mapper/nixos-root";
-      fsType = "btrfs";
-      options = [ "subvol=home" "compress=zstd" ];
-    };
+  fileSystems."/var/log" = {
+    device = "/dev/mapper/root";
+    fsType = "btrfs";
+    options = [ "subvol=log" "compress=zstd" "noatime" ];
+    neededForBoot = true;
+  };
 
-    "/boot" = {
-      device = "/dev/disk/by-label/boot";
-      fsType = "ext4";
-    };
+  fileSystems."/swap" = {
+    # To initialize a new swapfile on btrfs, you must first create it like so
+    # truncate -s 0 /swap/swapfile
+    # chattr +C /swap/swapfile
+    device = "/dev/mapper/root";
+    fsType = "btrfs";
+    options = [ "subvol=swap" "compress=none" "noatime" ];
+  };
 
-    "/swap" = {
-      device = "/dev/mapper/nixos-root";
-      fsType = "btrfs";
-      options = [ "subvol=swap" "compress=none" "noatime" ];
-    };
+  boot.initrd.luks.devices.root = {
+    device = "/dev/disk/by-label/root";
+
+    # WARNING: Leaks some metadata, see cryptsetup man page for --allow-discards.
+    allowDiscards = true;
+
+    # Set your own key with:
+    # cryptsetup luksChangeKey /dev/disk/by-label/root --key-file=/dev/zero --keyfile-size=1
+    # You can then delete the rest of this block.
+    keyFile = lib.mkDefault "/dev/zero";
+    keyFileSize = lib.mkDefault 1;
+
+    fallbackToPassword = true;
   };
 
   services.fstrim.enable = true;
@@ -50,17 +61,17 @@
     enable = true;
     fileSystems = [
       "/"
+      "/home"
       "/nix"
       "/persist"
       "/var/log"
-      "/home"
     ];
     interval = "monthly";
   };
 
   boot.initrd.postDeviceCommands =
     let
-      device = "/dev/mapper/nixos-root";
+      device = "/dev/mapper/root";
       subvolume = "root";
       rollback-snapshot = "root-blank";
     in
@@ -84,4 +95,9 @@
 
       umount /mnt
     '';
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/boot";
+    fsType = "ext4";
+  };
 }

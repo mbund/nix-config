@@ -1,12 +1,10 @@
-{ pkgs, ... }:
-{
-  partitionScript = pkgs.writeShellApplication {
-    name = "install";
-    runtimeInputs = with pkgs; [
-      cryptsetup
-    ];
-    text = builtins.readFile ./install.sh;
-  };
-
-  hardware = import ./default.nix;
+{ writeShellApplication
+, cryptsetup
+}:
+writeShellApplication {
+  name = "install";
+  runtimeInputs = [
+    cryptsetup
+  ];
+  text = builtins.readFile ./install.sh;
 }

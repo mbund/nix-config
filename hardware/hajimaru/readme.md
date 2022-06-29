@@ -10,6 +10,7 @@ back on each boot.
 | nix       | /nix       | yes        | shouldn't        | trivial reconstructable                   |
 | persist   | /persist   | yes        | maybe some files | select data from non-persisted subvolumes |
 | log       | /var/log   | yes        | if you want      | system logs                               |
+| swap      | /swap      | yes        | shouldn't        | dedicated for swapfile                    |
 
 The subvolumes `root` and `home` correspond to the `root-blank` and
 `home-blank` snapshots, which are simply empty filesystems.

@@ -19,13 +19,6 @@
     ./state.nix
   ];
 
-
-  boot.initrd.luks.devices = {
-    "nixos-root" = {
-      device = "/dev/disk/by-uuid/ad3f0a0f-93ac-40c6-a294-279c70347d4e";
-    };
-  };
-
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;

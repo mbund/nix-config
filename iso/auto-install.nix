@@ -1,4 +1,4 @@
-{ config, lib, modulesPath, install, system, nixpkgs, ... }: {
+{ pkgs, config, lib, modulesPath, nixosSystem, partitioner, ... }: {
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal-new-kernel.nix"
   ];
@@ -11,19 +11,13 @@
     after = [ "network.target" "polkit.service" ];
     path = [ "/run/current-system/sw/" ];
     script = ''
-      ${install.partitionScript}
+      ${pkgs.callPackage partitioner { }}
 
       ${config.system.build.nixos-install}/bin/nixos-install \
-        --system ${(nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [
-              ./auto-install-configuration.nix
-              install.hardware
-            ];
-          }).config.system.build.toplevel} \
+        --system ${nixosSystem} \
         --no-root-passwd \
         --cores 0
-          
+
       reboot
     '';
     environment = config.nix.envVars // {
