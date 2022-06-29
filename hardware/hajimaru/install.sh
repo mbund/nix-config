@@ -1,3 +1,14 @@
+set -ex
+
+wait-for () {
+  for _ in seq 10; do
+    if $@; then
+      break
+    fi
+    sleep 1
+    done
+}
+
 dev=/dev/sda
 [ -b /dev/nvme0n1 ] && dev=/dev/nvme0n1
 [ -b /dev/vda ] && dev=/dev/vda
@@ -10,11 +21,13 @@ sfdisk --wipe=always $dev << EOF
   name=root
 EOF
 
-mkfs.vfat -F 32 -n boot /dev/disk/by-partlabel/boot
+wait-for [ -b /dev/disk/by-partlabel/boot ]
+mkfs.ext4 -L boot /dev/disk/by-partlabel/boot
 
 # encrypt root btrfs partition, with a default key of a single null byte
-cryptsetup luksFormat --type=luks2 --label=root /dev/disk/by-partlabel/root /dev/zero --keyfile-size=1
-cryptsetup luksOpen /dev/disk/by-partlabel/root root --key-file=/dev/zero --keyfile-size=1
+wait-for [ -b /dev/disk/by-partlabel/root ]
+cryptsetup luksFormat --batch-mode --type=luks2 --label=root /dev/disk/by-partlabel/root /dev/zero --keyfile-size=1
+cryptsetup luksOpen --batch-mode /dev/disk/by-partlabel/root root --key-file=/dev/zero --keyfile-size=1
 mkfs.btrfs -L root /dev/mapper/root
 
 # create subvolumes
