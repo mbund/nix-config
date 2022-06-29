@@ -54,7 +54,7 @@ in
 
       # Copy over full nixos-config to `/var/run/current-system/full-config/`
       # (available to the currently active derivation for safety/debugging)
-      cp -rf ${./.} $out/full-config
+      cp -rf ${../.} $out/full-config
     '';
 
     stateVersion = "22.05";
