@@ -19,16 +19,6 @@
     ./state.nix
   ];
 
-  swapDevices = [
-    {
-      # To initialize a new swapfile on btrfs, you must first create it like so
-      # truncate -s /swap/swapfile
-      # chattr +C /swap/swapfile
-      # btrfs property set /swap/swapfile compression none
-      device = "/swap/swapfile";
-      size = 4 * 1024;
-    }
-  ];
 
   boot.initrd.luks.devices = {
     "nixos-root" = {
@@ -39,29 +29,22 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  swapDevices = [{ device = "/swap/swapfile"; size = 4 * 1024; }];
 
-  hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
   hardware.enableRedistributableFirmware = true;
+  hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   networking.hostName = "kuro";
 
-  nix = {
-    gc = {
-      automatic = true;
-      dates = "weekly";
-    };
-    settings = {
-      max-jobs = 16;
-      system-features = [ "benchmark" "nixos-test" "big-parallel" "kvm" ];
-    };
-  };
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
+  nix.settings.max-jobs = 16;
+  nix.settings.system-features = [ "benchmark" "nixos-test" "big-parallel" "kvm" ];
 
   time.timeZone = "America/New_York";
 
-  virtualisation.docker = {
-    enable = true;
-    autoPrune.enable = true;
-  };
+  virtualisation.docker.enable = true;
+  virtualisation.docker.autoPrune.enable = true;
 
   age.secrets.rootPassword.file = ./root-password.age;
   users.users.root.passwordFile = config.age.secrets.rootPassword.path;
