@@ -7,6 +7,7 @@
     ./htop.nix
     ./xdg.nix
     ./zsh.nix
+    ./helix.nix
   ];
 
   home = {
