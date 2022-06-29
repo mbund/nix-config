@@ -1,12 +1,12 @@
 set -ex
 
-wait-for () {
+wait_for () {
   for _ in seq 10; do
     if $@; then
       break
     fi
     sleep 1
-    done
+  done
 }
 
 dev=/dev/sda
@@ -21,11 +21,11 @@ sfdisk --wipe=always $dev << EOF
   name=root
 EOF
 
-wait-for [ -b /dev/disk/by-partlabel/boot ]
+wait_for [ -b /dev/disk/by-partlabel/boot ]
 mkfs.ext4 -L boot /dev/disk/by-partlabel/boot
 
 # encrypt root btrfs partition, with a default key of a single null byte
-wait-for [ -b /dev/disk/by-partlabel/root ]
+wait_for [ -b /dev/disk/by-partlabel/root ]
 cryptsetup luksFormat --batch-mode --type=luks2 --label=root /dev/disk/by-partlabel/root /dev/zero --keyfile-size=1
 cryptsetup luksOpen --batch-mode /dev/disk/by-partlabel/root root --key-file=/dev/zero --keyfile-size=1
 mkfs.btrfs -L root /dev/mapper/root
