@@ -38,11 +38,6 @@
       fsType = "ext4";
     };
 
-    "/boot/efi" = {
-      device = "/dev/disk/by-label/UEFI-ESP";
-      fsType = "vfat";
-    };
-
     "/swap" = {
       device = "/dev/mapper/nixos-root";
       fsType = "btrfs";

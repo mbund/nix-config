@@ -5,7 +5,7 @@
     ../../dev
     ../../dev/virt-manager.nix
 
-    ../../hardware/common-btrfs-erasure.nix
+    ../../hardware/hajimaru
     ../../hardware/efi.nix
     ../../hardware/nvidia.nix
     ../../hardware/bluetooth.nix

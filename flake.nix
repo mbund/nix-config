@@ -52,7 +52,6 @@
 
     overlays = {
       default = import ./nix/overlay.nix inputs;
-      lite = import ./nix/mask-large-drvs.nix;
     };
 
     homeConfigurations = import ./nix/home-manager.nix inputs;
@@ -65,7 +64,7 @@
 
     packages = {
       default = self.packages.${system}.all;
-    } // (import ./nix/host-drvs.nix inputs system);
+    } // (import ./nix/host-drvs.nix inputs system) // (import ./iso inputs);
 
     nixpkgs = import nixpkgs {
       inherit system;
