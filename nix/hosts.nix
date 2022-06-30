@@ -1,17 +1,18 @@
 let
   hosts = {
-    # marshmellow-roaster = {
+    kodai = {
+      type = "nixos";
+      address = "192.168.1.103";
+      localSystem = "x86_64-linux";
+      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOybufIZA6ERGATWUHGEpcxKzaQHSgpSQmdZK/dz6SY0";
+    };
+
+    # kuro = {
     #   type = "nixos";
-    #   address = "192.168.1.122";
+    #   address = "192.168.1.115";
     #   localSystem = "x86_64-linux";
     #   pubkey = "";
     # };
-    kuro = {
-      type = "nixos";
-      address = "192.168.1.115";
-      localSystem = "x86_64-linux";
-      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2Bj39nbbc/kzX5+aeObRJLfCcPnUxL3C8i7ptF7kMO";
-    };
   };
 
   inherit (builtins) attrNames concatMap listToAttrs;
