@@ -28,6 +28,7 @@
   hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   networking.hostName = "kuro";
+  networking.interfaces.enp6s0.useDHCP = true;
 
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
