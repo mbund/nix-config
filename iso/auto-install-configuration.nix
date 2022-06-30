@@ -17,6 +17,9 @@
     publish = { enable = true; domain = true; addresses = true; };
   };
 
+
+  nix.extraOptions = "experimental-features = nix-command flakes recursive-nix";
+
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     git
