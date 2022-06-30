@@ -7,12 +7,12 @@ let
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOybufIZA6ERGATWUHGEpcxKzaQHSgpSQmdZK/dz6SY0";
     };
 
-    # kuro = {
-    #   type = "nixos";
-    #   address = "192.168.1.115";
-    #   localSystem = "x86_64-linux";
-    #   pubkey = "";
-    # };
+    kuro = {
+      type = "nixos";
+      address = "192.168.1.115";
+      localSystem = "x86_64-linux";
+      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII/feNVmmwVYinqCOXGIYFb+pTRLvAL+JuW1NBGLA3qS";
+    };
   };
 
   inherit (builtins) attrNames concatMap listToAttrs;
