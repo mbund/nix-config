@@ -65,7 +65,7 @@
     # packages = {
     #   default = self.packages.${system}.all;
     # } // (import ./nix/host-drvs.nix inputs system) // (import ./iso inputs);
-    # packages = import ./iso inputs;
+    packages = import ./iso inputs;
 
     pkgs = import nixpkgs {
       inherit system;
