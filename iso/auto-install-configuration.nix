@@ -39,5 +39,5 @@
 
   services.logind.lidSwitch = "ignore";
   boot.loader.systemd-boot.enable = true;
-  system.stateVersion = "22.11";
+  system.stateVersion = "22.05";
 }

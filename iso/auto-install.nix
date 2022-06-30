@@ -1,9 +1,12 @@
-{ pkgs, config, lib, modulesPath, nixosSystem, partitioner, ... }: {
+{ config, modulesPath, nixosSystem, partitioner, ... }: {
   imports = [
-    "${modulesPath}/installer/cd-dvd/installation-cd-minimal-new-kernel.nix"
+    "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
   ];
-  # Needed for https://github.com/NixOS/nixpkgs/issues/58959
-  boot.supportedFilesystems = lib.mkForce [ "btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs" ];
+
+  hardware.enableAllFirmware = true;
+  nixpkgs.config.allowUnfree = true;
+
+  isoImage.isoName = "hajimaru-destructive-autoinstaller.iso";
 
   systemd.services.install = {
     description = "Bootstrap a NixOS installation";
@@ -11,7 +14,7 @@
     after = [ "network.target" "polkit.service" ];
     path = [ "/run/current-system/sw/" ];
     script = ''
-      ${pkgs.callPackage partitioner { }}
+      ${partitioner}
 
       ${config.system.build.nixos-install}/bin/nixos-install \
         --system ${nixosSystem} \
