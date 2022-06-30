@@ -62,10 +62,10 @@
 
     devShells.default = import ./nix/dev-shell.nix inputs system;
 
-    # packages = {
-    #   default = self.packages.${system}.all;
-    # } // (import ./nix/host-drvs.nix inputs system) // (import ./iso inputs);
-    packages = import ./iso inputs;
+    packages = {
+      default = self.packages.${system}.all;
+    } // (import ./nix/host-drvs.nix inputs system)
+      // (import ./install inputs system);
 
     pkgs = import nixpkgs {
       inherit system;

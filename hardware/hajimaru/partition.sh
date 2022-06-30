@@ -63,4 +63,7 @@ chattr +C /mnt/swap/swapfile
 mkdir -p /mnt/boot
 mount /dev/disk/by-label/boot /mnt/boot
 
-nixos-generate-config --dir /root
+# generate the default nixos configs because they are helpful for
+# determining hardware configuration details
+mkdir -p /mnt/etc/nixos/nixos-generate-config
+nixos-generate-config --dir /mnt/etc/nixos/nixos-generate-config

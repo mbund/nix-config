@@ -1,4 +1,4 @@
-{ config, modulesPath, nixosSystem, partitioner, ... }: {
+{ config, modulesPath, installScript, ... }: {
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
   ];
@@ -13,16 +13,7 @@
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" "polkit.service" ];
     path = [ "/run/current-system/sw/" ];
-    script = ''
-      ${partitioner}
-
-      ${config.system.build.nixos-install}/bin/nixos-install \
-        --system ${nixosSystem} \
-        --no-root-passwd \
-        --cores 0
-
-      reboot
-    '';
+    script = builtins.readFile installScript;
     environment = config.nix.envVars // {
       inherit (config.environment.sessionVariables) NIX_PATH;
       HOME = "/root";
