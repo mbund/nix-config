@@ -1,7 +1,7 @@
 let
   inherit (builtins) attrNames attrValues mapAttrs listToAttrs;
 
-  mbund = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHoCC3KxKWWjz0DAmMYEJwRlVThavgKCc8eyQyaI2usE";
+  mbund = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr";
 
   hostPubkeys = mapAttrs (_: v: v.pubkey) (import ./nix/hosts.nix).nixos.all;
 
