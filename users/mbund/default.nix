@@ -1,4 +1,4 @@
-{ config, impermanence, lib, pkgs, ... }:
+{ config, lib, pkgs, impermanence, ... }:
 with lib;
 {
   age.secrets.mbundPassword.file = ./password.age;
