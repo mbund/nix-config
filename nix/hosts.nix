@@ -4,15 +4,15 @@ let
       type = "nixos";
       address = "192.168.1.103";
       localSystem = "x86_64-linux";
-      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOybufIZA6ERGATWUHGEpcxKzaQHSgpSQmdZK/dz6SY0";
+      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJHoJyYNeegrkTS/AyvffnSK2hJYHijoSrc88LC3tV6/";
     };
 
-    kuro = {
-      type = "nixos";
-      address = "192.168.1.115";
-      localSystem = "x86_64-linux";
-      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII/feNVmmwVYinqCOXGIYFb+pTRLvAL+JuW1NBGLA3qS";
-    };
+    # kuro = {
+    #   type = "nixos";
+    #   address = "192.168.1.115";
+    #   localSystem = "x86_64-linux";
+    #   pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII/feNVmmwVYinqCOXGIYFb+pTRLvAL+JuW1NBGLA3qS";
+    # };
   };
 
   inherit (builtins) attrNames concatMap listToAttrs;

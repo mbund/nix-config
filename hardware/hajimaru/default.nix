@@ -69,32 +69,32 @@
     interval = "monthly";
   };
 
-  boot.initrd.postDeviceCommands =
-    let
-      device = "/dev/mapper/root";
-      subvolume = "root";
-      rollback-snapshot = "root-blank";
-    in
-    lib.mkBefore ''
-      # https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
+  #boot.initrd.postDeviceCommands =
+  #  let
+  #    device = "/dev/mapper/root";
+  #    subvolume = "root";
+  #    rollback-snapshot = "root-blank";
+  #  in
+  #  lib.mkBefore ''
+  #    # https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
 
-      mkdir -p /mnt
-      mount -o subvol=/ ${device} /mnt
+  #    mkdir -p /mnt
+  #    mount -o subvol=/ ${device} /mnt
 
-      btrfs subvolume list -o /mnt/${subvolume} |
-      cut -f9 -d' ' |
-      while read subvolume; do
-        echo "deleting /$subvolume subvolume..."
-        btrfs subvolume delete "/mnt/$subvolume"
-      done &&
-      echo "deleting /${subvolume} subvolume..." &&
-      btrfs subvolume delete /mnt/${subvolume}
+  #    btrfs subvolume list -o /mnt/${subvolume} |
+  #    cut -f9 -d' ' |
+  #    while read subvolume; do
+  #      echo "deleting /$subvolume subvolume..."
+  #      btrfs subvolume delete "/mnt/$subvolume"
+  #    done &&
+  #    echo "deleting /${subvolume} subvolume..." &&
+  #    btrfs subvolume delete /mnt/${subvolume}
 
-      echo "restoring blank /${subvolume} subvolume..."
-      btrfs subvolume snapshot /mnt/${rollback-snapshot} /mnt/${subvolume}
+  #    echo "restoring blank /${subvolume} subvolume..."
+  #    btrfs subvolume snapshot /mnt/${rollback-snapshot} /mnt/${subvolume}
 
-      umount /mnt
-    '';
+  #    umount /mnt
+  #  '';
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/boot";

@@ -1,4 +1,4 @@
-{ pkgs, modulesPath, ... }: {
+{ lib, pkgs, modulesPath, ... }: {
   imports = [
     "${modulesPath}/profiles/all-hardware.nix"
   ];
@@ -6,10 +6,34 @@
   networking.hostName = "nixos-install";
   networking.networkmanager.enable = true;
   networking.useDHCP = false;
-  users.mutableUsers = false;
-  users.users.root.password = "root";
-  services.openssh.enable = true;
-  services.openssh.permitRootLogin = "yes";
+
+  users.users.nixos = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "video" ];
+    initialHashedPassword = "";
+  };
+
+  users.users.root.initialHashedPassword = "";
+
+  security.sudo = {
+    enable = lib.mkDefault true;
+    wheelNeedsPassword = lib.mkForce false;
+  };
+
+  services.getty.autologinUser = "nixos";
+
+  services.getty.helpLine = ''
+    The "nixos" and "root" accounts have empty passwords.
+
+    An ssh daemon is running. You then must set a password
+    for either "root" or "nixos" with `passwd` or add an ssh key
+    to /home/nixos/.ssh/authorized_keys be able to login.
+  '';
+
+  services.openssh = {
+    enable = true;
+    permitRootLogin = "yes";
+  };
 
   services.avahi = {
     enable = true;
