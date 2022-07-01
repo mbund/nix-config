@@ -19,7 +19,7 @@ with lib;
       ++ optionals config.programs.adb.enable [ "adbusers" ]
       ++ optionals config.programs.hyprland.enable [ "input" "video" "audio" ];
     openssh.authorizedKeys.keys = [
-
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
     ];
     shell = mkIf config.programs.zsh.enable pkgs.zsh;
     uid = 8888;
