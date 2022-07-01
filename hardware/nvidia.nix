@@ -5,7 +5,7 @@
   hardware = {
     nvidia = {
       modesetting.enable = true;
-      nvidiaPersistenced = true;
+      # nvidiaPersistenced = true;
     };
     opengl = {
       enable = true;
