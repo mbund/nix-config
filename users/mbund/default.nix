@@ -9,7 +9,7 @@ with lib;
     createHome = true;
     isNormalUser = true;
     group = "mbund";
-    extraGroups = [ "wheel" "dialout" ]
+    extraGroups = [ "wheel" "dialout" "users" ]
       ++ optionals config.hardware.i2c.enable [ "i2c" ]
       ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
       ++ optionals config.virtualisation.docker.enable [ "docker" ]
