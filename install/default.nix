@@ -14,7 +14,7 @@ let
     ];
   }).config.system.build.toplevel;
 
-  genInstallScript = nixosSystem: partitioner: pkgs.writeScript "install" ''
+  genInstallScript = nixosSystem: partitioner: pkgs.writeShellScriptBin "install" ''
     ${partitioner}
     nixos-install --system ${nixosSystem} --no-root-password --cores 0
     reboot
