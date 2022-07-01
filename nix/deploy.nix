@@ -18,8 +18,9 @@ let
     };
 in
 {
+  user = "root";
+  sudo = "doas -u";
   autoRollback = true;
   magicRollback = true;
-  user = "root";
   nodes = lib.mapAttrs genNode self.nixosConfigurations;
 }
