@@ -20,15 +20,18 @@ sfdisk --wipe=always $dev << EOF
   name=boot, size=2GiB, type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B
   name=root
 EOF
+sync
 
 wait_for [ -b /dev/disk/by-partlabel/boot ]
 mkfs.vfat -F 32 -n boot /dev/disk/by-partlabel/boot
+sync
 
 # encrypt root btrfs partition, with a default key of a single null byte
 wait_for [ -b /dev/disk/by-partlabel/root ]
 cryptsetup luksFormat --batch-mode --type=luks2 --label=root /dev/disk/by-partlabel/root /dev/zero --keyfile-size=1
 cryptsetup luksOpen --batch-mode /dev/disk/by-partlabel/root root --key-file=/dev/zero --keyfile-size=1
 mkfs.btrfs -L root /dev/mapper/root
+sync
 
 # create subvolumes
 mkdir -p /mnt

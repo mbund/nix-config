@@ -4,6 +4,8 @@
   ];
 
   networking.hostName = "nixos-install";
+  networking.networkmanager.enable = true;
+  networking.useDHCP = false;
   users.mutableUsers = false;
   users.users.root.password = "root";
   services.openssh.enable = true;
