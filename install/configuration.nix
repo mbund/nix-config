@@ -1,48 +1,37 @@
-{ lib, pkgs, modulesPath, ... }: {
+{ config, pkgs, modulesPath, ... }: {
   imports = [
     "${modulesPath}/profiles/all-hardware.nix"
+    "${modulesPath}/installer/cd-dvd/channel.nix"
   ];
 
   networking.hostName = "nixos-install";
   networking.networkmanager.enable = true;
   networking.useDHCP = false;
+  services.openssh.enable = true;
+  services.openssh.permitRootLogin = "yes";
 
-  users.users.nixos = {
+  users.mutableUsers = false;
+  users.users.root.password = "root";
+  services.getty.autologinUser = "mbund";
+  users.groups.mbund.gid = config.users.users.mbund.uid;
+  users.users.mbund = {
+    password = "mbund";
+    createHome = true;
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" ];
-    initialHashedPassword = "";
+    group = "mbund";
+    uid = 1000;
+    extraGroups = [ "wheel" "networkmanager" "users" "video" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
+    ];
   };
 
-  users.users.root.initialHashedPassword = "";
-
-  security.sudo = {
-    enable = lib.mkDefault true;
-    wheelNeedsPassword = lib.mkForce false;
-  };
-
-  services.getty.autologinUser = "nixos";
-
-  services.getty.helpLine = ''
-    The "nixos" and "root" accounts have empty passwords.
-
-    An ssh daemon is running. You then must set a password
-    for either "root" or "nixos" with `passwd` or add an ssh key
-    to /home/nixos/.ssh/authorized_keys be able to login.
-  '';
-
-  services.openssh = {
-    enable = true;
-    permitRootLogin = "yes";
-  };
-
-  services.avahi = {
-    enable = true;
-    ipv4 = true;
-    ipv6 = true;
-    nssmdns = true;
-    publish = { enable = true; domain = true; addresses = true; };
-  };
-
+  security.sudo.wheelNeedsPassword = false;
+  security.doas.wheelNeedsPassword = false;
+  security.doas.enable = true;
+  security.doas.extraRules = [
+    { groups = [ "wheel" ]; noPass = true; keepEnv = true; }
+  ];
 
   nix.extraOptions = "experimental-features = nix-command flakes recursive-nix";
 
@@ -62,6 +51,14 @@
     unar
     zip
   ];
+
+  services.avahi = {
+    enable = true;
+    ipv4 = true;
+    ipv6 = true;
+    nssmdns = true;
+    publish = { enable = true; domain = true; addresses = true; };
+  };
 
   services.logind.lidSwitch = "ignore";
   boot.loader.systemd-boot.enable = true;

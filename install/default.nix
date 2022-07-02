@@ -15,8 +15,8 @@ let
   }).config.system.build.toplevel;
 
   genInstallScript = nixosSystem: partitioner: pkgs.writeShellScriptBin "install" ''
-    echo "journalctl -fb -n 100 -u install" >> ~/home/nixos/.bash_history
-    
+    echo "journalctl -fb -n 100 -u install" >> /home/nixos/.bash_history
+
     echo "15 seconds remaining" && sleep 5
     echo "10 seconds remaining" && sleep 5
     echo " 5 seconds remaining" && sleep 5
