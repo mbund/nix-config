@@ -2,9 +2,7 @@
 with lib;
 {
   age.secrets.mbundPassword.file = ./password.age;
-
   users.groups.mbund.gid = config.users.users.mbund.uid;
-
   users.users.mbund = {
     createHome = true;
     isNormalUser = true;
@@ -22,7 +20,7 @@ with lib;
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
     ];
     shell = mkIf config.programs.zsh.enable pkgs.zsh;
-    uid = 8888;
+    uid = 1000;
 
     passwordFile = config.age.secrets.mbundPassword.path;
   };
