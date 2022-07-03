@@ -9,7 +9,14 @@
   fileSystems."/nix" = {
     device = "/dev/mapper/nix";
     fsType = "btrfs";
-    options = [ "subvol=@nix" "compress=zstd" "noatime" ];
+    options = [ "subvol=@" "compress=zstd" "noatime" ];
+    neededForBoot = true;
+  };
+
+  fileSystems."/nix/persist" = {
+    device = "/dev/mapper/nix";
+    fsType = "btrfs";
+    options = [ "subvol=@persist" "compress=zstd" "noatime" ];
     neededForBoot = true;
   };
 

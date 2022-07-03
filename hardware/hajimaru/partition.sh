@@ -49,7 +49,8 @@ mount /dev/disk/by-label/boot /mnt/boot
 # mount nix
 mkdir -p /mnt/nix
 mount /dev/mapper/nix /mnt/nix
-btrfs subvolume create /mnt/nix/@nix
+btrfs subvolume create /mnt/nix/@
+btrfs subvolume create /mnt/nix/@persist
 btrfs subvolume create /mnt/nix/@swap
 
 # create swapfile
