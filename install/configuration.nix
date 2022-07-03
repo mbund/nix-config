@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, ... }: {
+{ pkgs, modulesPath, ... }: {
   imports = [
     "${modulesPath}/profiles/all-hardware.nix"
     "${modulesPath}/installer/cd-dvd/channel.nix"
@@ -12,18 +12,11 @@
 
   users.mutableUsers = false;
   users.users.root.password = "root";
-  services.getty.autologinUser = "mbund";
-  users.groups.mbund.gid = config.users.users.mbund.uid;
-  users.users.mbund = {
-    password = "mbund";
-    createHome = true;
+  services.getty.autologinUser = "nixos";
+  users.users.nixos = {
+    password = "nixos";
     isNormalUser = true;
-    group = "mbund";
-    uid = 1000;
     extraGroups = [ "wheel" "networkmanager" "users" "video" ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
-    ];
   };
 
   security.sudo.wheelNeedsPassword = false;

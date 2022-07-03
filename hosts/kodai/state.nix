@@ -19,8 +19,6 @@
       ".cache/zsh"
       ".local/share/direnv"
       ".local/share/zsh"
-      "src"
-      "tmp"
       { directory = ".ssh"; mode = "0700"; }
     ];
   };
