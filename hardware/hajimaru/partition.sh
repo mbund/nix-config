@@ -26,13 +26,16 @@ EOF
 sync
 
 wait_for [ -b /dev/disk/by-partlabel/boot ]
+sync
 mkfs.vfat -F 32 -n boot /dev/disk/by-partlabel/boot
 sync
 
 # encrypt nix btrfs partition, with a default key of a single null byte
 wait_for [ -b /dev/disk/by-partlabel/nix ]
+sync
 cryptsetup luksFormat --batch-mode --type=luks2 --label=nix /dev/disk/by-partlabel/nix /dev/zero --keyfile-size=1
 cryptsetup luksOpen --batch-mode /dev/disk/by-partlabel/nix nix --key-file=/dev/zero --keyfile-size=1
+sync
 mkfs.btrfs -L nix /dev/mapper/nix
 sync
 
