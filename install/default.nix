@@ -14,8 +14,8 @@ let
     ];
   }).config.system.build.toplevel;
 
-  genInstallScript = nixosSystem: partitioner: pkgs.writeShellScriptBin "install" ''
-    ${partitioner} "$@"
+  genInstallScript = nixosSystem: partitionScript: pkgs.writeShellScriptBin "install" ''
+    ${partitionScript} "$@"
     nixos-install --system ${nixosSystem} --no-root-password --cores 0
   '';
 
@@ -27,6 +27,6 @@ let
     }).config.system.build.isoImage;
 in
 rec {
-  hajimaru-install = genInstallScript (genNixosSystem ../hardware/hajimaru) (builtins.readFile ../hardware/hajimaru/partition.sh);
+  hajimaru-install = genInstallScript (genNixosSystem ../hardware/hajimaru) ../hardware/hajimaru/partition.sh;
   hajimaru-autoinstall-iso = genAutoInstallIso hajimaru-install;
 }
