@@ -15,6 +15,7 @@ let
   }).config.system.build.toplevel;
 
   genInstallScript = nixosSystem: partitionScript: pkgs.writeShellScriptBin "install" ''
+    set -e
     ${partitionScript} "$@"
     nixos-install --system ${nixosSystem} --no-root-password --cores 0
   '';
