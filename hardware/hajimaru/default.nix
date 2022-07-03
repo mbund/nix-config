@@ -7,14 +7,14 @@
   };
 
   fileSystems."/nix" = {
-    device = "/dev/mapper/root";
+    device = "/dev/mapper/nix";
     fsType = "btrfs";
     options = [ "subvol=@nix" "compress=zstd" "noatime" ];
     neededForBoot = true;
   };
 
   fileSystems."/nix/swap" = {
-    device = "/dev/mapper/root";
+    device = "/dev/mapper/nix";
     fsType = "btrfs";
     options = [ "subvol=@swap" "compress=none" "noatime" ];
     neededForBoot = true;
@@ -25,14 +25,14 @@
     fsType = "vfat";
   };
 
-  boot.initrd.luks.devices.root = {
-    device = "/dev/disk/by-label/root";
+  boot.initrd.luks.devices.nix = {
+    device = "/dev/disk/by-label/nix";
 
     # WARNING: Leaks some metadata, see cryptsetup man page for --allow-discards.
     allowDiscards = true;
 
     # Set your own key with:
-    # cryptsetup luksChangeKey /dev/disk/by-label/root --key-file=/dev/zero --keyfile-size=1
+    # cryptsetup luksChangeKey /dev/disk/by-label/nix --key-file=/dev/zero --keyfile-size=1
     # You can then delete the rest of this block.
     keyFile = lib.mkDefault "/dev/zero";
     keyFileSize = lib.mkDefault 1;
