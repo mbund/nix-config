@@ -9,21 +9,20 @@
   fileSystems."/nix" = {
     device = "/dev/mapper/root";
     fsType = "btrfs";
-    options = [ "subvol=nix" "compress=zstd" "noatime" ];
+    options = [ "subvol=@nix" "compress=zstd" "noatime" ];
+    neededForBoot = true;
+  };
+
+  fileSystems."/nix/swap" = {
+    device = "/dev/mapper/root";
+    fsType = "btrfs";
+    options = [ "subvol=@swap" "compress=none" "noatime" ];
     neededForBoot = true;
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/boot";
     fsType = "vfat";
-  };
-
-  fileSystems."/nix/swap" = {
-    # truncate -s 0 /nix/swap/swapfile
-    # chattr +C /nix/swap/swapfile
-    device = "/dev/mapper/root";
-    fsType = "btrfs";
-    options = [ "subvol=swap" "compress=none" "noatime" ];
   };
 
   boot.initrd.luks.devices.root = {

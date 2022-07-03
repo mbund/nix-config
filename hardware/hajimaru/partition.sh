@@ -46,11 +46,11 @@ mount /dev/disk/by-label/boot /mnt/boot
 # mount nix
 mkdir -p /mnt/nix
 mount /dev/mapper/nix /mnt/nix
-btrfs subvolume create /mnt/nix
-btrfs subvolume create /mnt/nix/swap
+btrfs subvolume create /mnt/nix/@nix
+btrfs subvolume create /mnt/nix/@swap
 
 # create swapfile
 mkdir -p /mnt/nix/swap
-mount -o subvol=swap,compress=none,noatime /dev/mapper/nix /mnt/nix/swap
+mount -o subvol=@swap,compress=none,noatime /dev/mapper/nix /mnt/nix/swap
 truncate -s 0 /mnt/nix/swap/swapfile
 chattr +C /mnt/nix/swap/swapfile
