@@ -1,7 +1,6 @@
 { pkgs, modulesPath, ... }: {
   imports = [
     "${modulesPath}/profiles/all-hardware.nix"
-    "${modulesPath}/installer/cd-dvd/channel.nix"
   ];
 
   networking.hostName = "nixos-install";
@@ -54,6 +53,5 @@
   };
 
   services.logind.lidSwitch = "ignore";
-  boot.loader.systemd-boot.enable = true;
   system.stateVersion = "22.05";
 }

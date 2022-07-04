@@ -1,7 +1,7 @@
 {
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
-  environment.persistence."/persist" = {
+  environment.persistence."/nix/state" = {
     directories = [
       "/var/lib/docker"
       "/var/lib/tailscale"
@@ -20,6 +20,7 @@
       ".local/share/direnv"
       ".local/share/zsh"
       { directory = ".ssh"; mode = "0700"; }
+      { directory = ".gnupg"; mode = "0700"; }
     ];
   };
 }

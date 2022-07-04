@@ -6,7 +6,6 @@
     ../../dev/virt-manager.nix
 
     ../../hardware/hajimaru
-    ../../hardware/efi.nix
     ../../hardware/nvidia.nix
     ../../hardware/intel.nix
     ../../hardware/bluetooth.nix
@@ -22,7 +21,7 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  swapDevices = [{ device = "/swap/swapfile"; size = 4 * 1024; }];
+  # swapDevices = [{ device = "/nix/swap/swapfile"; size = 4 * 1024; }];
 
   services.tlp.enable = true;
   services.upower.enable = true;
