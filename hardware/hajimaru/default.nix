@@ -10,7 +10,6 @@
     device = "/dev/mapper/nix";
     fsType = "btrfs";
     options = [ "subvol=root" "compress=zstd" "noatime" ];
-    neededForBoot = true;
   };
 
   fileSystems."/nix/store" = {

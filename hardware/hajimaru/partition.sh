@@ -56,8 +56,12 @@ btrfs subvolume create /mnt/nix/persist
 btrfs subvolume create /mnt/nix/swap
 umount /mnt/nix
 
-# create swapfile
 mount -o subvol=root,compress=zstd,noatime /dev/mapper/nix /mnt/nix
+mkdir -p /mnt/nix/{store,persist}
+mount -o subvol=root,compress=zstd,noatime /dev/mapper/nix /mnt/nix/store
+mount -o subvol=root,compress=zstd,noatime /dev/mapper/nix /mnt/nix/persist
+
+# create swapfile
 mkdir -p /mnt/nix/swap
 mount -o subvol=swap,compress=none,noatime /dev/mapper/nix /mnt/nix/swap
 truncate -s 0 /mnt/nix/swap/swapfile
