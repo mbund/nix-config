@@ -9,25 +9,7 @@
   fileSystems."/nix" = {
     device = "/dev/mapper/nix";
     fsType = "btrfs";
-    options = [ "subvol=root" "compress=zstd" "noatime" ];
-  };
-
-  fileSystems."/nix/store" = {
-    device = "/dev/mapper/nix";
-    fsType = "btrfs";
-    options = [ "subvol=store" "compress=zstd" "noatime" ];
-  };
-
-  fileSystems."/nix/persist" = {
-    device = "/dev/mapper/nix";
-    fsType = "btrfs";
-    options = [ "subvol=persist" "compress=zstd" "noatime" ];
-  };
-
-  fileSystems."/nix/swap" = {
-    device = "/dev/mapper/nix";
-    fsType = "btrfs";
-    options = [ "subvol=swap" "compress=none" "noatime" ];
+    options = [ "compress=zstd" "noatime" ];
   };
 
   fileSystems."/boot" = {
