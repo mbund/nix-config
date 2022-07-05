@@ -2,7 +2,7 @@
 , pkgs
 , self
 , ...
-} @ args:
+}@args:
 let
   package = self.inputs.eww.packages.${pkgs.system}.eww-wayland;
 
@@ -15,7 +15,7 @@ in
   home.packages = [ package ];
 
   xdg.configFile."eww/eww.yuck".text = import ./eww_yuck.nix args;
-  xdg.configFile."eww/eww.scss".text = import ./eww_scss.nix args;
+  xdg.configFile."eww/eww.scss".text = import ./eww_scss.nix;
   xdg.configFile."eww/images".source = ./images;
 
   systemd.user.services.eww = {
@@ -24,7 +24,7 @@ in
       # not yet implemented
       # PartOf = ["tray.target"];
       PartOf = [ "graphical-session.target" ];
-      X-Restart-Triggers = [ config.xdg.configFile."eww/eww.yuck".source ];
+      X-Restart-Triggers = [ (toString config.xdg.configFile."eww/eww.yuck".source) ];
     };
 
     Service = {

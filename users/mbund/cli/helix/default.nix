@@ -7,9 +7,7 @@
     enable = true;
     package = self.inputs.helix.packages.${pkgs.system}.default;
 
-    languages = import ./languages.nix {
-      inherit pkgs inputs;
-    };
+    languages = import ./languages.nix { inherit pkgs; };
 
     settings = {
       theme = "catppuccin_mocha";

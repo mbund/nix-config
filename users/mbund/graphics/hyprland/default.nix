@@ -1,7 +1,7 @@
 { lib
 , pkgs
 , ...
-} @ args:
+}@args:
 {
   home.packages = [ pkgs.hyprland ];
 

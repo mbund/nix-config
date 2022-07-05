@@ -25,7 +25,7 @@ in
     Unit = {
       Description = "Libinput Gestures";
       PartOf = [ "graphical-session.target" ];
-      X-Restart-Triggers = [ config.xdg.configFile."libinput-gestures.conf".source ];
+      X-Restart-Triggers = [ (toString config.xdg.configFile."libinput-gestures.conf".source) ];
     };
 
     Service = {
