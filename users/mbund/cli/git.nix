@@ -1,4 +1,10 @@
 { pkgs, ... }: {
+  home.packages = with pkgs; [
+    commitizen
+    git-extras
+    git-lfs
+  ];
+
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
@@ -17,6 +23,11 @@
       ".vscode/"
       ".mygitignore"
     ];
+  };
+
+  programs.gh = {
+    enable = true;
+    settings.git_protocol = "ssh";
   };
 
   programs.zsh.shellAliases = {

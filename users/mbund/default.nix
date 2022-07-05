@@ -1,5 +1,22 @@
-{ config, lib, pkgs, impermanence, ... }:
+{ config, lib, pkgs, self, impermanence, ... }:
 with lib;
+let
+  theme = "catppuccin";
+
+  colors = with self.lib; rec {
+    baseColors = self.inputs.nix-colors.colorSchemes.${theme}.colors;
+    # normal hex values
+    xcolors = mapAttrs (_: x) baseColors;
+    # rgba hex values
+    xrgbaColors = mapAttrs (_: xrgba) baseColors;
+    # argb hex values
+    xargbColors = mapAttrs (_: xargb) baseColors;
+    # 0xABCDEF colors (alacritty)
+    x0Colors = mapAttrs (_: x0) baseColors;
+    # rgba(,,,) colors (css)
+    rgbaColors = mapAttrs (_: rgba) baseColors;
+  };
+in
 {
   age.secrets.mbundPassword.file = ./password.age;
   users.groups.mbund.gid = config.users.users.mbund.uid;
@@ -25,15 +42,16 @@ with lib;
     passwordFile = config.age.secrets.mbundPassword.path;
   };
 
+  home-manager.extraSpecialArgs = { inherit colors self; };
+
   home-manager.users.mbund = {
     imports = [
       impermanence.home-manager.impermanence
-      ./core
-      ./dev
+      ./cli
       ./modules
+      ./dirs.nix
     ] ++ optionals config.programs.hyprland.enable [
       ./graphics
-      ./graphics/hyprland
     ];
 
     home.username = config.users.users.mbund.name;

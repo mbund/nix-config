@@ -45,7 +45,6 @@
   virtualisation.docker.enable = true;
   virtualisation.docker.autoPrune.enable = true;
 
-  #age.secrets.rootPassword.file = ./root-password.age;
-  #users.users.root.passwordFile = config.age.secrets.rootPassword.path;
-  users.users.root.password = "root";
+  age.secrets.rootPassword.file = ./root-password.age;
+  users.users.root.passwordFile = config.age.secrets.rootPassword.path;
 }

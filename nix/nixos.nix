@@ -46,6 +46,7 @@ let
         hyprland.nixosModules.default
       ];
       specialArgs = {
+        inherit self;
         impermanence = impermanence.nixosModules;
         nixos-hardware = nixos-hardware.nixosModules;
       };

@@ -10,6 +10,7 @@
     device = "/dev/mapper/nix";
     fsType = "btrfs";
     options = [ "compress=zstd" "noatime" ];
+    neededForBoot = true;
   };
 
   fileSystems."/boot" = {

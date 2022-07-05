@@ -1,4 +1,49 @@
+{ pkgs
+, colors
+, ...
+}:
+let
+  inherit (colors) xcolors;
+in
 {
+  imports = [
+    ./eww
+    ./libinput-gestures.nix
+    ./hyprland
+    ./integration.nix
+  ];
+
+  home.packages = with pkgs; [
+    grim
+    slurp
+
+    swaybg
+    swaylock-effects
+
+    wl-clipboard
+    wlr-randr
+    wlogout
+    wofi
+  ];
+
+  home.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = 1;
+    SDL_VIDEODRIVER = "wayland";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
+  };
+
+  programs.mako = {
+    enable = true;
+    borderRadius = 16;
+    borderSize = 0;
+    defaultTimeout = 5000;
+    font = "Roboto Regular 12";
+    margin = "4,4";
+    backgroundColor = xcolors.base01;
+    textColor = xcolors.base06;
+  };
+
   programs.mpv = {
     enable = true;
     config = {
@@ -66,5 +111,19 @@
     "video/x-ogm+ogg" = "mpv.desktop";
     "video/x-theora" = "mpv.desktop";
     "video/x-theora+ogg" = "mpv.desktop";
+  };
+
+  programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [ wlrobs ];
+
+  services.gammastep = {
+    enable = true;
+    provider = "geoclue2";
+  };
+
+  systemd.user.targets.tray = {
+    Unit = {
+      Description = "Home Manager System Tray";
+      Requires = [ "graphical-session-pre.target" ];
+    };
   };
 }

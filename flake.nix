@@ -43,18 +43,45 @@
       };
     };
 
+    naersk = {
+      url = "github:nmattia/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    helix = {
+      url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    catppuccin-helix = {
+      url = "github:catppuccin/helix";
+      flake = false;
+    };
+
     templates.url = "github:mbund/nix-template";
-    hyprland.url = "github:hyprwm/hyprland";
+
+    eww = {
+      url = "github:elkowar/eww";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.naersk.follows = "naersk";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-colors.url = "github:Misterio77/nix-colors";
   };
 
   outputs = { self, nixpkgs, utils, ... }@inputs: {
     deploy = import ./nix/deploy.nix inputs;
 
-    overlays = {
-      default = import ./nix/overlay.nix inputs;
-    };
+    overlays.default = import ./nix/overlay.nix inputs;
 
     homeConfigurations = import ./nix/home-manager.nix inputs;
+
+    lib = import ./lib inputs;
 
     nixosConfigurations = import ./nix/nixos.nix inputs;
   } // utils.lib.eachSystem (with utils.lib.system; [ x86_64-linux aarch64-linux ]) (system: {
@@ -65,7 +92,7 @@
     packages = {
       default = self.packages.${system}.all;
     } // (import ./nix/host-drvs.nix inputs system)
-      // (import ./install inputs system);
+    // (import ./install inputs system);
 
     pkgs = import nixpkgs {
       inherit system;

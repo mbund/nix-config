@@ -3,6 +3,7 @@
     enable = true;
     settings.auto_sync = false;
   };
+
   programs.bash = {
     bashrcExtra = ''
       export ATUIN_NOBIND="true"
