@@ -1,6 +1,43 @@
 {
   description = "mbund's universal nix configuration";
 
+  outputs = { self, nixpkgs, utils, ... }@inputs: {
+    deploy = import ./nix/deploy.nix inputs;
+
+    overlays.default = import ./nix/overlay.nix inputs;
+
+    homeConfigurations = import ./nix/home-manager.nix inputs;
+
+    lib = import ./lib inputs;
+
+    nixosConfigurations = import ./nix/nixos.nix inputs;
+  } // utils.lib.eachSystem (with utils.lib.system; [ x86_64-linux aarch64-linux ]) (system: {
+    checks = import ./nix/checks.nix inputs system;
+
+    devShells.default = import ./nix/dev-shell.nix inputs system;
+
+    packages = {
+      default = self.packages.${system}.all;
+    } // (import ./nix/host-drvs.nix inputs system)
+    // (import ./install inputs system);
+
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [
+        self.overlays.default
+      ];
+
+      config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+        "nvidia-x11"
+        "nvidia-settings"
+        "nvidia-persistenced"
+        "steam"
+        "steam-original"
+        "steam-runtime"
+      ];
+    };
+  });
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -73,41 +110,4 @@
 
     nix-colors.url = "github:Misterio77/nix-colors";
   };
-
-  outputs = { self, nixpkgs, utils, ... }@inputs: {
-    deploy = import ./nix/deploy.nix inputs;
-
-    overlays.default = import ./nix/overlay.nix inputs;
-
-    homeConfigurations = import ./nix/home-manager.nix inputs;
-
-    lib = import ./lib inputs;
-
-    nixosConfigurations = import ./nix/nixos.nix inputs;
-  } // utils.lib.eachSystem (with utils.lib.system; [ x86_64-linux aarch64-linux ]) (system: {
-    checks = import ./nix/checks.nix inputs system;
-
-    devShells.default = import ./nix/dev-shell.nix inputs system;
-
-    packages = {
-      default = self.packages.${system}.all;
-    } // (import ./nix/host-drvs.nix inputs system)
-    // (import ./install inputs system);
-
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [
-        self.overlays.default
-      ];
-
-      config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-        "nvidia-x11"
-        "nvidia-settings"
-        "nvidia-persistenced"
-        "steam"
-        "steam-original"
-        "steam-runtime"
-      ];
-    };
-  });
 }
