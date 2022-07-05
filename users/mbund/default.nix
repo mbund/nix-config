@@ -56,5 +56,6 @@ in
 
     home.username = config.users.users.mbund.name;
     home.uid = config.users.users.mbund.uid;
+    home.stateVersion = "22.05";
   };
 }
