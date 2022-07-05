@@ -12,21 +12,28 @@ deploy
 (available in the `nix develop` environment).
 
 ## setup
+This is a two stage setup process which will create a small generation 1 NixOS installation
+which then you can deploy onto.
+
+Benefits of a two stage deploy
+- A directly `deploy` onto a live iso can run out of storage space, because the size of the
+image is a simple tmpfs using 50% of system RAM
+- Having an image to roll back to in case of an error on deploy so you don't have to plug a
+usb device back in
+
+### stage 1 (autoinstall)
 From any nixos live iso run the folling invocation, replacing `/dev/sda` with the drive that
 you want to COMPLETELY OVERWRITE EVERYTHING ON. It requires the device to be UEFI bootable.
 ```
 sudo nix --experimental-features "nix-command flakes" run github:mbund/nix-config#hajimaru-install -- /dev/sda
 ```
 
-Or you build the autoinstaller iso which will automatically detect a main drive and
-do a completely unattended and offline install with it.
+Or you build the autoinstaller iso which will automatically detect a main drive and do a
+completely unattended and offline install. Beware that it will erase everything on the
+main drive and the motherboard must support UEFI booting.
 ```
 nix build github:mbund/nix-config#hajimaru-autoinstall-iso
 ```
 
-Both of these methods will install a bootstrapping environment, or rather a generation 1
-of a NixOS install. This is so that you can copy over required ssh keys to perform
-the final [deploy](#deploy).
-
-Any other method of installing will work too, as long as at the end you can successfully
-[deploy](#deploy) to it.
+### stage 2
+Just [deploy](#deploy)!
