@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   home.packages = with pkgs; [
     commitizen
     git-extras
@@ -23,6 +23,16 @@
       ".vscode/"
       ".mygitignore"
     ];
+  };
+
+  programs.gpg = {
+    enable = true;
+    homedir = "${config.home.homeDirectory}/.nix-config/.gnupg";
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "gnome3";
   };
 
   programs.gh = {

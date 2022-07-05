@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./atuin.nix
-    ./git.nix
+    ./signature.nix
     ./zsh.nix
     ./helix
   ];
@@ -48,6 +48,6 @@
       set auto-load safe-path /
     '';
   };
+
   home.extraOutputsToInstall = [ "doc" "devdoc" ];
-  home.stateVersion = "22.05";
 }
