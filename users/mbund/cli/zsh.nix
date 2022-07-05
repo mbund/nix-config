@@ -7,7 +7,7 @@
   programs.zsh = {
     enable = true;
 
-    dotDir = ".nix-config/.config/zsh";
+    dotDir = ".config/zsh";
 
     enableAutosuggestions = true;
     enableCompletion = true;
