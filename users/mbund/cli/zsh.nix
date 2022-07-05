@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     nix-index
     exa
@@ -7,7 +7,7 @@
   programs.zsh = {
     enable = true;
 
-    dotDir = "${config.xdg.configHome}/zsh";
+    dotDir = ".nix-config/.config/zsh";
 
     enableAutosuggestions = true;
     enableCompletion = true;
