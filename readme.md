@@ -1,7 +1,5 @@
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-Heavily inspired by [lovesegfault/nix-config](https://github.com/lovesegfault/nix-config)
-
 ## deploy
 This nix configuration uses [deploy-rs](https://github.com/serokell/deploy-rs)
 
@@ -37,3 +35,7 @@ nix build github:mbund/nix-config#hajimaru-autoinstall-iso
 
 ### stage 2
 Just [deploy](#deploy)!
+
+## also check out
+- [lovesegfault/nix-config](https://github.com/lovesegfault/nix-config)
+- [fufexan/dotfiles](https://github.com/fufexan/dotfiles)
