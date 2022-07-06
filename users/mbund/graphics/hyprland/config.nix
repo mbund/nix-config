@@ -18,7 +18,7 @@ let
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
 
   config = ''
-    monitor=,1920x1080@60,0x0,1
+    monitor=eDP-1,1366x768@60,0x0,1
 
     exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY HYPRLAND_INSTANCE_SIGNATURE
     exec-once=systemctl --user start graphical-session-pre.target
@@ -55,7 +55,7 @@ let
     }
 
     decoration {
-        rounding=16
+        rounding=4
         blur=1
         blur_size=3 # minimum 1
         blur_passes=3 # minimum 1, more passes = more resource intensive.

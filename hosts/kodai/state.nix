@@ -15,6 +15,8 @@
       "/etc/ssh/ssh_host_rsa_key.pub"
     ];
     users.mbund.directories = [
+      "xdg"
+      "data"
       ".cache/nix-index"
       ".cache/zsh"
       ".local/share/direnv"

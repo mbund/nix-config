@@ -35,7 +35,7 @@ in
 
   programs.mako = {
     enable = true;
-    borderRadius = 16;
+    borderRadius = 4;
     borderSize = 0;
     defaultTimeout = 5000;
     font = "Roboto Regular 12";

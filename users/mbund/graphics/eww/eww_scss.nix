@@ -26,7 +26,7 @@ let
     $gray2:       #C3BAC6;
     $white:       #D9E0EE;
 
-    *{
+    * {
       all: unset;
       font-family: Roboto;
     	font-size: 1.5rem;

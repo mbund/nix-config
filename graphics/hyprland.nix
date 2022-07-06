@@ -11,37 +11,34 @@
     pulse.enable = true;
   };
 
-  services.xserver = {
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.session = [
+    {
+      manage = "window";
+      name = "home-manager";
+      start = "exec $HOME/.xsession-hm";
+    }
+  ];
+
+  services.xserver.libinput = {
     enable = true;
-
-    displayManager.gdm.enable = true;
-
-    displayManager.session = [
-      {
-        manage = "window";
-        name = "home-manager";
-        start = "exec $HOME/.xsession-hm";
-      }
-    ];
-
-    libinput = {
-      enable = true;
-      mouse.accelProfile = "flat";
-      mouse.accelSpeed = "0";
-      mouse.middleEmulation = false;
-    };
+    mouse.accelProfile = "flat";
+    mouse.accelSpeed = "0";
+    mouse.middleEmulation = false;
   };
 
-  # allow swaylock to unlock the screen
-  security.pam.services.swaylock = {
-    text = ''
-      auth include login
-    '';
-  };
+  services.xserver.wacom.enable = true;
+  hardware.bluetooth.enable = true;
+  programs.kdeconnect.enable = true;
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    extraPortals = [
+      (pkgs.xdg-desktop-portal-gtk.override {
+        buildPortalsInGnome = false;
+      })
+    ];
     gtkUsePortal = true;
     wlr = {
       enable = true;
@@ -55,6 +52,14 @@
   programs.dconf.enable = true;
   services.dbus.packages = with pkgs; [ dconf ];
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+
+  # allow swaylock to unlock the screen
+  security.pam.services.swaylock.text = ''
+    auth include login
+  '';
+
+  # allows users of the "video" group to control backlight
+  programs.light.enable = true;
 
   programs.seahorse.enable = true;
   services.gnome.gnome-keyring.enable = true;

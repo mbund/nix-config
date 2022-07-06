@@ -12,6 +12,7 @@
 
     ../../graphics
     ../../graphics/hyprland.nix
+    ../../graphics/gnome.nix
     ../../graphics/gaming.nix
 
     ../../users/mbund
@@ -23,10 +24,14 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # swapDevices = [{ device = "/nix/swap/swapfile"; size = 4 * 1024; }];
 
-  services.tlp.enable = true;
   services.upower.enable = true;
   services.auto-cpufreq.enable = true;
   powerManagement.cpuFreqGovernor = "ondemand";
+
+  services.xserver.layout = "us";
+  services.xserver.xkbVariant = "colemak_dh";
+  services.xserver.xkbOptions = "caps:escape_shifted_capslock";
+  console.useXkbConfig = true;
 
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;

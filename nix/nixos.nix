@@ -21,6 +21,7 @@ let
     nix.registry = {
       templates.flake = templates;
       nixpkgs.flake = nixpkgs;
+      np.flake = nixpkgs;
     };
   };
 

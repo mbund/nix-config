@@ -8,14 +8,14 @@
     # stateHome = "${config.home.homeDirectory}/.nix-config/.local/state";
     userDirs = {
       enable = pkgs.stdenv.isLinux;
+      pictures = "$HOME/data/pictures";
+      videos = "$HOME/data/videos";
+      download = "$HOME/download";
       desktop = "$HOME/xdg";
       documents = "$HOME/xdg";
-      download = "$HOME/download";
       music = "$HOME/xdg";
-      pictures = "$HOME/xdg";
       publicShare = "$HOME/xdg";
       templates = "$HOME/xdg";
-      videos = "$HOME/xdg";
     };
   };
 }
