@@ -21,9 +21,6 @@
   security.sudo.wheelNeedsPassword = false;
   security.doas.wheelNeedsPassword = false;
   security.doas.enable = true;
-  security.doas.extraRules = [
-    { groups = [ "wheel" ]; noPass = true; keepEnv = true; }
-  ];
 
   nix.extraOptions = "experimental-features = nix-command flakes recursive-nix";
 
