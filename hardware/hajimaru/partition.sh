@@ -37,6 +37,7 @@ cryptsetup luksFormat --batch-mode --type=luks2 --label=root /dev/disk/by-partla
 cryptsetup luksOpen --batch-mode /dev/disk/by-partlabel/root root --key-file=/dev/zero --keyfile-size=1
 wait_for [ -b /dev/mapper/root ]
 sync
+mkfs.btrfs /dev/mapper/root
 
 mkdir -p /mnt
 mount /dev/mapper/root /mnt
