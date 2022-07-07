@@ -95,6 +95,11 @@
       flake = false;
     };
 
+    arkenfox-userjs = {
+      url = "github:arkenfox/user.js";
+      flake = false;
+    };
+
     templates.url = "github:mbund/nix-template";
 
     eww = {

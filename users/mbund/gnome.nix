@@ -61,6 +61,8 @@
   programs.obs-studio.enable = true;
   programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [ obs-gstreamer ];
 
+  nixpkgs.config.firefox.enableGnomeExtensions = true;
+
 
   home.pointerCursor = {
     x11.enable = true;

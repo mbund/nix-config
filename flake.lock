@@ -21,6 +21,22 @@
         "type": "github"
       }
     },
+    "arkenfox-userjs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656722605,
+        "narHash": "sha256-1M1lf3ah4I5KOPlTIZ52uEha8tuQu1wkgkdzEB4iK/0=",
+        "owner": "arkenfox",
+        "repo": "user.js",
+        "rev": "ceacc9dd74086478d43ccf3a4f0bd5befda53a43",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arkenfox",
+        "repo": "user.js",
+        "type": "github"
+      }
+    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -503,6 +519,7 @@
     },
     "root": {
       "inputs": {
+        "arkenfox-userjs": "arkenfox-userjs",
         "catppuccin-helix": "catppuccin-helix",
         "deploy-rs": "deploy-rs",
         "eww": "eww",
