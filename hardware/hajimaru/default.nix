@@ -10,6 +10,7 @@
     device = "/dev/mapper/root";
     fsType = "btrfs";
     options = [ "subvol=home" "compress=zstd" ];
+    neededForBoot = true;
   };
 
   fileSystems."/nix" = {
