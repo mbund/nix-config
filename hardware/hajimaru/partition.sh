@@ -32,8 +32,10 @@ mkfs.vfat -F 32 -n boot /dev/disk/by-partlabel/boot
 sgdisk -n 0:0:0 -c 0:root $dev
 wait_for [ -b /dev/disk/by-partlabel/root ]
 sync
+
 cryptsetup luksFormat --batch-mode --type=luks2 --label=root /dev/disk/by-partlabel/root /dev/zero --keyfile-size=1
 cryptsetup luksOpen --batch-mode /dev/disk/by-partlabel/root root --key-file=/dev/zero --keyfile-size=1
+wait_for [ -b /dev/mapper/root ]
 sync
 
 mkdir -p /mnt
