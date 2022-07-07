@@ -103,11 +103,6 @@
       inputs.naersk.follows = "naersk";
     };
 
-    hyprland = {
-      url = "github:hyprwm/hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-colors.url = "github:Misterio77/nix-colors";
   };
 }

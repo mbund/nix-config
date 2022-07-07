@@ -19,7 +19,6 @@
   hardware.bluetooth.enable = true;
   services.xserver.wacom.enable = true;
   hardware.pulseaudio.enable = lib.mkForce false;
-  xdg.portal.gtkUsePortal = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

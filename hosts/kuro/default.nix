@@ -11,7 +11,7 @@
     ../../hardware/bluetooth.nix
 
     ../../graphics
-    ../../graphics/hyprland.nix
+    ../../graphics/gnome.nix
     ../../graphics/gaming.nix
 
     ../../users/mbund

@@ -11,7 +11,6 @@
     ../../hardware/bluetooth.nix
 
     ../../graphics
-    ../../graphics/hyprland.nix
     ../../graphics/gnome.nix
     ../../graphics/gaming.nix
 
@@ -29,7 +28,7 @@
   powerManagement.cpuFreqGovernor = "ondemand";
 
   services.xserver.layout = "us";
-  services.xserver.xkbVariant = "colemak_dh";
+  # services.xserver.xkbVariant = "colemak_dh";
   services.xserver.xkbOptions = "caps:escape_shifted_capslock";
   console.useXkbConfig = true;
 

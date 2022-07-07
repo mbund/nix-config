@@ -32,7 +32,7 @@ in
       ++ optionals config.virtualisation.libvirtd.enable [ "libvirtd" ]
       ++ optionals config.virtualisation.kvmgt.enable [ "kvm" ]
       ++ optionals config.programs.adb.enable [ "adbusers" ]
-      ++ optionals config.programs.hyprland.enable [ "input" "video" "audio" ];
+      ++ optionals config.services.xserver.enable [ "input" "video" "audio" ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
     ];
@@ -50,8 +50,7 @@ in
       ./cli
       ./modules
       ./dirs.nix
-    ] ++ optionals config.programs.hyprland.enable [
-      ./graphics
+      ./gnome.nix
     ];
 
     home.username = config.users.users.mbund.name;
