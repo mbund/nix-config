@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     nix-index
     exa
@@ -28,14 +28,14 @@
         };
       }
       {
+        file = "powerlevel10k.zsh-theme";
         name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
       }
       {
-        name = "powerlevel10k-config";
-        src = lib.cleanSource ./p10k.zsh;
         file = "p10k.zsh";
+        name = "powerlevel10k-config";
+        src = ./p10k.zsh;
       }
     ];
 
@@ -54,6 +54,12 @@
       "la" = "ls --all";
       "l" = "ls";
     };
+
+    initExtraBeforeCompInit = ''
+      # p10k instant prompt
+      P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
+      [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
+    '';
 
     initExtra = ''
       # create custom command not found handler by searching through nix-index for it
