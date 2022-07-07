@@ -1,1 +1,2 @@
 *.age filter=age diff=age
+/users/mbund/cli/p10k.zsh linguist-vendored
