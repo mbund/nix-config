@@ -5,11 +5,6 @@ if [ -z "$dev" ]; then
   exit 1
 fi
 
-if [ "$EUID" != 0 ]; then
-  sudo "$0" "$@"
-  exit $?
-fi
-
 wait_for () {
   sleep 1
   for _ in seq 10; do
