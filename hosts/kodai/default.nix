@@ -22,7 +22,7 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # swapDevices = [{ device = "/nix/swap/swapfile"; size = 4 * 1024; }];
+  swapDevices = [{ device = "/swap/swapfile"; size = 4 * 1024; }];
 
   services.upower.enable = true;
   services.auto-cpufreq.enable = true;

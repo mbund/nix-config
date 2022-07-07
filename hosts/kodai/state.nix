@@ -1,7 +1,7 @@
 {
-  age.identityPaths = [ "/nix/state/etc/ssh/ssh_host_ed25519_key" ];
+  age.identityPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
 
-  environment.persistence."/nix/state" = {
+  environment.persistence."/persist" = {
     directories = [
       "/var/lib/docker"
       "/var/lib/tailscale"

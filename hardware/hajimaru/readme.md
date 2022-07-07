@@ -1,9 +1,16 @@
 # hajimaru
-The most common hardware configuration for my systems including
-state erausre. Btrfs is used mostly for its transparent compression,
-which is useful for the nix store.
+The most common hardware configuration for my systems, with the root
+partitioned as btrfs with specific subvolumes and snapshots, rolling
+back on each boot.
 
-- `/` is a tmpfs partition
-- `/nix` is a LUKS encrypted btrfs partition.
-- `/nix/persist` is a btrfs subvolume for explicitly set data to persist across reboots
-- `/nix/swap` is a btrfs subvolume for holding the swapfile (CoW disabled)
+| subvolume | mountpoint | persisted  | back up?          | description                               |
+| --------- | ---------- | ---------- | ----------------  | ----------------------------------------- |
+| root      | /          | no         | shouldn't         | root filesystem                           |
+| home      | /home      | optionally | should            | user homes                                |
+| nix       | /nix       | yes        | shouldn't         | trivially reconstructable nix build files |
+| persist   | /persist   | yes        | likely some files | select data from non-persisted subvolumes |
+| log       | /var/log   | yes        | if you want       | system logs                               |
+| swap      | /swap      | yes        | shouldn't         | dedicated for swapfile                    |
+
+The subvolumes `root` and `home` correspond to the `root-blank` and
+`home-blank` snapshots, which are simply empty filesystems.
