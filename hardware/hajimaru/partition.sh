@@ -10,15 +10,27 @@ if [ "$EUID" != 0 ]; then
   exit $?
 fi
 
+wait_for () {
+  sleep 1
+  for _ in seq 10; do
+    if "$@"; then
+      break
+    fi
+    sleep 1
+  done
+}
+
 set -ex
 
 sgdisk --zap-all $dev
 
 sgdisk -n 0:0:+2GiB -c 0:boot -t 0:ef00 $dev
+wait_for [ -b /dev/disk/by-partlabel/boot ]
 sync
 mkfs.vfat -F 32 -n boot /dev/disk/by-partlabel/boot
 
 sgdisk -n 0:0:0 -c 0:root $dev
+wait_for [ -b /dev/disk/by-partlabel/root ]
 sync
 cryptsetup luksFormat --batch-mode --type=luks2 --label=root /dev/disk/by-partlabel/root /dev/zero --keyfile-size=1
 cryptsetup luksOpen --batch-mode /dev/disk/by-partlabel/root root --key-file=/dev/zero --keyfile-size=1
