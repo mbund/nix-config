@@ -28,7 +28,7 @@ rec {
 
     mkdir -p /mnt/etc/nixos
     install -D ${./configuration.nix} /mnt/etc/nixos/a.nix
-    install -D ${../hardware/hajimaru} /mnt/etc/nixos/b.nix
+    install -D ${../hardware/hajimaru/default.nix} /mnt/etc/nixos/b.nix
     cat > /mnt/etc/nixos/configuration.nix << EOL
     {
       imports = [ ./a.nix ./b.nix ];
