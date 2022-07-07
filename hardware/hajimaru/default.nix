@@ -74,6 +74,7 @@
     interval = "monthly";
   };
 
+  console.earlySetup = true;
   boot.loader = {
     efi.canTouchEfiVariables = true;
     systemd-boot = {
@@ -82,7 +83,6 @@
     };
     timeout = 2;
   };
-  console.earlySetup = true;
 
   boot.initrd.postDeviceCommands =
     let
@@ -108,7 +108,7 @@
       '';
     in
     lib.mkBefore ''
-      ${rollback "/dev/mapper/root" "root" "root-blank"}
       ${rollback "/dev/mapper/root" "home" "home-blank"}
+      ${rollback "/dev/mapper/root" "root" "root-blank"}
     '';
 }
