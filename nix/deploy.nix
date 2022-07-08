@@ -19,7 +19,6 @@ let
 in
 {
   user = "root";
-  sudo = "doas -u";
   autoRollback = true;
   magicRollback = true;
   nodes = lib.mapAttrs genNode self.nixosConfigurations;
