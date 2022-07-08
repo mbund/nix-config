@@ -59,6 +59,9 @@ in
     font.name = font;
     font.size = 11;
     settings = {
+      dynamic_background_opacity = "yes";
+      hide_window_decorations = "yes";
+
       scrollback_lines = 10000;
       placement_strategy = "center";
 
