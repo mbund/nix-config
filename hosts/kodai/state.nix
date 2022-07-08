@@ -2,6 +2,7 @@
   age.identityPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
 
   environment.persistence."/persist" = {
+    hideMounts = true;
     directories = [
       "/var/lib/docker"
       "/var/lib/tailscale"
