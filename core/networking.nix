@@ -4,26 +4,25 @@
     dogdns
   ];
 
-  networking = {
-    firewall = {
-      checkReversePath = "loose";
-      trustedInterfaces = [ "tailscale0" ];
-      allowedUDPPorts = [
-        config.services.tailscale.port
+  networking.firewall = {
+    checkReversePath = "loose";
+    trustedInterfaces = [ "tailscale0" ];
+    allowedUDPPorts = [
+      config.services.tailscale.port
 
-        5353 # systemd-resolved
-        5355 # systemd-resolved
-      ];
-      allowedTCPPorts = [
-        5355 # systemd-resolved
-      ];
-    };
-    useDHCP = false;
-    useNetworkd = true;
-    wireguard.enable = true;
-    networkmanager.enable = true;
-    networkmanager.dns = "systemd-resolved";
+      5353 # systemd-resolved
+      5355 # systemd-resolved
+    ];
+    allowedTCPPorts = [
+      5355 # systemd-resolved
+    ];
   };
+
+  networking.useDHCP = false;
+  networking.useNetworkd = true;
+  networking.wireguard.enable = true;
+  networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "systemd-resolved";
 
   systemd.network.wait-online.anyInterface = true;
   services.resolved = {
