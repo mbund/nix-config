@@ -13,11 +13,6 @@
       theme = "catppuccin_mocha";
       editor = {
         true-color = true;
-        cursor-shape = {
-          insert = "bar";
-          normal = "block";
-          select = "underline";
-        };
       };
       keys.normal.space.u = {
         f = ":format"; # format using LSP formatter
