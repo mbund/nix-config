@@ -9,7 +9,7 @@ let
     "browser.urlbar.suggest.searches" = true;
 
     ## startup page
-    "browser.startup.homepage" = "https://searxng.moritzboeh.me/";
+    "browser.startup.homepage" = "https://searx.mbund.org";
     "browser.startup.page" = 1;
 
     ## drm
