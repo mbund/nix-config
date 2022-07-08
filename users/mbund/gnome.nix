@@ -13,6 +13,27 @@
     "org/gnome/desktop/peripherals/mouse" = {
       accel-profile = "flat";
     };
+    "org/gnome/shell" = {
+      welcome-dialog-last-shown-version = "999999999";
+      disable-user-extensions = false;
+      enabled-extensions = [
+        "AlphabeticalAppGrid@stuarthayhurst"
+        "bluetooth-quick-connect@bjarosze.gmail.com"
+        "blur-my-shell@aunetx"
+        "expandable-notifications@kaan.g.inam.org"
+        "gsconnect@andyholmes.github.io"
+        "just-perfection-desktop@just-perfection"
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "sound-output-device-chooser@kgshank.net"
+        "tailscale-status@maxgallup.github.com"
+        "tiling-assistant@leleat-on-github"
+        "Vitals@CoreCoding.com"
+      ];
+    };
+    "org/gnome/desktop/sound" = {
+      allow-volume-above-100-percent = true;
+    };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>Return";
@@ -44,14 +65,11 @@
     gsconnect
     vitals
     expandable-notifications
-    workspace-matrix
     tiling-assistant
     just-perfection
     fildem-global-menu
     alphabetical-app-grid
-    launch-new-instance
     sound-output-device-chooser
-    removable-drive-menu
     bluetooth-quick-connect
     tailscale-status
   ];
