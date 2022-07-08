@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, impermanence, ... }:
+{ config, lib, self, impermanence, ... }:
 with lib;
 let
   theme = "catppuccin";
@@ -36,7 +36,6 @@ in
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
     ];
-    shell = mkIf config.programs.zsh.enable pkgs.zsh;
     uid = 1000;
 
     passwordFile = config.age.secrets.mbundPassword.path;

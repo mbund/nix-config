@@ -4,7 +4,6 @@
     ./nix.nix
     ./networking.nix
     ./openssh.nix
-    ./zsh.nix
   ];
 
   boot.kernelParams = [ "log_buf_len=10M" ];

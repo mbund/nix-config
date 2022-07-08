@@ -7,6 +7,8 @@ in
   programs.alacritty = {
     enable = true;
     settings = {
+      shell.program = "zsh";
+
       window = {
         decorations = "none";
         dynamic_padding = true;
@@ -59,6 +61,8 @@ in
     font.name = font;
     font.size = 11;
     settings = {
+      shell = "zsh";
+
       dynamic_background_opacity = "yes";
       hide_window_decorations = "yes";
 
