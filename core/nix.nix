@@ -8,6 +8,11 @@ in
 {
   environment.etc."nixos/configuration.nix".source = dummyConfig;
 
+  # required superuser configuration for deploy-rs
+  security.sudo.enable = false;
+  security.doas.enable = true;
+  security.doas.wheelNeedsPassword = false;
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -22,7 +27,7 @@ in
     ];
 
     settings = {
-      allowed-users = [ "@wheel" ];
+      allowed-users = [ "*" ];
       trusted-users = [ "root" "@wheel" ];
       system-features = [ "recursive-nix" ];
       substituters = [
