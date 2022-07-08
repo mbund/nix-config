@@ -23,7 +23,7 @@ usb device back in
 From any nixos live iso run the folling invocation, replacing `/dev/sda` with the drive that
 you want to COMPLETELY OVERWRITE EVERYTHING ON. It requires the device to be UEFI bootable.
 ```
-sudo nix --experimental-features "nix-command flakes" run github:mbund/nix-config#hajimaru-install -- /dev/sda
+sudo nix --experimental-features "nix-command flakes" run github:mbund/nix-config#hajimaru-installer -- /dev/nvme0n1
 ```
 
 Or you build the autoinstaller iso which will automatically detect a main drive and do a
