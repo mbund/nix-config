@@ -4,7 +4,7 @@ let
       type = "nixos";
       address = "192.168.1.112";
       localSystem = "x86_64-linux";
-      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAxp81NVVK8F8yko5F6slVT+96yhgY7yDn51ZMTzrc1n";
+      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEJQhLmFcqBahDjwC4EDM3hoIs7JRri4z/FvllKDpuxr";
     };
 
     # kuro = {
