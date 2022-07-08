@@ -16,7 +16,7 @@
   users.users.nixos = {
     password = "nixos";
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "users" "video" ];
+    extraGroups = [ "wheel" "networkmanager" "users" "input" "video" "audio" ];
   };
 
   security.sudo.wheelNeedsPassword = false;
