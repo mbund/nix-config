@@ -46,7 +46,7 @@
       echo " 5 seconds until overwriting everything on $dev" && sleep 5
 
       ${installScript}/bin/install "$dev"
-      
+
       reboot
     '';
     environment = config.nix.envVars // {

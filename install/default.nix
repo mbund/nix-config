@@ -1,4 +1,4 @@
-{ self, nixpkgs, ... }:
+{ self, ragenix, impermanence, nixpkgs, ... }:
 
 system:
 
@@ -11,6 +11,8 @@ let
     modules = [
       (import hardwareConfigurationFile)
       ./configuration.nix
+      ragenix.nixosModules.age
+      impermanence.nixosModules.impermanence
     ];
   }).config.system.build.toplevel;
 
@@ -25,22 +27,8 @@ rec {
   hajimaru-installer = pkgs.writeShellScriptBin "install" ''
     set -e
     ${../hardware/hajimaru/partition.sh} "$@"
-
-    mkdir -p /mnt/etc/nixos
-    install -D ${./configuration.nix} /mnt/etc/nixos/a.nix
-    install -D ${../hardware/hajimaru/default.nix} /mnt/etc/nixos/b.nix
-    cat > /mnt/etc/nixos/configuration.nix << EOL
-    {
-      imports = [ ./a.nix ./b.nix ];
-    }
-    EOL
-
-    nixos-install --no-root-password --cores 0
+    nixos-install --system ${genNixosSystem ../hardware/hajimaru} --no-channel-copy --no-root-password --cores 0
   '';
 
-  hajimaru-autoinstall-iso = genAutoInstallIso (pkgs.writeShellScriptBin "install" ''
-    set -e
-    ${../hardware/hajimaru/partition.sh} "$@"
-    nixos-install --system ${genNixosSystem ../hardware/hajimaru} --no-root-password --cores 0
-  '');
+  hajimaru-autoinstall-iso = genAutoInstallIso hajimaru-installer;
 }
