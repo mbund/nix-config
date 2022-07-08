@@ -39,7 +39,7 @@ mount /dev/mapper/root /mnt
 btrfs subvolume create /mnt/root
 btrfs subvolume create /mnt/nix
 btrfs subvolume create /mnt/log
-btrfs subvolume create /mnt/persist
+btrfs subvolume create /mnt/state
 btrfs subvolume create /mnt/home
 btrfs subvolume create /mnt/swap
 btrfs subvolume snapshot -r /mnt/root /mnt/root-blank
@@ -48,10 +48,10 @@ umount /mnt
 
 mount -o subvol=root,compress=zstd,noatime /dev/mapper/root /mnt
 
-mkdir -p /mnt/{home,nix,persist,var/log}
+mkdir -p /mnt/{home,nix,state,var/log}
 mount -o subvol=home,compress=zstd /dev/mapper/root /mnt/home
 mount -o subvol=nix,compress=zstd,noatime /dev/mapper/root /mnt/nix
-mount -o subvol=persist,compress=zstd,noatime /dev/mapper/root /mnt/persist
+mount -o subvol=state,compress=zstd,noatime /dev/mapper/root /mnt/state
 mount -o subvol=log,compress=zstd,noatime /dev/mapper/root /mnt/var/log
 
 mkdir -p /mnt/swap

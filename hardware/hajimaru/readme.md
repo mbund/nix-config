@@ -8,7 +8,7 @@ back on each boot.
 | root      | /          | no         | shouldn't         | root filesystem                           |
 | home      | /home      | optionally | should            | user homes                                |
 | nix       | /nix       | yes        | shouldn't         | trivially reconstructable nix build files |
-| persist   | /persist   | yes        | likely some files | select data from non-persisted subvolumes |
+| state     | /state     | yes        | likely some files | select data from non-persisted subvolumes |
 | log       | /var/log   | yes        | if you want       | system logs                               |
 | swap      | /swap      | yes        | shouldn't         | dedicated for swapfile                    |
 

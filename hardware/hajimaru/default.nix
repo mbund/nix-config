@@ -19,10 +19,10 @@
     options = [ "subvol=nix" "compress=zstd" "noatime" ];
   };
 
-  fileSystems."/persist" = {
+  fileSystems."/state" = {
     device = "/dev/mapper/root";
     fsType = "btrfs";
-    options = [ "subvol=persist" "compress=zstd" "noatime" ];
+    options = [ "subvol=state" "compress=zstd" "noatime" ];
     neededForBoot = true;
   };
 
@@ -81,6 +81,7 @@
     systemd-boot = {
       enable = true;
       configurationLimit = 15;
+      netbootxyz.enable = true;
     };
     timeout = 2;
   };
@@ -112,4 +113,16 @@
       ${rollback "/dev/mapper/root" "home" "home-blank"}
       ${rollback "/dev/mapper/root" "root" "root-blank"}
     '';
+
+  age.identityPaths = [ "/state/etc/ssh/ssh_host_ed25519_key" ];
+  environment.persistence."/state" = {
+    hideMounts = true;
+    files = [
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+    ];
+  };
 }

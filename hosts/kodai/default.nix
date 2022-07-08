@@ -51,4 +51,8 @@
 
   age.secrets.rootPassword.file = ./root-password.age;
   users.users.root.passwordFile = config.age.secrets.rootPassword.path;
+
+  environment.persistence."/state".directories = [
+    "/var/lib/docker"
+  ];
 }

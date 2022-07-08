@@ -1,20 +1,5 @@
 {
-  age.identityPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
-
-  environment.persistence."/persist" = {
-    hideMounts = true;
-    directories = [
-      "/var/lib/docker"
-      "/var/lib/tailscale"
-      "/etc/NetworkManager/system-connections"
-    ];
-    files = [
-      "/etc/machine-id"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-    ];
+  environment.persistence."/state" = {
     users.mbund.directories = [
       "xdg"
       "data"

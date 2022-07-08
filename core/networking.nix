@@ -43,4 +43,9 @@
 
   services.tailscale.enable = true;
   systemd.services.tailscaled.after = [ "network-online.target" "systemd-resolved.service" ];
+
+  environment.persistence."/state".directories = [
+    "/etc/NetworkManager/system-connections"
+    "/var/lib/tailscale"
+  ];
 }
