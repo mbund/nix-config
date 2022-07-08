@@ -111,16 +111,9 @@
       package = pkgs.roboto;
     };
 
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-    };
-
-    theme = {
-      name = "Catppuccin-orange-dark-compact";
-      package = pkgs.catppuccin-gtk.override { size = "compact"; };
     };
   };
 
