@@ -1,4 +1,4 @@
-{ lib, pkgs, modulesPath, options, ... }: {
+{ lib, pkgs, modulesPath, ... }: {
   imports = [
     "${modulesPath}/profiles/all-hardware.nix"
   ];
@@ -15,6 +15,8 @@
   users.mutableUsers = false;
   users.users.root.password = "root";
   security.sudo.wheelNeedsPassword = false;
+  security.doas.enable = true;
+  security.doas.wheelNeedsPassword = false;
   services.getty.autologinUser = "nixos";
   users.users.nixos = {
     password = "nixos";
@@ -22,29 +24,11 @@
     extraGroups = [ "wheel" "networkmanager" "users" ];
   };
 
-  console.packages = options.console.packages.default ++ [ pkgs.terminus_font ];
-
   nix.extraOptions = "experimental-features = nix-command flakes recursive-nix";
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    git
-    curl
-    wget
-    ncdu
-    file
-    htop
-    vim
-    helix
-    openssl
-    pciutils
-    tmux
-    unar
-    zip
-
-    gparted
-    firefox
-  ];
+  environment.systemPackages =
+    with pkgs; [ git curl wget ncdu file htop vim helix zip unzip ];
 
   services.avahi = {
     enable = true;
