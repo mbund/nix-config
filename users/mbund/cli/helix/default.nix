@@ -13,7 +13,10 @@
       theme = "catppuccin_mocha";
       editor = {
         true-color = true;
+        auto-pairs = false;
+        whitespace.render = "all";
       };
+
       keys.normal.space.u = {
         f = ":format"; # format using LSP formatter
         a = [ "select_all" ":pipe alejandra" ]; # format Nix with Alejandra

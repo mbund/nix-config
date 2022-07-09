@@ -13,6 +13,9 @@ in
   security.doas.enable = true;
   security.doas.wheelNeedsPassword = false;
 
+  # speed up nix builds
+  boot.tmpOnTmpfs = true;
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;

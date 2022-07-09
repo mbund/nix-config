@@ -21,6 +21,7 @@
     nix-tree
     nix-index
     nix-update
+    lazydocker
     nixpkgs-review
     nix-prefetch-scripts
   ];
@@ -50,4 +51,11 @@
   };
 
   home.extraOutputsToInstall = [ "doc" "devdoc" ];
+
+  home.persistence."/state/home/mbund".directories = [
+    ".cache/nix-index"
+    ".cache/zsh"
+    ".local/share/direnv"
+    ".local/share/zsh"
+  ];
 }

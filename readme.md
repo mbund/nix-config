@@ -19,7 +19,7 @@ image is a simple tmpfs using 50% of system RAM
 - Having an image to roll back to in case of an error on deploy so you don't have to plug a
 usb device back in
 
-### stage 1 (autoinstall)
+### stage 1
 From any nixos live iso run the folling invocation, replacing `/dev/sda` with the drive that
 you want to COMPLETELY OVERWRITE EVERYTHING ON. It requires the device to be UEFI bootable.
 ```
@@ -33,9 +33,19 @@ main drive and the motherboard must support UEFI booting.
 nix build github:mbund/nix-config#hajimaru-autoinstall-iso
 ```
 
+Any other way of getting to a valid (ideally minimal) install of nixos will work too.
+
 ### stage 2
-Just [deploy](#deploy)!
+- Copy over `/etc/ssh/ssh_host_*` to `/state/etc/ssh/ssh_host_*`
+- Add the `/etc/ssh/ssh_host_ed25519_key.pub` key and ip address to `nix/hosts.nix`
+
+Then run
+```
+deploy -s --magic-rollback false --auto-rollback false
+```
+
+Now you can do regular deploys
 
 ## also check out
 - [lovesegfault/nix-config](https://github.com/lovesegfault/nix-config)
-- [fufexan/dotfiles](https://github.com/fufexan/dotfiles)
+- [notusknot/dotfiles-nix](https://github.com/notusknot/dotfiles-nix)

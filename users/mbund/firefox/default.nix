@@ -18,6 +18,10 @@ let
     ## sanitisation
     "privacy.clearOnShutdown.history" = false;
 
+    # pocket & firefox account
+    "extensions.pocket.enabled" = false;
+    "identity.fxaccounts.enabled" = false;
+
     ## disable letterboxing
     "privacy.resistFingerprinting.letterboxing" = false;
 
@@ -59,7 +63,10 @@ in
 {
   programs.firefox = {
     enable = true;
-    profiles."default".extraConfig = fullUserJs;
+    profiles."default" = {
+      extraConfig = fullUserJs;
+      userChrome = builtins.readFile ./userChrome.css;
+    };
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin
       skip-redirect

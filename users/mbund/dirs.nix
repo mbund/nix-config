@@ -18,4 +18,9 @@
       templates = "$HOME/xdg";
     };
   };
+
+  home.persistence."/state/home/mbund".directories = [
+    "xdg"
+    "data"
+  ];
 }

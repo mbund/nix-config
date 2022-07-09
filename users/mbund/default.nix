@@ -41,7 +41,10 @@ in
     passwordFile = config.age.secrets.mbundPassword.path;
   };
 
-  home-manager.extraSpecialArgs = { inherit colors self; };
+  home-manager.extraSpecialArgs = {
+    inherit colors self;
+    host = config.networking.hostName;
+  };
 
   home-manager.users.mbund = {
     imports = [
@@ -49,7 +52,10 @@ in
       ./cli
       ./modules
       ./dirs.nix
-      ./gnome.nix
+      ./common.nix
+    ] ++ optionals config.services.xserver.enable [
+      ./hyprland
+      ./firefox
     ];
 
     home.username = config.users.users.mbund.name;

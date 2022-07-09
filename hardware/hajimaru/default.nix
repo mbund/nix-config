@@ -80,10 +80,11 @@
     efi.canTouchEfiVariables = true;
     systemd-boot = {
       enable = true;
+      editor = false;
       configurationLimit = 15;
       netbootxyz.enable = true;
     };
-    timeout = 2;
+    timeout = 0;
   };
 
   boot.initrd.postDeviceCommands =

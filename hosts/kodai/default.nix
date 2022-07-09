@@ -11,12 +11,10 @@
     ../../hardware/bluetooth.nix
 
     ../../graphics
-    ../../graphics/gnome.nix
+    ../../graphics/hyprland.nix
     ../../graphics/gaming.nix
 
     ../../users/mbund
-
-    ./state.nix
   ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];

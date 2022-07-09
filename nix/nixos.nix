@@ -5,6 +5,7 @@
 , nixos-hardware
 , nixpkgs
 , ragenix
+, hyprland
 , templates
 , ...
 }:
@@ -43,6 +44,7 @@ let
         home-manager.nixosModules.home-manager
         impermanence.nixosModules.impermanence
         ragenix.nixosModules.age
+        hyprland.nixosModules.default
       ];
       specialArgs = {
         inherit self;

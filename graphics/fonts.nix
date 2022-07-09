@@ -34,6 +34,7 @@
     };
     fonts = with pkgs; [
       (nerdfonts.override { fonts = [ "Hack" "FiraCode" "JetBrainsMono" ]; })
+      jetbrains-mono
       material-icons
       material-design-icons
       ibm-plex

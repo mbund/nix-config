@@ -100,6 +100,11 @@
       flake = false;
     };
 
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     templates.url = "github:mbund/nix-template";
 
     eww = {

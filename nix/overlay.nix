@@ -2,6 +2,7 @@
 , nixpkgs
 , ragenix
 , nur
+, hyprland
 , ...
 }:
 
@@ -17,4 +18,5 @@ composeManyExtensions (localOverlays ++ [
   deploy-rs.overlay
   ragenix.overlay
   nur.overlay
+  hyprland.overlays.default
 ])

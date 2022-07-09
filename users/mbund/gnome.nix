@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./firefox.nix
+    ./firefox
     ./terminals.nix
   ];
 
