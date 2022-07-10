@@ -13,18 +13,23 @@
     enableCompletion = true;
     enableSyntaxHighlighting = true;
     autocd = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" ];
-    };
     plugins = [
       {
         name = "you-should-use";
         src = pkgs.fetchFromGitHub {
           owner = "MichaelAquilina";
           repo = "zsh-you-should-use";
-          rev = "2be37f376c13187c445ae9534550a8a5810d4361";
-          sha256 = "0yhwn6av4q6hz9s34h4m3vdk64ly6s28xfd8ijgdbzic8qawj5p1";
+          rev = "09d9aa2cad2b7caf48cce8f321ebbbf8f47ce1c3";
+          sha256 = "07iqlry4mim5cqi8x5vi64dvwqqp298jbaz3ycks9rxsqlczzlnl";
+        };
+      }
+      {
+        name = "auto-notify";
+        src = pkgs.fetchFromGitHub {
+          owner = "MichaelAquilina";
+          repo = "zsh-auto-notify";
+          rev = "1f64cb654473d7208f46534bc3df47ac919d4a72";
+          sha256 = "0x93mb72jkzn90qmy07vxj3vhvm14bx4sncnclh7yq545x0b1zg3";
         };
       }
       {
@@ -91,37 +96,6 @@
       command_not_found_handler() {
         command_not_found_handle $@
         return $?
-      }
-
-      # send notifications on ending long running commands
-      cmdignore=(htop tmux top vim)
-
-      # end and compare timer, notify-send if needed
-      function notifyosd-precmd() {
-        retval=$?
-        if [ ! -z "$cmd" ]; then
-          cmd_end=`date +%s`
-          ((cmd_time=$cmd_end - $cmd_start))
-        fi
-        if [ $retval -eq 0 ]; then
-          cmdstat="✓"
-        else
-          cmdstat="✘"
-        fi
-        if [ ! -z "$cmd" ] && [[ $cmd_time -gt 3 ]]; then
-          ${pkgs.libnotify}/bin/notify-send -a command_complete -i utilities-terminal -u low "$cmdstat $cmd" "in `date -u -d @$cmd_time +'%T'`"
-          echo -e '\a'
-        fi
-        unset cmd
-      }
-
-      # make sure this plays nicely with any existing precmd
-      precmd_functions+=( notifyosd-precmd )
-
-      # get command name and start the timer
-      function notifyosd-preexec() {
-        cmd=$1
-        cmd_start=`date +%s`
       }
     '';
   };
