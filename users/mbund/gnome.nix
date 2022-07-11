@@ -24,8 +24,6 @@
         "nightthemeswitcher@romainvigier.fr"
         "sound-output-device-chooser@kgshank.net"
         "tailscale-status@maxgallup.github.com"
-        "tiling-assistant@leleat-on-github"
-        "Vitals@CoreCoding.com"
       ];
 
       favorite-apps = [
@@ -71,8 +69,6 @@
     night-theme-switcher
     sound-output-device-chooser
     tailscale-status
-    tiling-assistant
-    vitals
   ];
 
   services.easyeffects.enable = true;
