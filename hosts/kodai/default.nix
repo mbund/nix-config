@@ -1,24 +1,21 @@
 { config, pkgs, ... }: {
   imports = [
     ../../core
-
-    ../../dev
-    ../../dev/virt-manager.nix
+    ../../core/virtualisation.nix
 
     ../../hardware/hajimaru
     ../../hardware/nvidia.nix
     ../../hardware/intel.nix
-    ../../hardware/bluetooth.nix
 
     ../../graphics
-    ../../graphics/hyprland.nix
+    ../../graphics/gnome.nix
     ../../graphics/gaming.nix
 
     ../../users/mbund
   ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   swapDevices = [{ device = "/swap/swapfile"; size = 4 * 1024; }];
 
   services.upower.enable = true;
@@ -44,13 +41,6 @@
 
   time.timeZone = "America/New_York";
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.autoPrune.enable = true;
-
   age.secrets.rootPassword.file = ./root-password.age;
   users.users.root.passwordFile = config.age.secrets.rootPassword.path;
-
-  environment.persistence."/state".directories = [
-    "/var/lib/docker"
-  ];
 }

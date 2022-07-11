@@ -3,7 +3,7 @@
     "${modulesPath}/profiles/all-hardware.nix"
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_18;
 
   networking.hostName = "nixos-install";
   networking.networkmanager.enable = true;

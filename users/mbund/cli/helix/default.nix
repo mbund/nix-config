@@ -15,6 +15,7 @@
         true-color = true;
         auto-pairs = false;
         whitespace.render = "all";
+        line-number = "relative";
       };
 
       keys.normal.space.u = {

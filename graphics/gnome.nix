@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }:
 {
+  imports = [
+    ../hardware/bluetooth.nix
+  ];
+
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -16,7 +20,6 @@
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
 
-  hardware.bluetooth.enable = true;
   services.xserver.wacom.enable = true;
   hardware.pulseaudio.enable = lib.mkForce false;
   services.pipewire = {

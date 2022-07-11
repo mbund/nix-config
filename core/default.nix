@@ -3,7 +3,6 @@
   imports = [
     ./nix.nix
     ./networking.nix
-    ./openssh.nix
   ];
 
   boot.kernelParams = [ "log_buf_len=10M" ];
@@ -16,7 +15,14 @@
     curl
     rclone
     rsync
+    man-pages
   ];
+
+  programs.mosh.enable = true;
+  services.openssh.enable = true;
+  services.openssh.permitRootLogin = "no";
+
+  documentation.dev.enable = true;
 
   users.mutableUsers = false;
 }

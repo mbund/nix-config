@@ -1,4 +1,4 @@
-{ config, lib, self, impermanence, ... }:
+{ config, lib, pkgs, self, impermanence, ... }:
 with lib;
 let
   theme = "catppuccin";
@@ -36,10 +36,16 @@ in
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
     ];
+    shell = pkgs.zsh;
     uid = 1000;
 
     passwordFile = config.age.secrets.mbundPassword.path;
   };
+
+  programs.zsh.enable = true;
+
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "mbund";
 
   home-manager.extraSpecialArgs = {
     inherit colors self;
@@ -54,8 +60,8 @@ in
       ./dirs.nix
       ./common.nix
     ] ++ optionals config.services.xserver.enable [
-      ./hyprland
-      ./firefox
+      ./gui.nix
+      ./gnome.nix
     ];
 
     home.username = config.users.users.mbund.name;

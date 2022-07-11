@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ../hardware/bluetooth.nix
+  ];
+
   programs.hyprland.enable = true;
   programs.hyprland.extraPackages = [ ];
 
@@ -12,16 +16,7 @@
   };
 
   services.xserver.enable = true;
-
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-  #       user = "greeter";
-  #     };
-  #   };
-  # };
+  services.xserver.displayManager.lightdm.enable = false;
 
   services.xserver.libinput = {
     enable = true;
@@ -32,7 +27,6 @@
 
   networking.wireless.iwd.enable = true;
   services.xserver.wacom.enable = true;
-  hardware.bluetooth.enable = true;
   programs.kdeconnect.enable = true;
 
   xdg.portal = {

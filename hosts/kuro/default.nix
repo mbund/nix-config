@@ -1,28 +1,27 @@
 { config, pkgs, ... }: {
   imports = [
     ../../core
-
-    ../../dev
-    ../../dev/virt-manager.nix
+    ../../core/virtualisation.nix
 
     ../../hardware/hajimaru
-    ../../hardware/efi.nix
     ../../hardware/nvidia.nix
-    ../../hardware/bluetooth.nix
 
     ../../graphics
     ../../graphics/gnome.nix
     ../../graphics/gaming.nix
 
     ../../users/mbund
-
-    ./state.nix
   ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   swapDevices = [{ device = "/swap/swapfile"; size = 4 * 1024; }];
+
+  services.xserver.layout = "us";
+  # services.xserver.xkbVariant = "colemak_dh";
+  services.xserver.xkbOptions = "caps:escape_shifted_capslock";
+  console.useXkbConfig = true;
 
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
@@ -30,15 +29,13 @@
   networking.hostName = "kuro";
   networking.interfaces.enp6s0.useDHCP = true;
 
+
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
   nix.settings.max-jobs = 16;
   nix.settings.system-features = [ "benchmark" "nixos-test" "big-parallel" "kvm" ];
 
   time.timeZone = "America/New_York";
-
-  virtualisation.docker.enable = true;
-  virtualisation.docker.autoPrune.enable = true;
 
   age.secrets.rootPassword.file = ./root-password.age;
   users.users.root.passwordFile = config.age.secrets.rootPassword.path;

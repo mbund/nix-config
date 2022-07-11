@@ -1,10 +1,5 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
-  imports = [
-    ./firefox
-    ./terminals.nix
-  ];
-
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
       resize-with-right-button = true;
@@ -18,60 +13,66 @@
       disable-user-extensions = false;
       enabled-extensions = [
         "AlphabeticalAppGrid@stuarthayhurst"
+        "appindicatorsupport@rgcjonas.gmail.com"
         "bluetooth-quick-connect@bjarosze.gmail.com"
         "blur-my-shell@aunetx"
+        "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "expandable-notifications@kaan.g.inam.org"
         "gsconnect@andyholmes.github.io"
         "just-perfection-desktop@just-perfection"
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "nightthemeswitcher@romainvigier.fr"
         "sound-output-device-chooser@kgshank.net"
         "tailscale-status@maxgallup.github.com"
         "tiling-assistant@leleat-on-github"
         "Vitals@CoreCoding.com"
       ];
+
+      favorite-apps = [
+        "org.gnome.Nautilus.desktop"
+        "firefox.desktop"
+        "torbrowser.desktop"
+        "codium.desktop"
+        "kitty.desktop"
+        "ferdium.desktop"
+        "org.gnome.Evolution.desktop"
+        "org.gnome.Calendar.desktop"
+      ];
     };
     "org/gnome/desktop/sound" = {
       allow-volume-above-100-percent = true;
     };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>Return";
-      command = "kitty";
-      name = "Launch terminal";
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<Super>B";
-      command = "librewolf";
-      name = "Launch browser";
+    "org/gnome/desktop/input-sources" = {
+      sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "us" ]) (lib.hm.gvariant.mkTuple [ "xkb" "us+colemak_dh" ]) ];
+      xkb-options = [ "caps:escape_shifted_capslock" ];
     };
   };
 
   home.packages = with pkgs; with pkgs.gnome; with pkgs.gnomeExtensions; [
-    ferdium
+    amberol
+    blanket
     celluloid
     fragments
-    kooha
-    blanket
-    metadata-cleaner
     helvum
-    xorg.xeyes
     junction
-    gnome-tweaks
-    dconf-editor
+    kooha
+    metadata-cleaner
 
-    pixel-saver
-    blur-my-shell
-    gsconnect
-    vitals
-    expandable-notifications
-    tiling-assistant
-    just-perfection
-    fildem-global-menu
+    dconf-editor
+    gnome-tweaks
+
     alphabetical-app-grid
-    sound-output-device-chooser
+    appindicator
     bluetooth-quick-connect
+    blur-my-shell
+    expandable-notifications
+    gsconnect
+    just-perfection
+    night-theme-switcher
+    sound-output-device-chooser
     tailscale-status
+    tiling-assistant
+    vitals
   ];
 
   services.easyeffects.enable = true;
@@ -80,7 +81,6 @@
   programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [ obs-gstreamer ];
 
   nixpkgs.config.firefox.enableGnomeExtensions = true;
-
 
   home.pointerCursor = {
     x11.enable = true;

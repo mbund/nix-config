@@ -11,13 +11,15 @@
     bat
     duf
     exa
+    gdu
     mosh
     bottom
     du-dust
     ripgrep
     joshuto
-    bandwhich
+    lazygit
     neofetch
+    bandwhich
     nix-tree
     nix-index
     nix-update

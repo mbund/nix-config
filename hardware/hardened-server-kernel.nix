@@ -1,5 +1,5 @@
 { lib, pkgs, ... }: {
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_hardened;
   boot.kernelModules = [ "tcp_bbr" ];
   boot.kernel.sysctl = {
     # Disable magic SysRq key

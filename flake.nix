@@ -28,12 +28,13 @@
       ];
 
       config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-        "nvidia-x11"
-        "nvidia-settings"
+        "minecraft-launcher"
         "nvidia-persistenced"
-        "steam"
+        "nvidia-settings"
+        "nvidia-x11"
         "steam-original"
         "steam-runtime"
+        "steam"
       ];
     };
   });
