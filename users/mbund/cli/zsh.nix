@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     nix-index
     exa
+    libnotify
   ];
 
   programs.zsh = {
