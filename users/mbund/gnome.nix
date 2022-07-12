@@ -44,6 +44,9 @@
       sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "us" ]) (lib.hm.gvariant.mkTuple [ "xkb" "us+colemak_dh" ]) ];
       xkb-options = [ "caps:escape_shifted_capslock" ];
     };
+    "org/gnome/desktop/background" = {
+      picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
+    };
   };
 
   home.packages = with pkgs; with pkgs.gnome; with pkgs.gnomeExtensions; [
