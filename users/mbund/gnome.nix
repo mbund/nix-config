@@ -52,9 +52,7 @@
       background-menu = false; # disable right click on desktop
       workspace-wrap-around = true; # wrap last workspace to first, and first to last
       workspace-switcher-should-show = true; # show even if only one workspace
-      top-panel-position = 1; # bottom
-      clock-menu-position = 2; # left
-      notification-banner-position = 3; # bottom left
+      notification-banner-position = 2; # top right
     };
     "org/gnome/desktop/background" = {
       picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
