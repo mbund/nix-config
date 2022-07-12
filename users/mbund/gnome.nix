@@ -24,6 +24,8 @@
         "nightthemeswitcher@romainvigier.fr"
         "sound-output-device-chooser@kgshank.net"
         "tailscale-status@maxgallup.github.com"
+        "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
       ];
 
       favorite-apps = [
@@ -43,6 +45,16 @@
     "org/gnome/desktop/input-sources" = {
       sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "us" ]) (lib.hm.gvariant.mkTuple [ "xkb" "us+colemak_dh" ]) ];
       xkb-options = [ "caps:escape_shifted_capslock" ];
+    };
+    "org/gnome/shell/extensions/just-perfection" = {
+      search = false; # disable search bar in overview
+      workspace-switcher-size = 10; # make workspace switchers larger
+      background-menu = false; # disable right click on desktop
+      workspace-wrap-around = true; # wrap last workspace to first, and first to last
+      workspace-switcher-should-show = true; # show even if only one workspace
+      top-panel-position = 1; # bottom
+      clock-menu-position = 2; # left
+      notification-banner-position = 3; # bottom left
     };
     "org/gnome/desktop/background" = {
       picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
