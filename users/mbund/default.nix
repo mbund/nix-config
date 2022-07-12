@@ -88,6 +88,7 @@ in
     ".config/obs-studio"
     ".config/supertuxkart"
     ".config/VSCodium"
+    ".config/lazygit"
     ".config/gh"
   ];
 }
