@@ -11,6 +11,8 @@
   services.gnome.chrome-gnome-shell.enable = true;
   programs.dconf.enable = true;
 
+  virtualisation.waydroid.enable = true;
+
   programs.kdeconnect.enable = true;
   programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
 
