@@ -59,16 +59,4 @@
       hwdec = "auto";
     };
   };
-
-  home.persistence."/state/home/mbund".directories = [
-    ".config/chromium"
-    ".config/Ferdium"
-    ".config/inkscape"
-    ".config/krita"
-    ".config/obs-studio"
-    ".config/supertuxkart"
-    ".config/VSCodium"
-    ".minecraft"
-    ".vscode-oss"
-  ];
 }

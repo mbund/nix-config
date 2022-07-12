@@ -5,6 +5,4 @@
       if host == "kodai" then "$HOME/data/nix-config"
       else null;
   };
-
-  home.persistence."/state/home/mbund".allowOther = false;
 }

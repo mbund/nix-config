@@ -68,4 +68,24 @@ in
     home.uid = config.users.users.mbund.uid;
     home.stateVersion = "22.05";
   };
+
+  environment.persistence."/state".users.mbund.directories = [
+    "xdg"
+    "data"
+    ".config/chromium"
+    ".config/Ferdium"
+    ".config/inkscape"
+    ".config/krita"
+    ".config/obs-studio"
+    ".config/supertuxkart"
+    ".config/VSCodium"
+    ".minecraft"
+    ".vscode-oss"
+    ".cache/nix-index"
+    ".cache/zsh"
+    ".local/share/direnv"
+    ".local/share/zsh"
+    ".ssh"
+    ".gnupg"
+  ];
 }
