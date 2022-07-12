@@ -68,6 +68,13 @@
     '';
 
     initExtra = ''
+      # configure auto-notify
+      export AUTO_NOTIFY_THRESHOLD=60
+      export AUTO_NOTIFY_IGNORE=("man" "docker" "hx" "lazygit" "lazydocker")
+      export AUTO_NOTIFY_EXPIRE_TIME=4000
+      export AUTO_NOTIFY_TITLE="\"%command\" completed [%exit_code]"
+      export AUTO_NOTIFY_BODY="in %elapsed seconds"
+
       # create custom command not found handler by searching through nix-index for it
 
       command_not_found_handle() {
