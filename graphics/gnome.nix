@@ -6,6 +6,7 @@
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.defaultSession = "gnome";
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome.chrome-gnome-shell.enable = true;
   programs.dconf.enable = true;
