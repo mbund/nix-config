@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 {
   fileSystems."/" = {
     device = "/dev/mapper/root";
@@ -82,10 +82,14 @@
       enable = true;
       editor = false;
       configurationLimit = 15;
-      netbootxyz.enable = true;
     };
     timeout = 0;
   };
+
+  environment.systemPackages = with pkgs; [
+    # one time reboot with 10 second timeout in the boot loader menu
+    (writeShellScriptBin "reboot-to-menu" "systemctl reboot --boot-loader-menu=10")
+  ];
 
   boot.initrd.postDeviceCommands =
     let
