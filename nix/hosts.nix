@@ -2,7 +2,7 @@ let
   hosts = {
     kodai = {
       type = "nixos";
-      address = "192.168.1.105";
+      address = "192.168.1.103";
       localSystem = "x86_64-linux";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILCXxKk/l/+A4xbYcYsyHPRuvBD70yf76vHGokfDFIwn";
     };
