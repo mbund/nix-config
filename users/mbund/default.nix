@@ -79,6 +79,7 @@ in
     ".config/obs-studio"
     ".config/supertuxkart"
     ".config/VSCodium"
+    ".config/gh"
     ".minecraft"
     ".vscode-oss"
     ".cache/nix-index"
