@@ -38,10 +38,12 @@ Any other way of getting to a valid (ideally minimal) install of nixos will work
 ### stage 2
 - Copy over `/etc/ssh/ssh_host_*` to `/state/etc/ssh/ssh_host_*`
 - Add the `/etc/ssh/ssh_host_ed25519_key.pub` key and ip address to `nix/hosts.nix`
+- Generate password with `mkpasswd -m sha-512` and make a secret with `agenix -e my/path/to/secret`
+- Rekey all secrets with `agenix -r`
 
 Then run
 ```
-deploy -s --magic-rollback false --auto-rollback false
+deploy -s .#XXX --ssh-user nixos --hostname 192.168.1.XXX --magic-rollback false --auto-rollback false
 ```
 
 Now you can do regular deploys
