@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, host, ... }:
 {
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
@@ -54,8 +54,12 @@
       workspace-switcher-should-show = true; # show even if only one workspace
       notification-banner-position = 2; # top right
     };
+    "org/gnome/settings-daemon/plugins/power" =
+      if (host == "kuro") then { sleep-inactive-ac-type = "nothing"; }
+      else { };
     "org/gnome/desktop/background" = {
       picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
+      picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-d.jpg";
     };
   };
 
