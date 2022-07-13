@@ -56,9 +56,11 @@
       "uns" = "NIXPKGS_ALLOW_UNFREE=1 nix shell --impure";
       "nd" = "nix develop -c $SHELL";
       "und" = "NIXPKGS_ALLOW_UNFREE=1 nix develop --impure -c $SHELL";
+
       "ls" = "exa --binary --header --long --classify";
-      "la" = "ls --all";
-      "l" = "ls";
+      "l" = "exa";
+
+      "code" = "codium";
     };
 
     initExtraBeforeCompInit = ''
