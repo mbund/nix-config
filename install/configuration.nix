@@ -10,16 +10,16 @@
   networking.wireless.enable = lib.mkForce false;
   networking.useDHCP = false;
   services.openssh.enable = true;
-  services.openssh.permitRootLogin = "yes";
+  services.openssh.permitRootLogin = lib.mkDefault "yes";
 
   users.mutableUsers = false;
-  users.users.root.password = "root";
+  users.users.root.password = lib.mkDefault "root";
   security.sudo.wheelNeedsPassword = false;
   security.doas.enable = true;
   security.doas.wheelNeedsPassword = false;
   services.getty.autologinUser = "nixos";
   users.users.nixos = {
-    password = "nixos";
+    password = lib.mkDefault "nixos";
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "users" ];
   };
@@ -39,5 +39,5 @@
   };
 
   services.logind.lidSwitch = "ignore";
-  system.stateVersion = lib.trivial.release;
+  system.stateVersion = lib.mkDefault lib.trivial.release;
 }

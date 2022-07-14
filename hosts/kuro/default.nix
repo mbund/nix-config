@@ -15,7 +15,7 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_18;
   swapDevices = [{ device = "/swap/swapfile"; size = 4 * 1024; }];
 
   services.xserver.layout = "us";
@@ -28,7 +28,6 @@
 
   networking.hostName = "kuro";
   networking.interfaces.enp6s0.useDHCP = true;
-
 
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";

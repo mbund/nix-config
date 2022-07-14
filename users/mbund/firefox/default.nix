@@ -17,6 +17,7 @@ let
 
     ## sanitisation
     "privacy.clearOnShutdown.history" = false;
+    "privacy.clearOnShutdown.cookies" = false;
 
     # pocket & firefox account
     "extensions.pocket.enabled" = false;

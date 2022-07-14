@@ -6,11 +6,11 @@ let
 
   pkgs = self.pkgs.${system};
 
-  genNixosSystem = hardwareConfigurationFile: (nixpkgs.lib.nixosSystem {
+  genNixosSystem = extraConfiguration: (nixpkgs.lib.nixosSystem {
     inherit system;
     modules = [
-      (import hardwareConfigurationFile)
       ./configuration.nix
+      extraConfiguration
       ragenix.nixosModules.age
       impermanence.nixosModules.impermanence
     ];
@@ -27,8 +27,14 @@ rec {
   hajimaru-installer = pkgs.writeShellScriptBin "install" ''
     set -e
     ${../hardware/hajimaru/partition.sh} "$@"
-    nixos-install --system ${genNixosSystem ../hardware/hajimaru} --no-channel-copy --no-root-password --cores 0
+    nixos-install --system ${genNixosSystem (import ../hardware/hajimaru)} --no-channel-copy --no-root-password --cores 0
   '';
 
   hajimaru-autoinstall-iso = genAutoInstallIso hajimaru-installer;
+
+  lkube-installer = pkgs.writeShellScriptBin "install" ''
+    nixos-install --system ${genNixosSystem (import ../hosts/lkube1)} --no-channel-copy --no-root-password --cores 0
+  '';
+
+  lkube-autoinstall-iso = genAutoInstallIso lkube-installer;
 }

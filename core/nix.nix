@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   dummyConfig = pkgs.writeText "configuration.nix" ''
     assert builtins.trace "This is a dummy config, use deploy-rs!" false;
@@ -15,12 +15,6 @@ in
 
   # speed up nix builds
   boot.tmpOnTmpfs = true;
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    verbose = true;
-  };
 
   nix = {
     nixPath = [
@@ -48,7 +42,6 @@ in
       experimental-features = nix-command flakes recursive-nix
       flake-registry = /etc/nix/registry.json
     '';
-    nrBuildUsers = config.nix.settings.max-jobs * 2;
     optimise = {
       automatic = true;
       dates = [ "03:00" ];

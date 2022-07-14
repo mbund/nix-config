@@ -47,6 +47,10 @@ in
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "mbund";
 
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.verbose = true;
+
   home-manager.extraSpecialArgs = {
     inherit colors self;
     host = config.networking.hostName;

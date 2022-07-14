@@ -1,64 +1,49 @@
-# 1. Create three (3) disk images:
+# 1. Create two (2) disk images:
 #    - Installer: 1024mb
-#    - Swap: 512mb
 #    - NixOS: rest
 #
 # 2. Boot in rescue mode with:
 #    - /dev/sda -> Installer
-#    - /dev/sdb -> Swap
-#    - /dev/sdc -> NixOS
+#    - /dev/sdb -> NixOS
 #
-# 3. Once booted into Finnix (step 2) pipe this script to sh:
-#      iso=https://channels.nixos.org/nixos-unstable/latest-nixos-minimal-x86_64-linux.iso
+# 3. Once booted into Finnix (step 2) run these commands:
 #      update-ca-certificates
-#      wget -O nixos.iso $iso
-#      cp nixos.iso /dev/sda
+#      iso=https://channels.nixos.org/nixos-unstable/latest-nixos-minimal-x86_64-linux.iso
+#      curl -L $iso | tee >(dd of=/dev/sda) | sha256sum
 #
 # 4. Create two configuration profiles:
 #    - Installer
 #      - Kernel: Direct Disk
 #      - /dev/sda -> NixOS
-#      - /dev/sdb -> Swap
-#      - /dev/sdc -> Installer
+#      - /dev/sdb -> Installer
+#      - Root Device -> /dev/sdb
 #      - Helpers: distro and auto network helpers = off
 #      - Leave others on their defaults
 #    - Boot
 #      - Kernel: GRUB 2
 #      - /dev/sda -> NixOS
-#      - /dev/sdb -> Swap
 #      - Helpers: distro and auto network helpers = off
 #      - Leave others on their defaults
 #
 # 5. Boot into installer profile.
 #
-# 6. Generate hardware-configuration.nix
-#      sudo su -
-#      e2label /dev/sda nixos
-#      swaplabel -L swap /dev/sdb
-#      mount /dev/disk/by-label/nixos /mnt
-#      swapon /dev/disk/by-label/swap
-#      nixos-generate-config --root /mnt
-#      vim /mnt/etc/nixos/hardware-configuration.nix   # change uuids to labels
-#
-# 7. Install dotfiles:
-#      nix-env -iA nixos.git nixos.nixFlakes
-#      mkdir -p /mnt/home/hlissner/.config
-#      cd /mnt/home/hlissner/.config
-#      git clone https://github.com/hlissner/dotfiles
-#      nixos-install --root /mnt --flake .#linode --impure
+# 6. Install NixOS:
+#    - ???
+#    - PROFIT!!!
 #
 # 8. Reboot into "Boot" profile.
 
 { pkgs, config, lib, modulesPath, ... }:
 {
-  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+    ./hardened-server-kernel.nix
+  ];
 
   fileSystems."/" = {
     device = "/dev/sda";
     fsType = "ext4";
   };
-
-  swapDevices = [{ device = "/dev/sdb"; }];
 
   boot.initrd.availableKernelModules = [ "virtio_pci" "virtio_scsi" "ahci" "sd_mod" ];
   boot.kernelParams = [ "console=ttyS0,19200n8" ];
@@ -72,10 +57,8 @@
   boot.loader.grub.device = "nodev";
   boot.loader.grub.forceInstall = true;
 
-  networking = {
-    usePredictableInterfaceNames = false;
-    interfaces.eth0.useDHCP = true;
-  };
+  networking.usePredictableInterfaceNames = false;
+  networking.interfaces.eth0.useDHCP = true;
 
   environment.systemPackages = with pkgs; [
     inetutils

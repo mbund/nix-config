@@ -13,6 +13,14 @@ let
       localSystem = "x86_64-linux";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYbI8KHg/IjWijggQK8q9PV65PsHt82QsQtCOOag2Mp";
     };
+
+    # lkube1 = {
+    #   type = "nixos";
+    #   address = "localhost";
+    #   localSystem = "x86_64-linux";
+    #   pubkey = "";
+    #   sshUser = "root";
+    # };
   };
 
   inherit (builtins) attrNames concatMap listToAttrs;
