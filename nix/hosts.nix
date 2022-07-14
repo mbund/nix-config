@@ -14,13 +14,14 @@ let
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYbI8KHg/IjWijggQK8q9PV65PsHt82QsQtCOOag2Mp";
     };
 
-    # lkube1 = {
-    #   type = "nixos";
-    #   address = "localhost";
-    #   localSystem = "x86_64-linux";
-    #   pubkey = "";
-    #   sshUser = "root";
-    # };
+    lkube1 = {
+      type = "nixos";
+      address = "45.79.163.146";
+      localSystem = "x86_64-linux";
+      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPhtrqecE/sk04e3nQKV4S0wKaBXOOOFAk13YXwXjRQs";
+      sshUser = "root";
+      sudo = "sudo -u";
+    };
   };
 
   inherit (builtins) attrNames concatMap listToAttrs;
