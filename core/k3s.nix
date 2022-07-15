@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     k3s
     kubernetes-helm-wrapped
+    kubernetes
   ];
 
   networking.firewall.allowedTCPPorts = [ 6443 ];

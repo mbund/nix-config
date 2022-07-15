@@ -11,21 +11,25 @@
     "org/gnome/shell" = {
       welcome-dialog-last-shown-version = "999999999";
       disable-user-extensions = false;
+      disable-extension-version-validation = true;
       enabled-extensions = [
         "AlphabeticalAppGrid@stuarthayhurst"
         "appindicatorsupport@rgcjonas.gmail.com"
         "bluetooth-quick-connect@bjarosze.gmail.com"
         "blur-my-shell@aunetx"
+        "caffeine@patapon.info"
+        "clipboard-history@alexsaveau.dev"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "expandable-notifications@kaan.g.inam.org"
         "gsconnect@andyholmes.github.io"
         "just-perfection-desktop@just-perfection"
+        "kubectl@infinicode.de"
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "native-window-placement@gnome-shell-extensions.gcampax.github.com"
         "nightthemeswitcher@romainvigier.fr"
         "sound-output-device-chooser@kgshank.net"
         "tailscale-status@maxgallup.github.com"
-        "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+        "Vitals@CoreCoding.com"
       ];
 
       favorite-apps = [
@@ -48,11 +52,25 @@
     };
     "org/gnome/shell/extensions/just-perfection" = {
       search = false; # disable search bar in overview
-      workspace-switcher-size = 10; # make workspace switchers larger
+      workspace-switcher-size = 15; # make workspace switchers larger
       background-menu = false; # disable right click on desktop
-      workspace-wrap-around = true; # wrap last workspace to first, and first to last
       workspace-switcher-should-show = true; # show even if only one workspace
       notification-banner-position = 2; # top right
+    };
+    "org/gnome/shell/extensions/kubectl" = {
+      position-in-panel = "right";
+    };
+    "org/gnome/shell/extensions/vitals" = {
+      position-in-panel = 0; # left
+      show-battery = true;
+      use-higher-precision = true;
+      hot-sensors = [
+        "_memory_allocated_"
+        "_processor_frequency_"
+        "_processor_average_"
+        "__network-rx_max__"
+        "__network-tx_max__"
+      ];
     };
     "org/gnome/settings-daemon/plugins/power" =
       if (host == "kuro") then { sleep-inactive-ac-type = "nothing"; }
@@ -80,12 +98,16 @@
     appindicator
     bluetooth-quick-connect
     blur-my-shell
+    caffeine
+    clipboard-history
     expandable-notifications
     gsconnect
     just-perfection
+    kubectl-extension
     night-theme-switcher
     sound-output-device-chooser
     tailscale-status
+    vitals
   ];
 
   services.easyeffects.enable = true;

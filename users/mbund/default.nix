@@ -81,6 +81,7 @@ in
     ".gnupg"
     ".mozilla"
     ".minecraft"
+    ".kube"
     ".cache/zsh"
     ".cache/nix-index"
     ".local/share/direnv"
