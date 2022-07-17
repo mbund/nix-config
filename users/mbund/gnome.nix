@@ -65,7 +65,7 @@
       show-battery = true;
       use-higher-precision = true;
       hot-sensors = [
-        "_memory_allocated_"
+        "__temperature_avg__"
         "_processor_frequency_"
         "_processor_average_"
         "__network-rx_max__"
