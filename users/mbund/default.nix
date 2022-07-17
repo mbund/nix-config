@@ -86,6 +86,7 @@ in
     ".cache/nix-index"
     ".local/share/direnv"
     ".local/share/zsh"
+    ".local/share/flatpak"
     ".config/chromium"
     ".config/Ferdium"
     ".config/inkscape"
