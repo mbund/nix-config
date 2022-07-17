@@ -1,7 +1,6 @@
 { config, pkgs, ... }: {
   imports = [
     ../../core
-    ../../core/k3s.nix
     ../../core/virtualisation.nix
 
     ../../hardware/hajimaru

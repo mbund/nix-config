@@ -4,6 +4,7 @@
     ./signature.nix
     ./zsh.nix
     ./helix
+    ./devops.nix
   ];
 
   home.packages = with pkgs; [

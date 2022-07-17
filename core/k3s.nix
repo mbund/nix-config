@@ -1,10 +1,4 @@
-{ lib, pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    k3s
-    kubernetes-helm-wrapped
-    kubernetes
-  ];
-
+{ lib, ... }: {
   networking.firewall.allowedTCPPorts = [ 6443 ];
   services.k3s.enable = true;
   services.k3s.role = lib.mkDefault "server";
