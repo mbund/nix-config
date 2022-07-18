@@ -9,7 +9,7 @@ let
 
     kuro = {
       type = "nixos";
-      address = "192.168.1.115";
+      address = "192.168.1.116";
       localSystem = "x86_64-linux";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYbI8KHg/IjWijggQK8q9PV65PsHt82QsQtCOOag2Mp";
     };
