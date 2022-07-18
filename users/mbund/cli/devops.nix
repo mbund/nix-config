@@ -2,6 +2,9 @@
   home.packages = with pkgs; [
     kubernetes-helm-wrapped
     kubernetes
+    minikube
+    k3sup
+    arkade
 
     linode-cli
     doctl
