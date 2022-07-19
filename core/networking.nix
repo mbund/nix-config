@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     dogdns
@@ -22,24 +22,58 @@
   networking.useNetworkd = true;
   networking.wireguard.enable = true;
   networking.networkmanager.enable = true;
-  networking.networkmanager.dns = "systemd-resolved";
 
-  systemd.network.wait-online.anyInterface = true;
-  services.resolved = {
-    enable = true;
-    dnssec = "allow-downgrade";
-    extraConfig = ''
-      DNS=1.1.1.1 2606:4700:4700::1111 8.8.8.8 2001:4860:4860::8844
-      Domains=~.
-      LLMNR=true
-      MulticastDNS=true
-    '';
+  services.stubby.enable = true;
+  services.stubby.settings = {
+    listen_addresses = [ "127.0.0.1" "0::1" ];
+    resolution_type = "GETDNS_RESOLUTION_STUB";
+    dns_transport_list = [ "GETDNS_TRANSPORT_TLS" ];
+    tls_authentication = "GETDNS_AUTHENTICATION_REQUIRED";
+    tls_query_padding_blocksize = 128;
+    idle_timeout = 10000;
+    round_robin_upstreams = 1;
+    tls_min_version = "GETDNS_TLS1_3";
+    dnssec = "GETDNS_EXTENSION_TRUE";
+    upstream_recursive_servers = [
+      {
+        address_data = "1.1.1.2";
+        tls_auth_name = "cloudflare-dns.com";
+      }
+      {
+        address_data = "1.0.0.2";
+        tls_auth_name = "cloudflare-dns.com";
+      }
+      {
+        address_data = "2606:4700:4700::1112";
+        tls_auth_name = "cloudflare-dns.com";
+      }
+      {
+        address_data = "2606:4700:4700::1002";
+        tls_auth_name = "cloudflare-dns.com";
+      }
+      {
+        address_data = "9.9.9.9";
+        tls_auth_name = "dns.quad9.net";
+      }
+      {
+        address_data = "149.112.112.112";
+        tls_auth_name = "dns.quad9.net";
+      }
+      {
+        address_data = "2620:fe::fe";
+        tls_auth_name = "dns.quad9.net";
+      }
+      {
+        address_data = "2620:fe::9";
+        tls_auth_name = "dns.quad9.net";
+      }
+    ];
   };
 
-  system.nssDatabases.hosts = lib.mkMerge [
-    (lib.mkBefore [ "mdns_minimal [NOTFOUND=return]" ])
-    (lib.mkAfter [ "mdns" ])
-  ];
+  services.resolved.enable = true;
+  services.resolved.fallbackDns = [ "2606:4700:4700::1112" "2606:4700:4700::1002" "1.1.1.2" "1.0.0.2" ];
+  networking.nameservers = [ "::1" "127.0.0.1" ];
+  systemd.network.wait-online.anyInterface = true;
 
   services.tailscale.enable = true;
   systemd.services.tailscaled.after = [ "network-online.target" "systemd-resolved.service" ];
