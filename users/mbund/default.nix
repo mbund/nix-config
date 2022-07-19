@@ -82,6 +82,7 @@ in
     ".mozilla"
     ".minecraft"
     ".kube"
+    ".var/app"
     ".cache/zsh"
     ".cache/nix-index"
     ".local/share/direnv"
