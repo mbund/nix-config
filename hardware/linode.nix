@@ -1,6 +1,6 @@
 # 1. Create two (2) disk images:
-#    - Installer: 1024mb
-#    - NixOS: rest
+#    - Installer: 1024mb as ext4
+#    - NixOS: rest as ext4
 #
 # 2. Boot in rescue mode with:
 #    - /dev/sda -> Installer
@@ -8,8 +8,7 @@
 #
 # 3. Once booted into Finnix (step 2) run these commands:
 #      update-ca-certificates
-#      iso=https://channels.nixos.org/nixos-unstable/latest-nixos-minimal-x86_64-linux.iso
-#      curl -L $iso | tee >(dd of=/dev/sda) | sha256sum
+#      curl -L https://channels.nixos.org/nixos-unstable/latest-nixos-minimal-x86_64-linux.iso | tee >(dd of=/dev/sda) | sha256sum
 #
 # 4. Create two configuration profiles:
 #    - Installer
@@ -17,21 +16,21 @@
 #      - /dev/sda -> NixOS
 #      - /dev/sdb -> Installer
 #      - Root Device -> /dev/sdb
-#      - Helpers: distro and auto network helpers = off
-#      - Leave others on their defaults
+#      - Enable distro helper -> off
+#      - Auto-configure networking -> off
 #    - Boot
 #      - Kernel: GRUB 2
 #      - /dev/sda -> NixOS
-#      - Helpers: distro and auto network helpers = off
-#      - Leave others on their defaults
+#      - Enable distro helper -> off
+#      - Auto-configure networking -> off
 #
-# 5. Boot into installer profile.
-#
-# 6. Install NixOS:
+# 5. Install NixOS:
+#    - Boot into installer profile
+#    - sudo nix --experimental-features "nix-command flakes" run github:mbund/nix-config#linode-installer
 #    - ???
 #    - PROFIT!!!
 #
-# 8. Reboot into "Boot" profile.
+# 6. Reboot into "Boot" profile.
 
 { pkgs, config, lib, modulesPath, ... }:
 {
