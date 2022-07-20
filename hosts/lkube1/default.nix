@@ -1,7 +1,7 @@
 {
   imports = [
     ../../core
-    ../../core/k3s.nix
+    ../../core/kubernetes.nix
     ../../hardware/linode.nix
   ];
 
