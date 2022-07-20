@@ -2,14 +2,14 @@ let
   hosts = {
     kodai = {
       type = "nixos";
-      address = "192.168.1.103";
+      address = "100.86.8.121";
       localSystem = "x86_64-linux";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILCXxKk/l/+A4xbYcYsyHPRuvBD70yf76vHGokfDFIwn";
     };
 
     kuro = {
       type = "nixos";
-      address = "192.168.1.116";
+      address = "100.115.127.107";
       localSystem = "x86_64-linux";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYbI8KHg/IjWijggQK8q9PV65PsHt82QsQtCOOag2Mp";
     };
