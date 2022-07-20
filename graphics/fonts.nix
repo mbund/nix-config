@@ -33,7 +33,7 @@
       '';
     };
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "Hack" "FiraCode" "JetBrainsMono" ]; })
+      (nerdfonts.override { fonts = [ "Hack" "FiraCode" "JetBrainsMono" "Meslo" ]; })
       jetbrains-mono
       material-icons
       material-design-icons
