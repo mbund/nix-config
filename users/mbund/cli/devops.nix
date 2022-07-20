@@ -1,13 +1,16 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    kubernetes-helm-wrapped
-    kubernetes
-    minikube
-    k3sup
     arkade
+    k3sup
+    k9s
+    kompose
+    kubernetes
+    kubernetes-helm-wrapped
+    kustomize
+    minikube
 
-    linode-cli
     doctl
+    linode-cli
     vultr-cli
   ];
 
