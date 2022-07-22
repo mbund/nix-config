@@ -10,7 +10,7 @@
     languages = import ./languages.nix { inherit pkgs; };
 
     settings = {
-      theme = "catppuccin_mocha";
+      theme = "onedark";
       editor = {
         true-color = true;
         auto-pairs = false;
