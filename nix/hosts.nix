@@ -28,12 +28,9 @@ let
     nixos = genFamily (_: v: v.type == "nixos") all;
     homeManager = genFamily (_: v: v.type == "home-manager") all;
 
-    darwin = genFamily (systemPred "-darwin") all;
     linux = genFamily (systemPred "-linux") all;
 
-    aarch64-darwin = genFamily (systemPred "aarch64-darwin") all;
     aarch64-linux = genFamily (systemPred "aarch64-linux") all;
-    x86_64-darwin = genFamily (systemPred "x86_64-darwin") all;
     x86_64-linux = genFamily (systemPred "x86_64-linux") all;
   };
 in
