@@ -24,7 +24,6 @@ in
     superTuxKart
     tor-browser-bundle-bin
     vlc
-    xorg.xeyes
   ];
 
   programs.vscode = {

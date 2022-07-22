@@ -8,26 +8,27 @@
   ];
 
   home.packages = with pkgs; [
-    fd
+    bandwhich
     bat
-    duf
-    exa
-    gdu
-    mosh
     bottom
     du-dust
-    ripgrep
+    duf
+    exa
+    fd
+    gdu
     joshuto
+    lazydocker
     lazygit
     monero-cli
+    mosh
+    ncdu
     neofetch
-    bandwhich
-    nix-tree
     nix-index
-    nix-update
-    lazydocker
-    nixpkgs-review
     nix-prefetch-scripts
+    nix-tree
+    nix-update
+    nixpkgs-review
+    ripgrep
   ];
 
   programs.direnv = {
