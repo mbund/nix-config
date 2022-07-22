@@ -10,6 +10,7 @@ in
   home.packages = with pkgs; [
     audacity
     blender
+    davinci-resolve
     ferdium
     gimp
     godot
