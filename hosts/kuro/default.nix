@@ -2,6 +2,7 @@
   imports = [
     ../../core
     ../../core/virtualisation.nix
+    ../../core/kubernetes.nix
 
     ../../hardware/hajimaru
     ../../hardware/nvidia.nix
@@ -17,6 +18,9 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_18;
   swapDevices = [{ device = "/swap/swapfile"; size = 4 * 1024; }];
+
+  # run `iscsi-iname` in package `openiscsi`
+  services.openiscsi.name = "iqn.2016-04.com.open-iscsi:cee2529c1bc2";
 
   services.xserver.layout = "us";
   # services.xserver.xkbVariant = "colemak_dh";

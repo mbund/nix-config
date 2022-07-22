@@ -3,6 +3,7 @@
     arkade
     k3sup
     k9s
+    kind
     kompose
     kubernetes
     kubernetes-helm-wrapped
