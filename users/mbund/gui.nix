@@ -18,6 +18,7 @@ in
     kdenlive
     krita
     minecraft
+    monero-gui
     onlyoffice-bin
     qbittorrent
     superTuxKart

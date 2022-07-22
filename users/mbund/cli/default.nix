@@ -19,6 +19,7 @@
     ripgrep
     joshuto
     lazygit
+    monero-cli
     neofetch
     bandwhich
     nix-tree
