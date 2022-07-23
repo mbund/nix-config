@@ -2,7 +2,6 @@
   imports = [
     ../../core
     ../../core/virtualisation.nix
-    ../../core/kubernetes.nix
 
     ../../hardware/hajimaru
     ../../hardware/nvidia.nix
