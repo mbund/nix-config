@@ -34,7 +34,7 @@
     enable = true;
     package = pkgs.ungoogled-chromium;
     commandLineArgs = [
-      "--enable-features=UseOzonePlatform"
+      "--enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
       "--ozone-platform=wayland"
     ];
   };
