@@ -13,6 +13,14 @@ let
       localSystem = "x86_64-linux";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYbI8KHg/IjWijggQK8q9PV65PsHt82QsQtCOOag2Mp";
     };
+
+    nixos-4gb-ash-1 = {
+      type = "nixos";
+      address = "100.68.63.21";
+      localSystem = "x86_64-linux";
+      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICzP4XIoR3MGpt/aHikZnyPVMoqpOwF4Bhis/T130AH2";
+      sshUser = "root";
+    };
   };
 
   inherit (builtins) attrNames concatMap listToAttrs;
