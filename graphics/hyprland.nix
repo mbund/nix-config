@@ -28,6 +28,7 @@
   networking.wireless.iwd.enable = true;
   services.xserver.wacom.enable = true;
   programs.kdeconnect.enable = true;
+  services.blueman.enable = true;
 
   xdg.portal = {
     enable = true;

@@ -2,6 +2,7 @@
 {
   imports = [
     ../hardware/bluetooth.nix
+    ../hardware/printing.nix
   ];
 
   services.xserver.enable = true;
