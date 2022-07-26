@@ -19,7 +19,6 @@
   };
 
   networking.useDHCP = false;
-  networking.useNetworkd = true;
   networking.wireguard.enable = true;
   networking.networkmanager.enable = true;
 
@@ -72,8 +71,10 @@
 
   services.resolved.enable = true;
   services.resolved.fallbackDns = [ "2606:4700:4700::1112" "2606:4700:4700::1002" "1.1.1.2" "1.0.0.2" ];
+  services.resolved.extraConfig = ''
+    MulticastDNS=true
+  '';
   networking.nameservers = [ "::1" "127.0.0.1" ];
-  systemd.network.wait-online.anyInterface = true;
 
   services.tailscale.enable = true;
   systemd.services.tailscaled.after = [ "network-online.target" "systemd-resolved.service" ];
