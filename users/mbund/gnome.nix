@@ -50,6 +50,9 @@
       sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "us" ]) (lib.hm.gvariant.mkTuple [ "xkb" "us+colemak_dh" ]) ];
       xkb-options = [ "caps:escape_shifted_capslock" ];
     };
+    "org/gnome/desktop/interface" = {
+      show-battery-percentage = true;
+    };
     "org/gnome/shell/extensions/just-perfection" = {
       search = false; # disable search bar in overview
       workspace-switcher-size = 15; # make workspace switchers larger
