@@ -1,14 +1,13 @@
 {
   imports = [
     ../../core
+    ../../core/virtualisation.nix
 
     ./hardware-configuration.nix
     ../../hardware/intel.nix
-    ../../hardware/nvidia.nix
 
     ../../graphics
     ../../graphics/gnome.nix
-    ../../graphics/gaming.nix
 
     ../../users/mbund
   ];

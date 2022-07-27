@@ -16,8 +16,20 @@
     "/boot" = { device = "/dev/disk/by-label/boot"; fsType = "vfat"; };
     "/" = { device = "tank/local/root"; fsType = "zfs"; };
     "/nix" = { device = "tank/local/nix"; fsType = "zfs"; };
-    "/home" = { device = "tank/local/home"; fsType = "zfs"; };
+    "/home" = { device = "tank/local/home"; fsType = "zfs"; neededForBoot = true; };
     "/state" = { device = "tank/safe/state"; fsType = "zfs"; neededForBoot = true; };
+  };
+
+  age.identityPaths = [ "/state/etc/ssh/ssh_host_ed25519_key" ];
+  environment.persistence."/state" = {
+    hideMounts = true;
+    files = [
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+    ];
   };
 
   boot.loader.systemd-boot.enable = true;

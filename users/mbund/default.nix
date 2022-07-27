@@ -44,8 +44,8 @@ in
 
   programs.zsh.enable = true;
 
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "mbund";
+  # services.xserver.displayManager.autoLogin.enable = true;
+  # services.xserver.displayManager.autoLogin.user = "mbund";
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
