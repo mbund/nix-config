@@ -28,6 +28,7 @@
     nix-tree
     nix-update
     nixpkgs-review
+    powertop
     ripgrep
   ];
 
