@@ -7,6 +7,13 @@ let
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILCXxKk/l/+A4xbYcYsyHPRuvBD70yf76vHGokfDFIwn";
     };
 
+    kyoudai = {
+      type = "nixos";
+      address = "100.91.133.110";
+      localSystem = "x86_64-linux";
+      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMYZK5sotZqdhfZS4jIWWquDe3GeUGkBh9wXsyoC8QzJ";
+    };
+
     kuro = {
       type = "nixos";
       address = "100.115.127.107";
