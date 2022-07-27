@@ -21,6 +21,7 @@
     superTuxKart
     tor-browser-bundle-bin
     vlc
+    wireshark
   ];
 
   programs.vscode = {
