@@ -14,6 +14,8 @@
 
   networking.hostName = "kyoudai";
 
+  programs.wireshark.enable = true;
+
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
   nix.settings.max-jobs = 16;

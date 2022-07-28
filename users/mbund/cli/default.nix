@@ -30,6 +30,7 @@
     nixpkgs-review
     powertop
     ripgrep
+    termshark
   ];
 
   programs.direnv = {
