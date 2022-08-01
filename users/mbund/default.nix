@@ -77,6 +77,7 @@ in
   environment.persistence."/state".users.mbund.directories = [
     ".cache/nix-index"
     ".cache/zsh"
+    ".cloudflared"
     ".config/chromium"
     ".config/evolution"
     ".config/Ferdium"

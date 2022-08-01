@@ -10,7 +10,9 @@
     kustomize
     minikube
 
+    cloudflared
     doctl
+    hcloud
     linode-cli
     vultr-cli
   ];
