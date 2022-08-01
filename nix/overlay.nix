@@ -1,20 +1,14 @@
-{ deploy-rs
-, nixpkgs
-, nixpkgs-master
-, ragenix
-, nur
-, hyprland
-, ...
-}:
+inputs:
 
 let
-  inherit (nixpkgs.lib) composeManyExtensions;
+  inherit (inputs.nixpkgs.lib) composeManyExtensions;
   inherit (builtins) attrNames readDir;
 
   localOverlays = map
     (f: import (./overlays + "/${f}"))
     (attrNames (readDir ./overlays));
 in
+with inputs;
 composeManyExtensions (localOverlays ++ [
   deploy-rs.overlay
   ragenix.overlay
