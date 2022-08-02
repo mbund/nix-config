@@ -15,6 +15,7 @@
   networking.hostName = "kyoudai";
 
   programs.wireshark.enable = true;
+  programs.adb.enable = true;
 
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
