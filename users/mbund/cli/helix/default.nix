@@ -5,7 +5,7 @@
 }: {
   programs.helix = {
     enable = true;
-    package = self.inputs.helix.packages.${pkgs.system}.default;
+    # package = self.inputs.helix.packages.${pkgs.system}.default;
 
     languages = import ./languages.nix { inherit pkgs; };
 

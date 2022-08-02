@@ -92,7 +92,7 @@
     helvum
     junction
     kooha
-    metadata-cleaner
+    # metadata-cleaner
 
     dconf-editor
     gnome-tweaks

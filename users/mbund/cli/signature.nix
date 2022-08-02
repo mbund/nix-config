@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   home.packages = with pkgs; [
-    commitizen
+    # commitizen
     git-extras
     git-lfs
     lazygit

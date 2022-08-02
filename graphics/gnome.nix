@@ -13,6 +13,7 @@
   programs.dconf.enable = true;
 
   virtualisation.waydroid.enable = true;
+  # virtualisation.lxd.enable = true;
 
   programs.kdeconnect.enable = true;
   programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
