@@ -23,7 +23,6 @@
         "expandable-notifications@kaan.g.inam.org"
         "gsconnect@andyholmes.github.io"
         "just-perfection-desktop@just-perfection"
-        "kubectl@infinicode.de"
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
         "native-window-placement@gnome-shell-extensions.gcampax.github.com"
         "nightthemeswitcher@romainvigier.fr"
@@ -106,7 +105,6 @@
     expandable-notifications
     gsconnect
     just-perfection
-    kubectl-extension
     night-theme-switcher
     sound-output-device-chooser
     tailscale-status
