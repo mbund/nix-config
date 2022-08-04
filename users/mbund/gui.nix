@@ -16,6 +16,7 @@
     krita
     minecraft
     monero-gui
+    moonlight-qt
     onlyoffice-bin
     qbittorrent
     superTuxKart
