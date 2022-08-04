@@ -6,40 +6,30 @@
     lazygit
   ];
 
-  programs.git = {
-    enable = true;
-    package = pkgs.gitFull;
-    extraConfig = {
-      diff = {
-        colorMoved = "default";
-        age.textconv = "${pkgs.rage}/bin/rage -i ~/.ssh/mbund --decrypt";
-      };
-      github.user = "mbund";
-      init.defaultBranch = "main";
+  programs.git.enable = true;
+  programs.git.package = pkgs.gitFull;
+  programs.git.extraConfig = {
+    diff = {
+      colorMoved = "default";
+      age.textconv = "${pkgs.rage}/bin/rage -i ~/.ssh/mbund --decrypt";
     };
-    ignores = [
-      "*.swp"
-      ".direnv/"
-      ".envrc"
-      ".vscode/"
-      ".mygitignore"
-    ];
+    github.user = "mbund";
+    init.defaultBranch = "main";
   };
+  programs.git.ignores = [
+    "*.swp"
+    ".direnv/"
+    ".envrc"
+    ".vscode/"
+    ".mygitignore"
+  ];
 
-  programs.gpg = {
-    enable = true;
-    homedir = "${config.home.homeDirectory}/.nix-config/.gnupg";
-  };
-
-  services.gpg-agent = {
-    enable = true;
-    pinentryFlavor = "gnome3";
-  };
-
-  programs.gh = {
-    enable = true;
-    settings.git_protocol = "ssh";
-  };
+  programs.gpg.enable = true;
+  programs.gpg.homedir = "${config.home.homeDirectory}/.nix-config/.gnupg";
+  services.gpg-agent.enable = true;
+  services.gpg-agent.pinentryFlavor = "gnome3";
+  programs.gh.enable = true;
+  programs.gh.settings.git_protocol = "ssh";
 
   programs.zsh.shellAliases = {
     "lg" = "lazygit";

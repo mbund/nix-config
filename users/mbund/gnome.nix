@@ -81,6 +81,7 @@
   };
 
   home.packages = with pkgs; with pkgs.gnome; with pkgs.gnomeExtensions; [
+    gnome-power-manager
     amberol
     blanket
     celluloid
@@ -88,7 +89,7 @@
     helvum
     junction
     kooha
-    # metadata-cleaner
+    metadata-cleaner
 
     dconf-editor
     gnome-tweaks
@@ -115,16 +116,6 @@
 
   nixpkgs.config.firefox.enableGnomeExtensions = true;
 
-  home.pointerCursor = {
-    x11.enable = true;
-    gtk.enable = true;
-    size = 16;
-
-    package = pkgs.nur.repos.ambroisie.vimix-cursors;
-    name = "Vimix-white-cursors";
-    # name = "Vimix-cursors";
-  };
-
   xdg.configFile."autostart/AutostartGnomeExtensions.desktop".text = ''
     [Desktop Entry]
     Name=AutostartGnomeExtensions
@@ -136,28 +127,17 @@
     X-GNOME-Autostart-enabled=true
   '';
 
-  gtk = {
-    enable = true;
-
-    font = {
-      name = "Roboto";
-      package = pkgs.roboto;
-    };
-
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style = {
-      name = "adwaita";
-      package = pkgs.adwaita-qt;
-    };
-  };
+  home.pointerCursor.x11.enable = true;
+  home.pointerCursor.gtk.enable = true;
+  home.pointerCursor.size = 16;
+  home.pointerCursor.package = pkgs.nur.repos.ambroisie.vimix-cursors;
+  home.pointerCursor.name = "Vimix-white-cursors";
+  gtk.enable = true;
+  gtk.font = { name = "Roboto"; package = pkgs.roboto; };
+  gtk.iconTheme = { name = "Papirus-Dark"; package = pkgs.papirus-icon-theme; };
+  qt.enable = true;
+  qt.platformTheme = "gnome";
+  qt.style = { name = "adwaita"; package = pkgs.adwaita-qt; };
 
   home.sessionVariables = {
     XCURSOR_THEME = config.xsession.pointerCursor.name;

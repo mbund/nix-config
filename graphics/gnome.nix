@@ -13,7 +13,12 @@
   programs.dconf.enable = true;
 
   virtualisation.waydroid.enable = true;
-  # virtualisation.lxd.enable = true;
+  virtualisation.lxd.enable = true;
+
+  services.auto-cpufreq.enable = true;
+  services.power-profiles-daemon.enable = false;
+  # services.upower.enable = true;
+  # powerManagement.cpuFreqGovernor = "ondemand";
 
   programs.kdeconnect.enable = true;
   programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
@@ -27,13 +32,10 @@
 
   services.xserver.wacom.enable = true;
   hardware.pulseaudio.enable = lib.mkForce false;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
+  services.pipewire.enable = true;
+  services.pipewire.alsa = { enable = true; support32Bit = true; };
+  services.pipewire.pulse.enable = true;
+  services.pipewire.jack.enable = true;
   boot.kernelModules = [ "v4l2loopback" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
 

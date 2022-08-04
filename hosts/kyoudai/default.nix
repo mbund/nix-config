@@ -22,10 +22,6 @@
   nix.settings.max-jobs = 16;
   nix.settings.system-features = [ "benchmark" "nixos-test" "big-parallel" "kvm" ];
 
-  services.upower.enable = true;
-  services.auto-cpufreq.enable = true;
-  powerManagement.cpuFreqGovernor = "ondemand";
-
   # age.secrets.rootPassword.file = ./root-password.age;
   # users.users.root.passwordFile = config.age.secrets.rootPassword.path;
 
