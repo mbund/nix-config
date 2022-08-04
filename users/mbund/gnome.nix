@@ -59,9 +59,6 @@
       workspace-switcher-should-show = true; # show even if only one workspace
       notification-banner-position = 2; # top right
     };
-    "org/gnome/shell/extensions/kubectl" = {
-      position-in-panel = "right";
-    };
     "org/gnome/shell/extensions/vitals" = {
       position-in-panel = 0; # left
       show-battery = true;
