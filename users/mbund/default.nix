@@ -101,6 +101,7 @@ in {
     ".local/share/direnv"
     ".local/share/flatpak"
     ".local/share/zsh"
+    ".local/share/airshipper"
     ".minecraft"
     ".mozilla"
     ".ssh"
