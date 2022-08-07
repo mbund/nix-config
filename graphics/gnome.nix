@@ -30,6 +30,8 @@
   programs.evolution.enable = true;
   programs.evolution.plugins = [pkgs.evolution-ews];
 
+  services.flatpak.enable = true;
+
   security.pam.services.login.enableGnomeKeyring = true;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
@@ -48,5 +50,6 @@
 
   environment.persistence."/state".directories = [
     "/var/lib/waydroid"
+    "/var/lib/flatpak"
   ];
 }

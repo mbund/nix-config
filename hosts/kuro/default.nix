@@ -35,8 +35,6 @@
   services.xserver.xkbOptions = "caps:escape_shifted_capslock";
   console.useXkbConfig = true;
 
-  services.flatpak.enable = true;
-
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
@@ -52,8 +50,4 @@
 
   age.secrets.rootPassword.file = ./root-password.age;
   users.users.root.passwordFile = config.age.secrets.rootPassword.path;
-
-  environment.persistence."/state".directories = [
-    "/var/lib/flatpak"
-  ];
 }
