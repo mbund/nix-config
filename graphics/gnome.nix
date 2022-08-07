@@ -19,10 +19,7 @@
   virtualisation.waydroid.enable = true;
   virtualisation.lxd.enable = true;
 
-  services.auto-cpufreq.enable = true;
   services.power-profiles-daemon.enable = false;
-  # services.upower.enable = true;
-  # powerManagement.cpuFreqGovernor = "ondemand";
 
   programs.kdeconnect.enable = true;
   programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;

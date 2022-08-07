@@ -14,6 +14,10 @@
 
   networking.hostName = "kyoudai";
 
+  services.auto-cpufreq.enable = true;
+  services.thermald.enable = true;
+  services.tlp.enable = true;
+
   programs.wireshark.enable = true;
   programs.adb.enable = true;
 
