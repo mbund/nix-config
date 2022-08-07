@@ -57,6 +57,12 @@
     "org/gnome/desktop/interface" = {
       show-battery-percentage = true;
     };
+    "org/gnome/system/location" = {
+      enable = true;
+    };
+    "org/gnome/desktop/datetime" = {
+      automatic-timezone = true;
+    };
     "org/gnome/shell/extensions/just-perfection" = {
       search = false; # disable search bar in overview
       workspace-switcher-size = 15; # make workspace switchers larger
