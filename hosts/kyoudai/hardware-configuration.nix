@@ -54,6 +54,8 @@
   };
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
+  boot.loader.timeout = 2;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.interfaces.enp2s0.useDHCP = true;
