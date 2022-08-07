@@ -1,11 +1,9 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   dummyConfig = pkgs.writeText "configuration.nix" ''
     assert builtins.trace "This is a dummy config, use deploy-rs!" false;
     { }
   '';
-in
-{
+in {
   environment.etc."nixos/configuration.nix".source = dummyConfig;
 
   # required superuser configuration for deploy-rs
@@ -24,9 +22,9 @@ in
     ];
 
     settings = {
-      allowed-users = [ "*" ];
-      trusted-users = [ "root" "@wheel" ];
-      system-features = [ "recursive-nix" ];
+      allowed-users = ["*"];
+      trusted-users = ["root" "@wheel"];
+      system-features = ["recursive-nix"];
       substituters = [
         "https://nix-community.cachix.org"
       ];
@@ -44,7 +42,7 @@ in
     '';
     optimise = {
       automatic = true;
-      dates = [ "03:00" ];
+      dates = ["03:00"];
     };
   };
 

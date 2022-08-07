@@ -1,12 +1,15 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     dogdns
   ];
 
   networking.firewall = {
     checkReversePath = "loose";
-    trustedInterfaces = [ "tailscale0" ];
+    trustedInterfaces = ["tailscale0"];
     allowedUDPPorts = [
       config.services.tailscale.port
 
@@ -35,7 +38,7 @@
   ];
 
   services.tailscale.enable = true;
-  systemd.services.tailscaled.after = [ "network-online.target" "systemd-resolved.service" ];
+  systemd.services.tailscaled.after = ["network-online.target" "systemd-resolved.service"];
 
   environment.persistence."/state".directories = [
     "/etc/NetworkManager/system-connections"

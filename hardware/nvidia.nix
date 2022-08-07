@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  boot.blacklistedKernelModules = [ "nouveau" ];
+{pkgs, ...}: {
+  boot.blacklistedKernelModules = ["nouveau"];
 
   hardware = {
     nvidia = {
@@ -21,7 +20,7 @@
   };
 
   services.xserver = {
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = ["nvidia"];
 
     deviceSection = ''
       Option "AllowSHMPixmaps" "on"

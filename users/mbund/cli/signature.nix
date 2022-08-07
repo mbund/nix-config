@@ -1,9 +1,19 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  git-sign-github = pkgs.writeShellScriptBin "git-sign-github" ''
+    git config user.name mbund
+    git config user.email 25110595+mbund@users.noreply.github.com
+  '';
+in {
   home.packages = with pkgs; [
     # commitizen
     git-extras
     git-lfs
     lazygit
+    git-sign-github
   ];
 
   programs.git.enable = true;
@@ -33,6 +43,5 @@
 
   programs.zsh.shellAliases = {
     "lg" = "lazygit";
-    "git-sign-github" = "git config user.name mbund && git config user.email 25110595+mbund@users.noreply.github.com";
   };
 }

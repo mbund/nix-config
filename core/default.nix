@@ -1,11 +1,10 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./nix.nix
     ./networking.nix
   ];
 
-  boot.kernelParams = [ "log_buf_len=10M" ];
+  boot.kernelParams = ["log_buf_len=10M"];
 
   environment.systemPackages = with pkgs; [
     git

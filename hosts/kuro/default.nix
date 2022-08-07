@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../core
     ../../core/virtualisation.nix
@@ -13,10 +17,15 @@
     ../../users/mbund
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
+  boot.kernelModules = ["kvm-amd"];
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_18;
-  swapDevices = [{ device = "/swap/swapfile"; size = 4 * 1024; }];
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 4 * 1024;
+    }
+  ];
 
   # run `iscsi-iname` in package `openiscsi`
   services.openiscsi.name = "iqn.2016-04.com.open-iscsi:cee2529c1bc2";
@@ -37,7 +46,7 @@
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
   nix.settings.max-jobs = 16;
-  nix.settings.system-features = [ "benchmark" "nixos-test" "big-parallel" "kvm" ];
+  nix.settings.system-features = ["benchmark" "nixos-test" "big-parallel" "kvm"];
 
   time.timeZone = "America/New_York";
 

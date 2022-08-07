@@ -1,5 +1,9 @@
-{ lib, pkgs, self, ... }:
-let
+{
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
   arkenfox = builtins.readFile "${self.inputs.arkenfox-userjs}/user.js";
   overrides = {
     # arkenfox overrides
@@ -53,11 +57,11 @@ let
 
     // overrides
     ${lib.concatStrings (lib.mapAttrsToList (name: value: ''
-      user_pref("${name}", ${builtins.toJSON value});
-    '') overrides)}
+        user_pref("${name}", ${builtins.toJSON value});
+      '')
+      overrides)}
   '';
-in
-{
+in {
   programs.firefox = {
     enable = true;
     profiles."default" = {

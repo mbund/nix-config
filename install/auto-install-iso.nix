@@ -1,4 +1,11 @@
-{ config, lib, pkgs, modulesPath, installScript, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  installScript,
+  ...
+}: {
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
   ];
@@ -28,9 +35,9 @@
 
   systemd.services.install = {
     description = "Bootstrap a NixOS installation";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" "polkit.service" ];
-    path = [ "/run/current-system/sw/" ];
+    wantedBy = ["multi-user.target"];
+    after = ["network.target" "polkit.service"];
+    path = ["/run/current-system/sw/"];
     script = ''
       echo "journalctl -fb -n 100 -u install" >> /home/nixos/.bash_history
 
@@ -49,10 +56,12 @@
 
       reboot
     '';
-    environment = config.nix.envVars // {
-      inherit (config.environment.sessionVariables) NIX_PATH;
-      HOME = "/root";
-    };
+    environment =
+      config.nix.envVars
+      // {
+        inherit (config.environment.sessionVariables) NIX_PATH;
+        HOME = "/root";
+      };
     serviceConfig = {
       Type = "oneshot";
     };

@@ -1,5 +1,10 @@
-{ config, lib, pkgs, host, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  host,
+  ...
+}: {
   dconf.settings = {
     "org/gnome/desktop/wm/preferences" = {
       resize-with-right-button = true;
@@ -46,8 +51,8 @@
       allow-volume-above-100-percent = true;
     };
     "org/gnome/desktop/input-sources" = {
-      sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "us" ]) (lib.hm.gvariant.mkTuple [ "xkb" "us+colemak_dh" ]) ];
-      xkb-options = [ "caps:escape_shifted_capslock" ];
+      sources = [(lib.hm.gvariant.mkTuple ["xkb" "us"]) (lib.hm.gvariant.mkTuple ["xkb" "us+colemak_dh"])];
+      xkb-options = ["caps:escape_shifted_capslock"];
     };
     "org/gnome/desktop/interface" = {
       show-battery-percentage = true;
@@ -72,15 +77,18 @@
       ];
     };
     "org/gnome/settings-daemon/plugins/power" =
-      if (host == "kuro") then { sleep-inactive-ac-type = "nothing"; }
-      else { };
+      if (host == "kuro")
+      then {sleep-inactive-ac-type = "nothing";}
+      else {};
     "org/gnome/desktop/background" = {
       picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
       picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-d.jpg";
     };
   };
 
-  home.packages = with pkgs; with pkgs.gnome; with pkgs.gnomeExtensions; [
+  home.packages = with pkgs;
+  with pkgs.gnome;
+  with pkgs.gnomeExtensions; [
     gnome-power-manager
     amberol
     blanket
@@ -112,7 +120,7 @@
   services.easyeffects.enable = true;
 
   programs.obs-studio.enable = true;
-  programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [ obs-gstreamer ];
+  programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [obs-gstreamer];
 
   nixpkgs.config.firefox.enableGnomeExtensions = true;
 
@@ -133,11 +141,20 @@
   home.pointerCursor.package = pkgs.nur.repos.ambroisie.vimix-cursors;
   home.pointerCursor.name = "Vimix-white-cursors";
   gtk.enable = true;
-  gtk.font = { name = "Roboto"; package = pkgs.roboto; };
-  gtk.iconTheme = { name = "Papirus-Dark"; package = pkgs.papirus-icon-theme; };
+  gtk.font = {
+    name = "Roboto";
+    package = pkgs.roboto;
+  };
+  gtk.iconTheme = {
+    name = "Papirus-Dark";
+    package = pkgs.papirus-icon-theme;
+  };
   qt.enable = true;
   qt.platformTheme = "gnome";
-  qt.style = { name = "adwaita"; package = pkgs.adwaita-qt; };
+  qt.style = {
+    name = "adwaita";
+    package = pkgs.adwaita-qt;
+  };
 
   home.sessionVariables = {
     XCURSOR_THEME = config.xsession.pointerCursor.name;

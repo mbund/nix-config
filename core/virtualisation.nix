@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ virt-manager spice-gtk swtpm ];
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [virt-manager spice-gtk swtpm];
   security.polkit.enable = true;
 
   virtualisation.libvirtd.enable = true;
@@ -7,7 +7,7 @@
     package = pkgs.qemu_kvm;
     ovmf = {
       enable = true;
-      packages = with pkgs; [ OVMFFull ];
+      packages = with pkgs; [OVMFFull];
     };
     swtpm.enable = true;
   };

@@ -1,11 +1,10 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ../hardware/bluetooth.nix
   ];
 
   programs.hyprland.enable = true;
-  programs.hyprland.extraPackages = [ ];
+  programs.hyprland.extraPackages = [];
 
   services.pipewire = {
     enable = true;
@@ -47,8 +46,8 @@
   };
 
   programs.dconf.enable = true;
-  services.dbus.packages = with pkgs; [ dconf ];
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  services.dbus.packages = with pkgs; [dconf];
+  services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
   # allow swaylock to unlock the screen
   security.pam.services.swaylock.text = ''

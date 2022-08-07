@@ -8,14 +8,15 @@ let
   allHostSecret = secretName:
     listToAttrs (
       map
-        (host: {
-          name = "hosts/${host}/${secretName}.age";
-          value.publicKeys = [ mbund hostPubkeys.${host} ];
-        })
-        (attrNames hostPubkeys)
+      (host: {
+        name = "hosts/${host}/${secretName}.age";
+        value.publicKeys = [mbund hostPubkeys.${host}];
+      })
+      (attrNames hostPubkeys)
     );
 in
-with hostPubkeys;
-{
-  "users/mbund/password.age".publicKeys = [ mbund ] ++ (attrValues hostPubkeys);
-} // allHostSecret "root-password"
+  with hostPubkeys;
+    {
+      "users/mbund/password.age".publicKeys = [mbund] ++ (attrValues hostPubkeys);
+    }
+    // allHostSecret "root-password"

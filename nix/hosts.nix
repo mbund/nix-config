@@ -25,7 +25,12 @@ let
   inherit (builtins) attrNames concatMap listToAttrs;
 
   filterAttrs = pred: set:
-    listToAttrs (concatMap (name: let value = set.${name}; in if pred name value then [{ inherit name value; }] else [ ]) (attrNames set));
+    listToAttrs (concatMap (name: let
+      value = set.${name};
+    in
+      if pred name value
+      then [{inherit name value;}]
+      else []) (attrNames set));
 
   systemPred = system: (_: v: builtins.match ".*${system}.*" v.localSystem != null);
 
@@ -41,4 +46,4 @@ let
     x86_64-linux = genFamily (systemPred "x86_64-linux") all;
   };
 in
-genFamily (_: _: true) hosts
+  genFamily (_: _: true) hosts

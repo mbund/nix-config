@@ -1,4 +1,9 @@
-{ lib, pkgs, modulesPath, ... }: {
+{
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   imports = [
     "${modulesPath}/profiles/all-hardware.nix"
   ];
@@ -21,21 +26,24 @@
   users.users.nixos = {
     password = lib.mkDefault "nixos";
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "users" ];
+    extraGroups = ["wheel" "networkmanager" "users"];
   };
 
   nix.extraOptions = "experimental-features = nix-command flakes recursive-nix";
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages =
-    with pkgs; [ git curl wget ncdu file htop vim helix zip unzip ];
+  environment.systemPackages = with pkgs; [git curl wget ncdu file htop vim helix zip unzip];
 
   services.avahi = {
     enable = true;
     ipv4 = true;
     ipv6 = true;
     nssmdns = true;
-    publish = { enable = true; domain = true; addresses = true; };
+    publish = {
+      enable = true;
+      domain = true;
+      addresses = true;
+    };
   };
 
   services.logind.lidSwitch = "ignore";

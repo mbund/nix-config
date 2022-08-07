@@ -1,48 +1,60 @@
 {
   description = "mbund's universal nix configuration";
 
-  outputs = { self, nixpkgs, utils, ... }@inputs: {
-    deploy = import ./nix/deploy.nix inputs;
+  outputs = {
+    self,
+    nixpkgs,
+    utils,
+    ...
+  } @ inputs:
+    {
+      deploy = import ./nix/deploy.nix inputs;
 
-    overlays.default = import ./nix/overlay.nix inputs;
+      overlays.default = import ./nix/overlay.nix inputs;
 
-    homeConfigurations = import ./nix/home-manager.nix inputs;
+      homeConfigurations = import ./nix/home-manager.nix inputs;
 
-    lib = import ./lib inputs;
+      lib = import ./lib inputs;
 
-    nixosConfigurations = import ./nix/nixos.nix inputs;
-  } // utils.lib.eachSystem (with utils.lib.system; [ x86_64-linux aarch64-linux ]) (system: {
-    checks = import ./nix/checks.nix inputs system;
+      nixosConfigurations = import ./nix/nixos.nix inputs;
+    }
+    // utils.lib.eachSystem (with utils.lib.system; [x86_64-linux aarch64-linux]) (system: {
+      checks = import ./nix/checks.nix inputs system;
 
-    devShells.default = import ./nix/dev-shell.nix inputs system;
+      devShells.default = import ./nix/dev-shell.nix inputs system;
 
-    packages = {
-      default = self.packages.${system}.all;
-    } // (import ./nix/host-drvs.nix inputs system)
-    // (import ./install inputs system);
+      packages =
+        {
+          default = self.packages.${system}.all;
+        }
+        // (import ./nix/host-drvs.nix inputs system)
+        // (import ./install inputs system);
 
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [
-        self.overlays.default
-      ];
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          self.overlays.default
+        ];
 
-      config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-        "davinci-resolve"
-        "minecraft-launcher"
-        "nvidia-persistenced"
-        "nvidia-settings"
-        "nvidia-x11"
-        "steam-original"
-        "steam-runtime"
-        "steam"
-      ];
-    };
-  });
+        config.allowUnfreePredicate = pkg:
+          builtins.elem (nixpkgs.lib.getName pkg) [
+            "davinci-resolve"
+            "minecraft-launcher"
+            "nvidia-persistenced"
+            "nvidia-settings"
+            "nvidia-x11"
+            "steam-original"
+            "steam-runtime"
+            "steam"
+          ];
+      };
+    });
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+
+    devshell.url = "github:numtide/devshell";
 
     utils.url = "github:numtide/flake-utils";
 

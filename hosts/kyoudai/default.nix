@@ -20,7 +20,7 @@
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
   nix.settings.max-jobs = 16;
-  nix.settings.system-features = [ "benchmark" "nixos-test" "big-parallel" "kvm" ];
+  nix.settings.system-features = ["benchmark" "nixos-test" "big-parallel" "kvm"];
 
   # age.secrets.rootPassword.file = ./root-password.age;
   # users.users.root.passwordFile = config.age.secrets.rootPassword.path;

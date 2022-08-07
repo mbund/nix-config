@@ -1,35 +1,38 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   fileSystems."/" = {
     device = "/dev/mapper/root";
     fsType = "btrfs";
-    options = [ "subvol=root" "compress=zstd" "noatime" ];
+    options = ["subvol=root" "compress=zstd" "noatime"];
   };
 
   fileSystems."/home" = {
     device = "/dev/mapper/root";
     fsType = "btrfs";
-    options = [ "subvol=home" "compress=zstd" ];
+    options = ["subvol=home" "compress=zstd"];
     neededForBoot = true;
   };
 
   fileSystems."/nix" = {
     device = "/dev/mapper/root";
     fsType = "btrfs";
-    options = [ "subvol=nix" "compress=zstd" "noatime" ];
+    options = ["subvol=nix" "compress=zstd" "noatime"];
   };
 
   fileSystems."/state" = {
     device = "/dev/mapper/root";
     fsType = "btrfs";
-    options = [ "subvol=state" "compress=zstd" "noatime" ];
+    options = ["subvol=state" "compress=zstd" "noatime"];
     neededForBoot = true;
   };
 
   fileSystems."/var/log" = {
     device = "/dev/mapper/root";
     fsType = "btrfs";
-    options = [ "subvol=log" "compress=zstd" "noatime" ];
+    options = ["subvol=log" "compress=zstd" "noatime"];
     neededForBoot = true;
   };
 
@@ -39,7 +42,7 @@
     # chattr +C /swap/swapfile
     device = "/dev/mapper/root";
     fsType = "btrfs";
-    options = [ "subvol=swap" "compress=none" "noatime" ];
+    options = ["subvol=swap" "compress=none" "noatime"];
   };
 
   fileSystems."/boot" = {
@@ -91,35 +94,34 @@
     (writeShellScriptBin "reboot-to-menu" "systemctl reboot --boot-loader-menu=10")
   ];
 
-  boot.initrd.postDeviceCommands =
-    let
-      # recursively delete all subvolumes under `subvolume` and roll back
-      # https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
-      rollback = device: subvolume: rollback-snapshot: ''
-        mkdir -p /mnt
-        mount -o subvol=/ ${device} /mnt
-  
-        btrfs subvolume list -o /mnt/${subvolume} |
-        cut -f9 -d' ' |
-        while read subvolume; do
-          echo "deleting /$subvolume subvolume..."
-          btrfs subvolume delete "/mnt/$subvolume"
-        done &&
-        echo "deleting /${subvolume} subvolume..." &&
-        btrfs subvolume delete /mnt/${subvolume}
-  
-        echo "restoring blank /${subvolume} subvolume..."
-        btrfs subvolume snapshot /mnt/${rollback-snapshot} /mnt/${subvolume}
-  
-        umount /mnt
-      '';
-    in
+  boot.initrd.postDeviceCommands = let
+    # recursively delete all subvolumes under `subvolume` and roll back
+    # https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
+    rollback = device: subvolume: rollback-snapshot: ''
+      mkdir -p /mnt
+      mount -o subvol=/ ${device} /mnt
+
+      btrfs subvolume list -o /mnt/${subvolume} |
+      cut -f9 -d' ' |
+      while read subvolume; do
+        echo "deleting /$subvolume subvolume..."
+        btrfs subvolume delete "/mnt/$subvolume"
+      done &&
+      echo "deleting /${subvolume} subvolume..." &&
+      btrfs subvolume delete /mnt/${subvolume}
+
+      echo "restoring blank /${subvolume} subvolume..."
+      btrfs subvolume snapshot /mnt/${rollback-snapshot} /mnt/${subvolume}
+
+      umount /mnt
+    '';
+  in
     lib.mkBefore ''
       ${rollback "/dev/mapper/root" "home" "home-blank"}
       ${rollback "/dev/mapper/root" "root" "root-blank"}
     '';
 
-  age.identityPaths = [ "/state/etc/ssh/ssh_host_ed25519_key" ];
+  age.identityPaths = ["/state/etc/ssh/ssh_host_ed25519_key"];
   environment.persistence."/state" = {
     hideMounts = true;
     files = [

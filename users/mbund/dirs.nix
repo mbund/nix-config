@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   xdg = {
     enable = true;
     mimeApps.enable = pkgs.stdenv.isLinux;

@@ -1,9 +1,13 @@
-{ config, lib, pkgs, host, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  host,
+  ...
+}: let
   screen = pkgs.writeShellScriptBin "screen" ''${builtins.readFile ./screen}'';
   bandw = pkgs.writeShellScriptBin "bandw" ''${builtins.readFile ./bandw}'';
-in
-{
+in {
   home.packages = with pkgs; [
     dunst
     libnotify
@@ -24,7 +28,7 @@ in
     alsaUtils
     mpc-cli
     brightnessctl
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
   ];
 
   xdg.configFile."wofi.css".source = ./wofi.css;
@@ -39,7 +43,7 @@ in
     ${builtins.readFile ./hyprland.conf}
   '';
 
-  programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [ wlrobs ];
+  programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [wlrobs];
 
   services.dunst = {
     enable = true;
@@ -147,7 +151,7 @@ in
 
     font = {
       name = "JetBrainsMono Nerdfont 12";
-      package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+      package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
     };
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -159,7 +163,7 @@ in
 
     theme = {
       name = "Catppuccin-orange-dark-compact";
-      package = pkgs.catppuccin-gtk.override { size = "compact"; };
+      package = pkgs.catppuccin-gtk.override {size = "compact";};
     };
   };
 

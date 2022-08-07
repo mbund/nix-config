@@ -1,11 +1,10 @@
 # deploy -s .#HOST --ssh-user nixos --hostname 192.168.1.XXX --magic-rollback false --auto-rollback false
-{ lib, ... }:
-{
+{lib, ...}: {
   users.users = {
     root.password = "nixos";
     nixos = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = ["wheel" "networkmanager"];
       password = "nixos";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"

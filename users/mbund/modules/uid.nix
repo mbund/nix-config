@@ -1,6 +1,9 @@
-{ config, lib, ... }:
-with lib;
 {
+  config,
+  lib,
+  ...
+}:
+with lib; {
   options = {
     home.uid = mkOption {
       type = types.int;
@@ -9,9 +12,11 @@ with lib;
     };
   };
   config = {
-    assertions = [{
-      assertion = config.home.uid != "";
-      message = "UID could not be determined";
-    }];
+    assertions = [
+      {
+        assertion = config.home.uid != "";
+        message = "UID could not be determined";
+      }
+    ];
   };
 }

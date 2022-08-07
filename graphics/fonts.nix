@@ -1,11 +1,11 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   fonts = {
     fontconfig = {
       defaultFonts = {
-        sansSerif = [ "IBM Plex Sans" ];
-        serif = [ "IBM Plex Sans" ];
-        monospace = [ "Hack Nerd Font" ];
-        emoji = [ "Noto Color Emoji" ];
+        sansSerif = ["IBM Plex Sans"];
+        serif = ["IBM Plex Sans"];
+        monospace = ["Hack Nerd Font"];
+        emoji = ["Noto Color Emoji"];
       };
       localConf = ''
         <?xml version="1.0"?>
@@ -33,7 +33,7 @@
       '';
     };
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "Hack" "FiraCode" "JetBrainsMono" "Meslo" ]; })
+      (nerdfonts.override {fonts = ["Hack" "FiraCode" "JetBrainsMono" "Meslo"];})
       jetbrains-mono
       material-icons
       material-design-icons

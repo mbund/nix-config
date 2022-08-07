@@ -1,8 +1,4 @@
-{ self, ... }:
-
-system:
-
-let
+{self, ...}: system: let
   inherit (self.pkgs.${system}) lib linkFarm;
 
   hosts = import ./hosts.nix;
@@ -11,19 +7,22 @@ let
   homeDrvs = lib.mapAttrs (_: home: home.activationPackage) self.homeConfigurations;
   hostDrvs = nixosDrvs // homeDrvs;
 
-  structuredHostDrvs = lib.mapAttrsRecursiveCond
+  structuredHostDrvs =
+    lib.mapAttrsRecursiveCond
     (as: !(as ? "type" && (as.type == "nixos" || as.type == "home-manager")))
     (path: _: hostDrvs.${lib.last path})
     hosts;
 
-  structuredHostFarms = lib.mapAttrsRecursiveCond
+  structuredHostFarms =
+    lib.mapAttrsRecursiveCond
     (as: !(lib.any lib.isDerivation (lib.attrValues as)))
-    (path: values:
-      (linkFarm
-        (lib.concatStringsSep "-" path)
-        (lib.mapAttrsToList (name: path: { inherit name path; }) values)) //
-      values
+    (
+      path: values:
+        (linkFarm
+          (lib.concatStringsSep "-" path)
+          (lib.mapAttrsToList (name: path: {inherit name path;}) values))
+        // values
     )
     structuredHostDrvs;
 in
-structuredHostFarms
+  structuredHostFarms

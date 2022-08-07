@@ -1,20 +1,20 @@
-{ self
-, nur
-, home-manager
-, impermanence
-, nixos-hardware
-, nixpkgs
-, ragenix
-, hyprland
-, templates
-, ...
-}:
-let
+{
+  self,
+  nur,
+  home-manager,
+  impermanence,
+  nixos-hardware,
+  nixpkgs,
+  ragenix,
+  hyprland,
+  templates,
+  ...
+}: let
   inherit (nixpkgs) lib;
   hosts = (import ./hosts.nix).nixos.all;
 
   netHostMap = {
-    networking.hosts = lib.mapAttrs' (n: v: lib.nameValuePair v.address [ n ]) hosts;
+    networking.hosts = lib.mapAttrs' (n: v: lib.nameValuePair v.address [n]) hosts;
   };
 
   nixRegistry = {
@@ -32,7 +32,7 @@ let
     };
   };
 
-  genConfiguration = hostname: { localSystem, ... }:
+  genConfiguration = hostname: {localSystem, ...}:
     lib.nixosSystem {
       system = localSystem;
       modules = [
@@ -53,4 +53,4 @@ let
       };
     };
 in
-lib.mapAttrs genConfiguration hosts
+  lib.mapAttrs genConfiguration hosts

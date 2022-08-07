@@ -1,9 +1,7 @@
-{ colors, ... }:
-let
+{colors, ...}: let
   inherit (colors) xcolors x0Colors;
   font = "JetBrainsMono Nerd Font";
-in
-{
+in {
   programs.alacritty = {
     enable = true;
     settings = {

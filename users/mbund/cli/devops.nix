@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     arkade
     k3sup
@@ -9,6 +9,8 @@
     kubernetes-helm-wrapped
     kustomize
     minikube
+
+    ansible
 
     cloudflared
     doctl

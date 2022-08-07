@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../core
     ../../core/virtualisation.nix
@@ -14,9 +18,14 @@
     ../../users/mbund
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc"];
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_18;
-  swapDevices = [{ device = "/swap/swapfile"; size = 4 * 1024; }];
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 4 * 1024;
+    }
+  ];
 
   services.upower.enable = true;
   services.auto-cpufreq.enable = true;
@@ -37,7 +46,7 @@
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
   nix.settings.max-jobs = 16;
-  nix.settings.system-features = [ "benchmark" "nixos-test" "big-parallel" "kvm" ];
+  nix.settings.system-features = ["benchmark" "nixos-test" "big-parallel" "kvm"];
 
   time.timeZone = "America/New_York";
 

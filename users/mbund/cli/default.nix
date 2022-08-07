@@ -1,10 +1,9 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./atuin.nix
     ./signature.nix
     ./zsh.nix
     ./helix
-    ./devops.nix
   ];
 
   home.packages = with pkgs; [
@@ -18,7 +17,6 @@
     gdu
     joshuto
     lazydocker
-    lazygit
     monero-cli
     mosh
     ncdu
@@ -57,5 +55,5 @@
     '';
   };
 
-  home.extraOutputsToInstall = [ "doc" "devdoc" ];
+  home.extraOutputsToInstall = ["doc" "devdoc"];
 }

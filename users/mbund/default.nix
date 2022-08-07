@@ -1,6 +1,12 @@
-{ config, lib, pkgs, self, impermanence, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  impermanence,
+  ...
+}:
+with lib; let
   theme = "catppuccin";
 
   colors = with self.lib; rec {
@@ -16,24 +22,24 @@ let
     # rgba(,,,) colors (css)
     rgbaColors = mapAttrs (_: rgba) baseColors;
   };
-in
-{
+in {
   age.secrets.mbundPassword.file = ./password.age;
   users.groups.mbund.gid = config.users.users.mbund.uid;
   users.users.mbund = {
     createHome = true;
     isNormalUser = true;
     group = "mbund";
-    extraGroups = [ "wheel" "dialout" "users" ]
-      ++ optionals config.hardware.i2c.enable [ "i2c" ]
-      ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
-      ++ optionals config.virtualisation.docker.enable [ "docker" ]
-      ++ optionals config.virtualisation.podman.enable [ "podman" ]
-      ++ optionals config.virtualisation.libvirtd.enable [ "libvirtd" ]
-      ++ optionals config.virtualisation.kvmgt.enable [ "kvm" ]
-      ++ optionals config.programs.adb.enable [ "adbusers" ]
-      ++ optionals config.services.xserver.enable [ "input" "video" "audio" ]
-      ++ optionals config.programs.wireshark.enable [ "wireshark" ];
+    extraGroups =
+      ["wheel" "dialout" "users"]
+      ++ optionals config.hardware.i2c.enable ["i2c"]
+      ++ optionals config.networking.networkmanager.enable ["networkmanager"]
+      ++ optionals config.virtualisation.docker.enable ["docker"]
+      ++ optionals config.virtualisation.podman.enable ["podman"]
+      ++ optionals config.virtualisation.libvirtd.enable ["libvirtd"]
+      ++ optionals config.virtualisation.kvmgt.enable ["kvm"]
+      ++ optionals config.programs.adb.enable ["adbusers"]
+      ++ optionals config.services.xserver.enable ["input" "video" "audio"]
+      ++ optionals config.programs.wireshark.enable ["wireshark"];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
     ];
@@ -58,16 +64,18 @@ in
   };
 
   home-manager.users.mbund = {
-    imports = [
-      impermanence.home-manager.impermanence
-      ./cli
-      ./modules
-      ./dirs.nix
-      ./common.nix
-    ] ++ optionals config.services.xserver.enable [
-      ./gui.nix
-      ./gnome.nix
-    ];
+    imports =
+      [
+        impermanence.home-manager.impermanence
+        ./cli
+        ./modules
+        ./dirs.nix
+        ./common.nix
+      ]
+      ++ optionals config.services.xserver.enable [
+        ./gui.nix
+        ./gnome.nix
+      ];
 
     home.username = config.users.users.mbund.name;
     home.uid = config.users.users.mbund.uid;
