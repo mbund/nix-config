@@ -14,6 +14,13 @@ let
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAQzQjmwmUtuS/yfmggOn4HPuL+rNEurrX9DjZkrULaC";
     };
 
+    kumitate = {
+      type = "nixos";
+      address = "";
+      localSystem = "x86_64-linux";
+      pubkey = "";
+    };
+
     kuro = {
       type = "nixos";
       address = "100.115.127.107";

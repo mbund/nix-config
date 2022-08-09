@@ -1,10 +1,11 @@
-{
+{nixos-hardware, ...}: {
   imports = [
     ../../core
     ../../core/virtualisation.nix
 
+    ../../hardware/hajimaru
     ./hardware-configuration.nix
-    ../../hardware/intel.nix
+    nixos-hardware.framework
 
     ../../graphics
     ../../graphics/gnome.nix
@@ -12,7 +13,7 @@
     ../../users/mbund
   ];
 
-  networking.hostName = "kyoudai";
+  networking.hostName = "kumitate";
 
   services.auto-cpufreq.enable = true;
   services.thermald.enable = true;
@@ -20,6 +21,9 @@
 
   programs.wireshark.enable = true;
   programs.adb.enable = true;
+  services.fwupd.enable = true;
+  # hardware.video.hidpi.enable = lib.mkDefault true;
+  # services.xserver.dpi = 200;
 
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
