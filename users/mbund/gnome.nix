@@ -32,7 +32,6 @@
         "native-window-placement@gnome-shell-extensions.gcampax.github.com"
         "nightthemeswitcher@romainvigier.fr"
         "sound-output-device-chooser@kgshank.net"
-        "tailscale-status@maxgallup.github.com"
         "Vitals@CoreCoding.com"
       ];
 
@@ -42,8 +41,9 @@
         "torbrowser.desktop"
         "codium.desktop"
         "kitty.desktop"
-        "ferdium.desktop"
         "org.gnome.Evolution.desktop"
+        "ferdium.desktop"
+        "signal-desktop.desktop"
         "org.gnome.Calendar.desktop"
       ];
     };
@@ -74,18 +74,18 @@
       position-in-panel = 0; # left
       show-battery = true;
       use-higher-precision = true;
-      hot-sensors = [
-        "__temperature_avg__"
-        "_processor_frequency_"
-        "_processor_average_"
-        "__network-rx_max__"
-        "__network-tx_max__"
-      ];
+      hot-sensors =
+        (lib.optionals (builtins.elem host ["kyoudai"]) [
+          "_battery_rate_"
+        ])
+        ++ [
+          "__network-rx_max__"
+          "__network-tx_max__"
+        ];
     };
-    "org/gnome/settings-daemon/plugins/power" =
-      if (host == "kuro")
-      then {sleep-inactive-ac-type = "nothing";}
-      else {};
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = lib.optional (builtins.elem host ["kuro"]) "nothing";
+    };
     "org/gnome/desktop/background" = {
       picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
       picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-d.jpg";
@@ -119,7 +119,6 @@
     just-perfection
     night-theme-switcher
     sound-output-device-chooser
-    tailscale-status
     vitals
   ];
 

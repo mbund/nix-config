@@ -39,6 +39,7 @@
         config.allowUnfreePredicate = pkg:
           builtins.elem (nixpkgs.lib.getName pkg) [
             "davinci-resolve"
+            "discord"
             "minecraft-launcher"
             "nvidia-persistenced"
             "nvidia-settings"

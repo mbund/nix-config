@@ -29,6 +29,7 @@
     powertop
     ripgrep
     termshark
+    zellij
   ];
 
   programs.direnv = {

@@ -5,24 +5,29 @@
 
   home.packages = with pkgs; [
     airshipper
+    minecraft
+    moonlight-qt
+    superTuxKart
+
     audacity
     blender
     davinci-resolve
-    ferdium
     gimp
-    godot
     inkscape
-    kdenlive
     krita
-    minecraft
-    monero-gui
-    moonlight-qt
+    kdenlive
     onlyoffice-bin
-    qbittorrent
-    superTuxKart
-    tor-browser-bundle-bin
     vlc
+
+    godot
     wireshark
+
+    ferdium
+    signal-desktop
+
+    monero-gui
+    qbittorrent
+    tor-browser-bundle-bin
   ];
 
   programs.vscode = {
