@@ -19,6 +19,7 @@
   virtualisation.waydroid.enable = true;
   virtualisation.lxd.enable = true;
 
+  services.avahi.enable = false;
   services.power-profiles-daemon.enable = false;
 
   programs.kdeconnect.enable = true;

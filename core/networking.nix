@@ -26,6 +26,7 @@
   networking.networkmanager.enable = true;
 
   services.resolved.enable = true;
+  services.resolved.dnssec = "true";
   services.resolved.extraConfig = ''
     MulticastDNS=true
     DNSOverTLS=yes
