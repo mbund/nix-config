@@ -49,6 +49,8 @@
 
   systemd.user.startServices = "sd-switch";
 
+  xdg.configFile."neofetch/config.conf".source = ./neofetch.conf;
+
   home.file.gdbinit = {
     target = ".gdbinit";
     text = ''
