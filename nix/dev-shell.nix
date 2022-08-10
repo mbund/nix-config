@@ -1,8 +1,8 @@
 {self, ...}: system:
 with self.pkgs.${system};
   devshell.mkShell {
-    devshell.name = "nix-config";
-    devshell.packages = [
+    name = "nix-config";
+    packages = [
       deploy-rs.deploy-rs
       nix-linter
       alejandra
