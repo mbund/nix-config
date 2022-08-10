@@ -46,6 +46,9 @@
     ];
   };
 
+  programs.alacritty.enable = true;
+  xdg.configFile."alacritty/alacritty.yml".source = ./alacritty.yml;
+
   programs.kitty = {
     enable = true;
     font.name = "Meslo Nerd Font";

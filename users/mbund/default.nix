@@ -7,7 +7,7 @@
   ...
 }:
 with lib; let
-  theme = "catppuccin";
+  theme = "onedark";
 
   colors = with self.lib; rec {
     baseColors = self.inputs.nix-colors.colorSchemes.${theme}.colors;
