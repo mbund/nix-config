@@ -4,7 +4,7 @@
       defaultFonts = {
         sansSerif = ["IBM Plex Sans"];
         serif = ["IBM Plex Sans"];
-        monospace = ["Hack Nerd Font"];
+        monospace = ["MesloLGS Nerd Font"];
         emoji = ["Noto Color Emoji"];
       };
       localConf = ''
