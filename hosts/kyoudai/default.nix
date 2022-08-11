@@ -20,9 +20,7 @@
 
   programs.wireshark.enable = true;
   programs.adb.enable = true;
-
   virtualisation.waydroid.enable = true;
-  virtualisation.lxd.enable = true;
 
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
