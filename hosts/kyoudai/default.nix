@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ../../core
     ../../core/virtualisation.nix
@@ -13,6 +13,10 @@
   ];
 
   networking.hostName = "kyoudai";
+
+  environment.etc."NetworkManager/dispatcher.d/10-tzupdate".source = pkgs.writeScript "10-tzupdate" ''
+    ${pkgs.tzupdate}/bin/tzupdate -z /etc/zoneinfo -d /dev/null
+  '';
 
   services.auto-cpufreq.enable = true;
   services.thermald.enable = true;
