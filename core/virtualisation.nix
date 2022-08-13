@@ -19,7 +19,7 @@
   virtualisation.docker.enable = true;
   virtualisation.docker.autoPrune.enable = true;
 
-  environment.persistence."/state".directories = [
+  environment.persistence."/nix/state".directories = [
     "/var/lib/docker"
     "/var/lib/libvirt"
   ];

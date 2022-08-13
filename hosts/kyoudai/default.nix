@@ -35,7 +35,7 @@
   # users.users.root.passwordFile = config.age.secrets.rootPassword.path;
   users.users.root.password = "root";
 
-  environment.persistence."/state".directories = [
+  environment.persistence."/nix/state".directories = [
     "/var/lib/waydroid"
   ];
 }

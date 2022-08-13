@@ -122,7 +122,7 @@
     '';
 
   age.identityPaths = ["/state/etc/ssh/ssh_host_ed25519_key"];
-  environment.persistence."/state" = {
+  environment.persistence."/nix/state" = {
     hideMounts = true;
     files = [
       "/etc/machine-id"

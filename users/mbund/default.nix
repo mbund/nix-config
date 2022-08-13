@@ -69,7 +69,6 @@ in {
         impermanence.home-manager.impermanence
         ./cli
         ./modules
-        ./dirs.nix
         ./common.nix
       ]
       ++ optionals config.services.xserver.enable [
@@ -81,35 +80,4 @@ in {
     home.uid = config.users.users.mbund.uid;
     home.stateVersion = "22.05";
   };
-
-  environment.persistence."/state".users.mbund.directories = [
-    ".cache/nix-index"
-    ".cache/zsh"
-    ".cloudflared"
-    ".config/chromium"
-    ".config/Ferdium"
-    ".config/evolution"
-    ".config/gh"
-    ".config/inkscape"
-    ".config/krita"
-    ".config/lazygit"
-    ".config/obs-studio"
-    ".config/Signal"
-    ".config/supertuxkart"
-    ".config/VSCodium"
-    ".gnupg"
-    ".kube"
-    ".local/share/airshipper"
-    ".local/share/direnv"
-    ".local/share/evolution"
-    ".local/share/flatpak"
-    ".local/share/zsh"
-    ".minecraft"
-    ".mozilla"
-    ".ssh"
-    ".var/app"
-    ".vscode-oss"
-    "data"
-    "xdg"
-  ];
 }

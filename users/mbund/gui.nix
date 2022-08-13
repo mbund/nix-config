@@ -74,4 +74,18 @@
       hwdec = "auto";
     };
   };
+
+  home.persistence."/nix/state/home/mbund".directories = [
+    ".local/share/airshipper"
+    ".minecraft"
+    ".config/obs-studio"
+    ".config/Signal"
+    ".config/supertuxkart"
+    ".config/VSCodium"
+    ".vscode-oss"
+    ".config/chromium"
+    ".config/Ferdium"
+    ".config/inkscape"
+    ".config/krita"
+  ];
 }

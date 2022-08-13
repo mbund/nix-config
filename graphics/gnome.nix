@@ -46,7 +46,7 @@
   boot.kernelModules = ["v4l2loopback"];
   boot.extraModulePackages = [config.boot.kernelPackages.v4l2loopback.out];
 
-  environment.persistence."/state".directories = [
+  environment.persistence."/nix/state".directories = [
     "/var/lib/flatpak"
   ];
 }

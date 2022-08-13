@@ -22,7 +22,7 @@
     extraModules = with pkgs; [pulseaudio-modules-bt];
   };
 
-  environment.persistence."/state".directories = [
+  environment.persistence."/nix/state".directories = [
     "/var/lib/bluetooth"
   ];
 }
