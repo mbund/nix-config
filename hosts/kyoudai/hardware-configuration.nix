@@ -107,19 +107,20 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.devices = ["nodev"];
-  boot.loader.grub.enableCryptodisk = true;
   boot.loader.grub.efiSupport = true;
+  boot.loader.grub.useOSProber = true;
+  boot.loader.grub.enableCryptodisk = true;
   boot.loader.grub.configurationLimit = 10;
-  boot.loader.grub.extraEntries = ''
-    menuentry "Windows" {
-      insmod part_gpt
-      insmod fat
-      insmod search_fs_uuid
-      insmod chain
-      search --fs-uuid --set=root $FS_UUID
-      chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-    }
-  '';
+  # boot.loader.grub.extraEntries = ''
+  #   menuentry "Windows" {
+  #     insmod part_gpt
+  #     insmod fat
+  #     insmod search_fs_uuid
+  #     insmod chain
+  #     search --fs-uuid --set=root $FS_UUID
+  #     chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+  #   }
+  # '';
 
   boot.resumeDevice = "/dev/mapper/root";
   systemd.sleep.extraConfig = "HibernateDelaySec=2h";
