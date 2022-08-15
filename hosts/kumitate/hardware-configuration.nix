@@ -1,4 +1,9 @@
-{config, lib, pkgs, ...}: {
+{config, lib, pkgs, nixos-hardware, ...}: {
+  imports = [
+    nixos-hardware.framework
+    ../../hardware/intel.nix
+  ];
+  
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_19;
   zramSwap.enable = true;
   swapDevices = [
@@ -13,7 +18,7 @@
   services.xserver.xkbOptions = "caps:escape_shifted_capslock";
   console.useXkbConfig = true;
 
-  # networking.interfaces.wlp3s0.useDHCP = true;
+  networking.interfaces.wlp166s0.useDHCP = true;
 
   fileSystems."/" = {
     device = "/dev/mapper/root";
@@ -126,7 +131,7 @@
     IdleActionSec=2m
   '';
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod"];
+  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
   # boot.kernelParams = ["mem_sleep_default=deep" "resume_offset="];
 
   hardware.enableRedistributableFirmware = true;

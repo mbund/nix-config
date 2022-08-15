@@ -1,10 +1,9 @@
-{pkgs, nixos-hardware, ...}: {
+{pkgs, ...}: {
   imports = [
     ../../core
     ../../core/virtualisation.nix
 
     ./hardware-configuration.nix
-    nixos-hardware.framework
 
     ../../graphics
     ../../graphics/gnome.nix
