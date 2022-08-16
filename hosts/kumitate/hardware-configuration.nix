@@ -1,9 +1,15 @@
-{config, lib, pkgs, nixos-hardware, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  nixos-hardware,
+  ...
+}: {
   imports = [
     nixos-hardware.framework
     ../../hardware/intel.nix
   ];
-  
+
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_19;
   zramSwap.enable = true;
   swapDevices = [
@@ -62,6 +68,7 @@
     "/swap"
   ];
 
+  programs.fuse.userAllowOther = true;
   age.identityPaths = ["/nix/state/etc/ssh/ssh_host_ed25519_key"];
   environment.persistence."/nix/state" = {
     hideMounts = true;
@@ -103,24 +110,18 @@
       ${rollback "/dev/mapper/root" "root" "root-blank"}
     '';
 
-  boot.loader.grub.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.loader.grub.devices = ["nodev"];
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
-  boot.loader.grub.enableCryptodisk = true;
-  boot.loader.grub.configurationLimit = 10;
-  # boot.loader.grub.extraEntries = ''
-  #   menuentry "Windows" {
-  #     insmod part_gpt
-  #     insmod fat
-  #     insmod search_fs_uuid
-  #     insmod chain
-  #     search --fs-uuid --set=root $FS_UUID
-  #     chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-  #   }
-  # '';
+  boot.loader.systemd-boot = {
+    enable = true;
+    editor = false;
+    configurationLimit = 15;
+  };
+  boot.loader.timeout = 0;
+
+  environment.systemPackages = with pkgs; [
+    # one time reboot with 10 second timeout in the boot loader menu
+    (writeShellScriptBin "reboot-to-menu" "systemctl reboot --boot-loader-menu=10")
+  ];
 
   boot.resumeDevice = "/dev/mapper/root";
   systemd.sleep.extraConfig = "HibernateDelaySec=2h";

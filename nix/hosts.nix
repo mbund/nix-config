@@ -16,9 +16,9 @@ let
 
     kumitate = {
       type = "nixos";
-      address = "";
+      address = "100.76.15.3";
       localSystem = "x86_64-linux";
-      pubkey = "";
+      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK6iPA+2bocVbk9iK/RxjmCIjPsC4qciuQSlkclfJJOT ";
     };
 
     kuro = {
