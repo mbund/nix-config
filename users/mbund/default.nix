@@ -34,7 +34,6 @@ in {
         "wheel"
         "dialout"
         "users"
-        "fuse"
       ]
       ++ optionals config.hardware.i2c.enable ["i2c"]
       ++ optionals config.networking.networkmanager.enable ["networkmanager"]
