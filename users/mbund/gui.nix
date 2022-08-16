@@ -1,7 +1,7 @@
 {pkgs, ...}: {
-  imports = [
-    ./firefox
-  ];
+  # imports = [
+  #   ./firefox
+  # ];
 
   home.packages = with pkgs; [
     airshipper
@@ -28,6 +28,8 @@
     monero-gui
     qbittorrent
     tor-browser-bundle-bin
+    firefox
+    librewolf
   ];
 
   programs.vscode = {
