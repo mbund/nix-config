@@ -80,6 +80,8 @@
   home.persistence."/nix/state/home/mbund".directories = [
     ".local/share/airshipper"
     ".minecraft"
+    ".mozilla"
+    ".librewolf"
     ".config/obs-studio"
     ".config/Signal"
     ".config/supertuxkart"

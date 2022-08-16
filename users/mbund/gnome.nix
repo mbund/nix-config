@@ -37,7 +37,9 @@
 
       favorite-apps = [
         "org.gnome.Nautilus.desktop"
+        "chromium-browser.desktop"
         "firefox.desktop"
+        "librewolf.desktop"
         "torbrowser.desktop"
         "codium.desktop"
         "kitty.desktop"
