@@ -41,6 +41,7 @@
 
   home.persistence."/nix/state/home/mbund".allowOther = true;
   home.persistence."/nix/state/home/mbund".directories = [
+    ".ssh"
     "data"
     "xdg"
   ];

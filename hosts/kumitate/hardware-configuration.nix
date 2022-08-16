@@ -68,7 +68,10 @@
     "/swap"
   ];
 
-  programs.fuse.userAllowOther = true;
+  environment.etc."fuse.conf".text = lib.mkForce ''
+    user_allow_other
+    nonempty
+  '';
   age.identityPaths = ["/nix/state/etc/ssh/ssh_host_ed25519_key"];
   environment.persistence."/nix/state" = {
     hideMounts = true;
@@ -111,11 +114,9 @@
     '';
 
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot = {
-    enable = true;
-    editor = false;
-    configurationLimit = 15;
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.editor = false;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.timeout = 0;
 
   environment.systemPackages = with pkgs; [

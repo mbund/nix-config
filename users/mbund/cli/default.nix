@@ -51,6 +51,15 @@
 
   xdg.configFile."neofetch/config.conf".source = ./neofetch.conf;
 
+  home.persistence."/nix/state/home/mbund".directories = [
+    ".cache/nix-index"
+    ".cache/zsh"
+    ".local/share/zsh"
+    ".config/gh"
+    ".config/lazygit"
+    ".gnupg"
+  ];
+
   home.file.gdbinit = {
     target = ".gdbinit";
     text = ''

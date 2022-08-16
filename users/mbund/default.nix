@@ -30,7 +30,12 @@ in {
     isNormalUser = true;
     group = "mbund";
     extraGroups =
-      ["wheel" "dialout" "users"]
+      [
+        "wheel"
+        "dialout"
+        "users"
+        "fuse"
+      ]
       ++ optionals config.hardware.i2c.enable ["i2c"]
       ++ optionals config.networking.networkmanager.enable ["networkmanager"]
       ++ optionals config.virtualisation.docker.enable ["docker"]
