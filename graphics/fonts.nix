@@ -33,7 +33,8 @@
       '';
     };
     fonts = with pkgs; [
-      (nerdfonts.override {fonts = ["Hack" "FiraCode" "JetBrainsMono" "Meslo"];})
+      (nerdfonts.override {fonts = ["Hack" "FiraCode" "JetBrainsMono"];})
+      meslo-lgs-nf
       jetbrains-mono
       material-icons
       material-design-icons

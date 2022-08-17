@@ -42,7 +42,7 @@
         "librewolf.desktop"
         "torbrowser.desktop"
         "codium.desktop"
-        "kitty.desktop"
+        "Alacritty.desktop"
         "org.gnome.Evolution.desktop"
         "ferdium.desktop"
         "signal-desktop.desktop"

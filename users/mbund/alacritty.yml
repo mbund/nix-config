@@ -1,36 +1,48 @@
 window:
   decorations: none
+  dynamic_padding: true
 
 font:
   normal:
-    family: "MesloLGS Nerd Font"
+    family: "MesloLGS NF"
+    style: Regular
+  bold:
+    family: "MesloLGS NF"
+    style: Bold
+  italic:
+    family: "MesloLGS NF"
+    style: Italic
+  bold_italic:
+    family: "MesloLGS NF"
+    style: Bold Italic
+  size: 11
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
 
-# Colors (One Dark)
+# Colors (One Dark - https://github.com/atom/atom/tree/master/packages/one-dark-syntax)
 colors:
-  # Default colors
   primary:
-    foreground: '#979eab'
     background: '#282c34'
-
-  # Normal colors
+    foreground: '#abb2bf'
+  cursor:
+    text:       CellBackground
+    cursor:     '#528bff' # syntax-cursor-color
+  selection:
+    text:       CellForeground
+    background: '#3e4451' # syntax-selection-color
   normal:
-    black:   '#5c6370'
-    red:     '#e06c75'
-    green:   '#98c379'
-    yellow:  '#e5c07b'
-    blue:    '#61afef'
-    magenta: '#c678dd'
-    cyan:    '#56b6c2'
-    white:   '#abb2bf'
+    black:      '#5c6370' # mono-3
+    red:        '#e06c75' # red 1
+    green:      '#98c379'
+    yellow:     '#e5c07b' # orange 2
+    blue:       '#61afef'
+    magenta:    '#c678dd'
+    cyan:       '#56b6c2'
+    white:      '#828997' # mono-2
 
-  # Bright colors
-  bright:
-    black:   '#5c6370'
-    red:     '#e06c75'
-    green:   '#98c379'
-    yellow:  '#e5c07b'
-    blue:    '#61afef'
-    magenta: '#c678dd'
-    cyan:    '#56b6c2'
-    white:   '#ffffff'
-
+# foreground: '#979eab'
+# background: '#282c34'
