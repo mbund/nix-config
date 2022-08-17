@@ -60,6 +60,8 @@
     fallbackToPassword = true;
   };
 
+  boot.supportedFilesystems = ["ntfs"];
+
   services.fstrim.enable = true;
   services.btrfs.autoScrub.enable = true;
   services.btrfs.autoScrub.fileSystems = [

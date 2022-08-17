@@ -21,6 +21,7 @@
 
     godot
     wireshark
+    gparted
 
     ferdium
     signal-desktop
