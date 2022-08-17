@@ -162,6 +162,7 @@
       ".config/monitors.xml"
     ];
     directories = [
+      ".config/evolution"
       ".local/share/evolution"
       ".local/share/flatpak"
       ".var/app"
