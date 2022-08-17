@@ -11,7 +11,6 @@
 
     audacity
     blender
-    davinci-resolve
     gimp
     inkscape
     krita
