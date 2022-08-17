@@ -19,6 +19,7 @@ in {
     du-dust
     duf
     exa
+    exiftool
     fd
     gdu
     joshuto
@@ -41,7 +42,6 @@ in {
     git-lfs
     lazygit
     git-sign-github
-    # commitizen
   ];
 
   programs.zellij.enable = true;
@@ -199,6 +199,7 @@ in {
     ".local/share/zsh"
     ".local/share/direnv"
     ".local/share/atuin"
+    ".local/share/zoxide"
     ".config/gh"
     ".config/lazygit"
     ".gnupg"
