@@ -67,7 +67,6 @@
   services.btrfs.autoScrub.fileSystems = [
     "/"
     "/nix"
-    "/swap"
   ];
 
   programs.fuse.userAllowOther = true;
@@ -80,6 +79,8 @@
       "/etc/ssh/ssh_host_ed25519_key.pub"
       "/etc/ssh/ssh_host_rsa_key"
       "/etc/ssh/ssh_host_rsa_key.pub"
+
+      "/var/lib/fprint"
     ];
     directories = [
       "/var/log"
@@ -118,6 +119,8 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.timeout = 0;
 
+  services.fprintd.enable = false;
+
   environment.systemPackages = with pkgs; [
     # one time reboot with 10 second timeout in the boot loader menu
     (writeShellScriptBin "reboot-to-menu" "systemctl reboot --boot-loader-menu=10")
@@ -133,7 +136,10 @@
   '';
 
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
-  # boot.kernelParams = ["mem_sleep_default=deep" "resume_offset="];
+
+  # get the resume offset with
+  # filefrag -v /swap/swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'
+  boot.kernelParams = ["mem_sleep_default=deep" "resume_offset=8960946"];
 
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
