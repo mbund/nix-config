@@ -66,19 +66,16 @@
       workspace-switcher-should-show = true; # show even if only one workspace
       notification-banner-position = 2; # top right
     };
-    "org/gnome/shell/extensions/vitals" = {
-      position-in-panel = 0; # left
-      show-battery = true;
-      use-higher-precision = true;
-      hot-sensors =
-        (lib.optionals (builtins.elem host ["kyoudai"]) [
-          "_battery_rate_"
-        ])
-        ++ [
-          "__network-rx_max__"
-          "__network-tx_max__"
-        ];
-    };
+    "org/gnome/shell/extensions/vitals" =
+      {
+        position-in-panel = 0; # left
+        use-higher-precision = true;
+      }
+      // (lib.optionalAttrs (host == "kumitate") {
+        show-battery = true;
+        battery-slot = 1;
+        hot-sensors = ["_battery_rate_" "__network-rx_max__" "__network-tx_max__"];
+      });
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-type = lib.optional (builtins.elem host ["kuro"]) "nothing";
     };
