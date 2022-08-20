@@ -93,10 +93,6 @@
     blanket
     celluloid
     fragments
-    helvum
-    junction
-    kooha
-    metadata-cleaner
 
     dconf-editor
     gnome-tweaks
