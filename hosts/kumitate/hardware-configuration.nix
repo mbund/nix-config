@@ -127,7 +127,7 @@
   ];
 
   boot.resumeDevice = "/dev/mapper/root";
-  systemd.sleep.extraConfig = "HibernateDelaySec=2h";
+  systemd.sleep.extraConfig = "HibernateDelaySec=30m";
   services.logind.lidSwitch = "suspend-then-hibernate";
   services.logind.extraConfig = ''
     HandlePowerKey=suspend-then-hibernate
