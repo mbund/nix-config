@@ -13,6 +13,15 @@ in {
   ];
 
   home.packages = with pkgs; [
+    kubectl
+    kubernetes-helm
+    kustomize
+    kube3d
+    fluxcd
+    sops
+    terraform
+    ansible
+    gnumake
     bandwhich
     bat
     bottom
@@ -25,8 +34,6 @@ in {
     joshuto
     lazydocker
     monero-cli
-    mosh
-    ncdu
     neofetch
     nix-index
     exa
@@ -133,9 +140,8 @@ in {
 
       "ls" = "exa --binary --header --long --classify";
       "l" = "exa";
-
       "lg" = "lazygit";
-
+      "j" = "joshuto";
       "code" = "codium";
     };
 
@@ -202,6 +208,7 @@ in {
     ".local/share/zoxide"
     ".config/gh"
     ".config/lazygit"
+    ".kube"
     ".gnupg"
   ];
 
