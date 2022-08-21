@@ -119,8 +119,6 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.timeout = 0;
 
-  services.fprintd.enable = true;
-
   environment.systemPackages = with pkgs; [
     # one time reboot with 10 second timeout in the boot loader menu
     (writeShellScriptBin "reboot-to-menu" "systemctl reboot --boot-loader-menu=10")

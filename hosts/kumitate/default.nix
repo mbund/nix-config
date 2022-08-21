@@ -24,6 +24,7 @@
   programs.adb.enable = true;
   virtualisation.waydroid.enable = true;
   services.fwupd.enable = true;
+  services.fprintd.enable = false;
   # hardware.video.hidpi.enable = lib.mkDefault true;
   # services.xserver.dpi = 200;
 
