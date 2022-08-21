@@ -28,6 +28,10 @@
   # hardware.video.hidpi.enable = lib.mkDefault true;
   # services.xserver.dpi = 200;
 
+  security.pam.yubico.enable = true;
+  security.pam.yubico.debug = true;
+  security.pam.yubico.mode = "challenge-response";
+
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
   nix.settings.max-jobs = 16;

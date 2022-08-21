@@ -27,6 +27,7 @@
   home.persistence."/nix/state/home/mbund".allowOther = true;
   home.persistence."/nix/state/home/mbund".directories = [
     ".local/share/keyrings"
+    ".yubico"
     ".ssh"
     "data"
     "xdg"
