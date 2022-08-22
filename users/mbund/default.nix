@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   self,
   impermanence,
   ...
@@ -47,16 +46,13 @@ in {
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
     ];
-    shell = pkgs.zsh;
     uid = 1000;
 
     passwordFile = config.age.secrets.mbundPassword.path;
   };
 
-  programs.zsh.enable = true;
-
-  # services.xserver.displayManager.autoLogin.enable = true;
-  # services.xserver.displayManager.autoLogin.user = "mbund";
+  programs.fish.enable = true;
+  environment.pathsToLink = ["/share/fish"];
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;

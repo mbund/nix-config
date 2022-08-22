@@ -45,7 +45,40 @@
   };
 
   programs.alacritty.enable = true;
-  xdg.configFile."alacritty/alacritty.yml".source = ./alacritty.yml;
+  programs.alacritty.settings = {
+    window.decorations = "none";
+    window.dynamic_padding = true;
+    shell.program = "fish";
+    env.SHELL = "fish";
+    font.normal.family = "MesloLGS NF";
+    font.size = 11;
+
+    # Colors (One Dark - https://github.com/atom/atom/tree/master/packages/one-dark-syntax)
+    colors = {
+      primary = {
+        background = "#282c34";
+        foreground = "#abb2bf";
+      };
+      cursor = {
+        text = "CellBackground";
+        cursor = "#528bff"; # syntax-cursor-color
+      };
+      selection = {
+        text = "CellForeground";
+        background = "#3e4451"; # syntax-selection-color
+      };
+      normal = {
+        black = "#5c6370"; # mono-3
+        red = "#e06c75"; # red 1
+        green = "#98c379";
+        yellow = "#e5c07b"; # orange 2
+        blue = "#61afef";
+        magenta = "#c678dd";
+        cyan = "#56b6c2";
+        white = "#828997"; # mono-2
+      };
+    };
+  };
 
   programs.kitty = {
     enable = true;

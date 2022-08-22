@@ -13,14 +13,11 @@ in {
   ];
 
   home.packages = with pkgs; [
-    kubectl
-    kubernetes-helm
-    kustomize
-    kube3d
-    fluxcd
-    sops
-    terraform
-    ansible
+    fortune
+    cowsay
+    lolcat
+    cbonsai
+    grc
     gnumake
     bandwhich
     bat
@@ -95,40 +92,38 @@ in {
     ".mygitignore"
   ];
 
-  programs.zsh = {
-    enable = true;
-
-    dotDir = ".config/zsh";
-
-    enableAutosuggestions = true;
-    enableCompletion = true;
-    enableSyntaxHighlighting = true;
-    autocd = true;
+  programs.fish.enable = true;
+  programs.fish = {
     plugins = [
       {
-        name = "you-should-use";
+        name = "tide";
         src = pkgs.fetchFromGitHub {
-          owner = "MichaelAquilina";
-          repo = "zsh-you-should-use";
-          rev = "09d9aa2cad2b7caf48cce8f321ebbbf8f47ce1c3";
-          sha256 = "07iqlry4mim5cqi8x5vi64dvwqqp298jbaz3ycks9rxsqlczzlnl";
+          owner = "IlanCosman";
+          repo = "tide";
+          rev = "3668589799975ffd92672b5c1ecc096275375dcd";
+          sha256 = "0ipwb1a5a02ms1ysfv2dc1bqa8zxcnpy4x7jsc3xk2vnyxqlc4sm";
         };
       }
       {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
-        name = "powerlevel10k-config";
-        src = ./p10k-config;
-        file = "p10k.zsh";
+        name = "grc";
+        inherit (pkgs.fishPlugins.grc) src;
       }
     ];
 
-    shellGlobalAliases = {
-      "UUID" = "$(uuidgen | tr -d \\n)";
+    functions = {
+      fish_greeting = ""; # fortune | cowsay
+      fish_command_not_found = ''
+        __fish_default_command_not_found_handler $argv
+      '';
     };
+
+    shellInit = ''
+      set -gx ATUIN_NOBIND "false"
+
+      # bind to ctrl-r in normal and insert mode, add any other bindings you want here too
+      bind \cr _atuin_search
+      bind -M insert \cr _atuin_search
+    '';
 
     shellAliases = {
       "nr" = "nix run";
@@ -144,50 +139,6 @@ in {
       "j" = "joshuto";
       "code" = "codium";
     };
-
-    initExtraBeforeCompInit = ''
-      # p10k instant prompt
-      P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
-      [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
-    '';
-
-    envExtra = ''
-      export ATUIN_NOBIND="true"
-    '';
-
-    initExtra = ''
-      bindkey '^r' _atuin_search_widget
-
-      # create custom command not found handler by searching through nix-index for it
-      command_not_found_handle() {
-        # taken from http://www.linuxjournal.com/content/bash-command-not-found
-        # - do not run when inside Midnight Commander or within a Pipe
-        if [ -n "''${MC_SID-}" ] || ! [ -t 1 ]; then
-          >&2 echo "$1: command not found"
-          return 127
-        fi
-        cmd=$1
-        attrs=$(${pkgs.nix-index}/bin/nix-locate --minimal --no-group --type x --type s --top-level --whole-name --at-root "/bin/$cmd")
-        len=$(echo -n "$attrs" | grep -c "^")
-        case $len in
-          0)
-            >&2 echo "$cmd: command not found in nixpkgs (run nix-index to update the index)"
-            ;;
-          *)
-            >&2 echo "$cmd was found in the following derivations:\n"
-            while read attr; do
-              >&2 echo "nixpkgs#$attr"
-            done <<< "$attrs"
-            ;;
-        esac
-        return 127 # command not found should always exit with 127
-      }
-
-      command_not_found_handler() {
-        command_not_found_handle $@
-        return $?
-      }
-    '';
   };
 
   xdg.configFile."neofetch/config.conf".source = ./neofetch.conf;
@@ -201,8 +152,8 @@ in {
 
   home.persistence."/nix/state/home/mbund".directories = [
     ".cache/nix-index"
-    ".cache/zsh"
-    ".local/share/zsh"
+    ".config/fish"
+    ".local/share/fish"
     ".local/share/direnv"
     ".local/share/atuin"
     ".local/share/zoxide"
