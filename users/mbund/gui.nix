@@ -19,6 +19,7 @@
     gparted
 
     ferdium
+    nextcloud-client
     signal-desktop
 
     monero-gui
@@ -118,6 +119,7 @@
     ".vscode-oss"
     ".config/chromium"
     ".config/Ferdium"
+    ".config/Nextcloud"
     ".config/inkscape"
     ".config/krita"
   ];

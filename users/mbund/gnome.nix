@@ -118,15 +118,14 @@
 
   nixpkgs.config.firefox.enableGnomeExtensions = true;
 
-  xdg.configFile."autostart/AutostartGnomeExtensions.desktop".text = ''
+  xdg.configFile."autostart/com.nextcloud.desktopclient.nextcloud.desktop".text = ''
     [Desktop Entry]
-    Name=AutostartGnomeExtensions
-    GenericName=Gnome extenion script
-    Comment=Uses gsettings to automatically start gnome extensions on login
-    Exec=gsettings set org.gnome.shell disable-user-extensions false
-    Terminal=false
     Type=Application
-    X-GNOME-Autostart-enabled=true
+    Exec=nextcloud
+    Name=Nextcloud Desktop
+    Comment=Nextcloud desktop synchronization client
+    GenericName=Folder Sync
+    Icon=Nextcloud
   '';
 
   home.pointerCursor.x11.enable = true;
