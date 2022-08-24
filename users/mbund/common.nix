@@ -4,7 +4,6 @@
   ...
 }: {
   xdg.enable = true;
-  xdg.mimeApps.enable = pkgs.stdenv.isLinux;
   xdg.userDirs = {
     enable = pkgs.stdenv.isLinux;
     pictures = "$HOME/data/pictures";
@@ -24,12 +23,17 @@
       else null;
   };
 
-  home.persistence."/nix/state/home/mbund".allowOther = true;
-  home.persistence."/nix/state/home/mbund".directories = [
-    ".local/share/keyrings"
-    ".yubico"
-    ".ssh"
-    "data"
-    "xdg"
-  ];
+  home.persistence."/nix/state/home/mbund" = {
+    allowOther = true;
+    directories = [
+      ".local/share/keyrings"
+      ".yubico"
+      ".ssh"
+      "data"
+      "xdg"
+    ];
+    files = [
+      ".config/mimeapps.list"
+    ];
+  };
 }
