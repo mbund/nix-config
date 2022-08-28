@@ -1,180 +1,101 @@
 {
   config,
-  lib,
   pkgs,
-  host,
   ...
-}: let
-  screen = pkgs.writeShellScriptBin "screen" ''${builtins.readFile ./screen}'';
-  bandw = pkgs.writeShellScriptBin "bandw" ''${builtins.readFile ./bandw}'';
-in {
-  home.packages = with pkgs; [
-    dunst
-    libnotify
-    grim
-    slurp
-    wf-recorder
-    screen
-    bandw
-    wofi
-    pqiv
-    swaybg
-    swaylock-effects
-    wlr-randr
-    wlsunset
-    wl-clipboard
-    eww-wayland
-    pamixer
-    alsaUtils
-    mpc-cli
-    brightnessctl
-    (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
-  ];
-
-  xdg.configFile."wofi.css".source = ./wofi.css;
-  # xdg.configFile."eww".source = ./eww;
-
-  xdg.configFile."hypr/hyprland.conf".text = ''
-    ${lib.optionals (host == "kodai") ''
-      monitor=eDP-1,1920x1080@60,0x0,1
-      exec-once=swaybg -i $NIX_CONFIG_DIR/users/mbund/wallpapers/wavy_lines_v02_5120x2880.png
-    ''}
-
-    ${builtins.readFile ./hyprland.conf}
-  '';
+}: {
+  home.packages = with pkgs;
+    [
+      libnotify
+      hyprpaper
+      waybar
+      grim
+      slurp
+      wf-recorder
+      imv
+      swaybg
+      swaylock-effects
+      wlr-randr
+      wlsunset
+      wl-clipboard
+      brightnessctl
+      pamixer
+      libqalculate
+      (rofi-wayland.override {plugins = with pkgs; [rofi-emoji rofi-calc];})
+    ]
+    ++ (
+      builtins.map
+      (script: pkgs.writeShellScriptBin script (builtins.readFile (./scripts + "/${script}")))
+      (builtins.attrNames (builtins.readDir ./scripts))
+    );
 
   programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [wlrobs];
 
-  services.dunst = {
-    enable = true;
-    settings = {
-      global = {
-        origin = "top-left";
-        offset = "60x12";
-        separator_height = 2;
-        padding = 12;
-        horizontal_padding = 12;
-        text_icon_padding = 12;
-        frame_width = 4;
-        separator_color = "frame";
-        idle_threshold = 120;
-        font = "JetBrainsMono Nerdfont 12";
-        line_height = 0;
-        format = "<b>%s</b>\n%b";
-        alignment = "center";
-        icon_position = "off";
-        startup_notification = "false";
-        corner_radius = 12;
+  xdg.configFile."hypr/hyprland.conf".source = ./hypr/hyprland.conf;
+  xdg.configFile."rofi/config.rasi".source = ./rofi/config.rasi;
+  xdg.configFile."waybar/config".source = ./waybar/config;
+  xdg.configFile."waybar/style.css".source = ./waybar/style.css;
 
-        frame_color = "#44465ccc";
-        background = "#303241cc";
-        foreground = "#d9e0eecc";
-        timeout = 2;
-      };
-    };
+  services.swayidle.enable = true;
+  services.swayidle.events = [
+    {
+      event = "before-sleep";
+      command = "lock";
+    }
+    {
+      event = "lock";
+      command = "lock";
+    }
+  ];
+  services.swayidle.timeouts = [
+    {
+      timeout = 60;
+      command = "lock";
+    }
+  ];
+
+  services.dunst.enable = true;
+
+  programs.mpv.enable = true;
+  programs.mpv.config = {
+    profile = "gpu-hq";
+    gpu-context = "wayland";
+    vo = "gpu";
+    hwdec = "auto";
   };
 
-  programs.foot = {
-    enable = true;
-    settings = {
-      main = {
-        font = "JetBrainsMono Nerdfont:size=7:line-height=16px";
-        pad = "12x12";
-      };
-      colors = {
-        alpha = 0.8;
+  services.mpd.enable = true;
 
-        foreground = "d9e0ee";
-        background = "292a37";
-        ## Normal/regular colors (color palette 0-7)
-        regular0 = "303241"; # black
-        regular1 = "ec6a88";
-        regular2 = "3fdaa4";
-        regular3 = "efb993";
-        regular4 = "3fc6de";
-        regular5 = "b771dc";
-        regular6 = "6be6e6";
-        regular7 = "d9e0ee";
-
-        bright0 = "393a4d"; # bright black
-        bright1 = "e95678"; # bright red
-        bright2 = "29d398"; # bright green
-        bright3 = "efb993"; # bright yellow
-        bright4 = "26bbd9";
-        bright5 = "b072d1"; # bright magenta
-        bright6 = "59e3e3"; # bright cyan
-        bright7 = "d9e0ee"; # bright white
-      };
-    };
+  home.pointerCursor.x11.enable = true;
+  home.pointerCursor.gtk.enable = true;
+  home.pointerCursor.size = 16;
+  home.pointerCursor.package = pkgs.nur.repos.ambroisie.vimix-cursors;
+  home.pointerCursor.name = "Vimix-white-cursors";
+  gtk.enable = true;
+  gtk.font = {
+    name = "Roboto";
+    package = pkgs.roboto;
+  };
+  gtk.iconTheme = {
+    name = "Papirus-Dark";
+    package = pkgs.papirus-icon-theme;
+  };
+  qt.enable = true;
+  qt.platformTheme = "gnome";
+  qt.style = {
+    name = "adwaita";
+    package = pkgs.adwaita-qt;
   };
 
-  programs.mpv = {
-    enable = true;
-    config = {
-      profile = "gpu-hq";
-      gpu-context = "wayland";
-      vo = "gpu";
-      hwdec = "auto";
-    };
-  };
+  home.persistence."/nix/state/home/mbund" = {
+    directories = [
+      ".config/evolution"
+      ".local/share/evolution"
 
-  services.mpd = {
-    enable = true;
-    musicDirectory = "${config.home.homeDirectory}/Music";
-    extraConfig = ''
-      zeroconf_enabled "yes"
-      zeroconf_name "MPD @ %h"
-      input {
-        plugin "curl"
-      }
-      audio_output {
-        type "fifo"
-        name "Visualizer"
-        path "/tmp/mpd.fifo"
-        format    "48000:16:2"
-      }
-      audio_output {
-        type "pulse"
-        name "PulseAudio"
-      }
-    '';
-    network.listenAddress = "any";
-    network.startWhenNeeded = true;
-  };
+      ".local/share/flatpak"
+      ".var/app"
 
-  services.easyeffects.enable = true;
-  services.mpdris2.enable = false;
-  services.playerctld.enable = true;
-
-  gtk = {
-    enable = true;
-
-    font = {
-      name = "JetBrainsMono Nerdfont 12";
-      package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
-    };
-
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-
-    theme = {
-      name = "Catppuccin-orange-dark-compact";
-      package = pkgs.catppuccin-gtk.override {size = "compact";};
-    };
-  };
-
-  home.pointerCursor = {
-    x11.enable = true;
-    gtk.enable = true;
-    size = 16;
-
-    package = pkgs.nur.repos.ambroisie.vimix-cursors;
-    name = "Vimix-white-cursors";
-    # name = "Vimix-cursors";
+      ".config/hypr"
+    ];
   };
 
   home.sessionVariables = {

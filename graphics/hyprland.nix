@@ -4,45 +4,33 @@
   ];
 
   programs.hyprland.enable = true;
-  programs.hyprland.extraPackages = [];
 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    jack.enable = true;
-    pulse.enable = true;
-  };
+  services.pipewire.enable = true;
+  services.pipewire.alsa.enable = true;
+  services.pipewire.alsa.support32Bit = true;
+  services.pipewire.jack.enable = true;
+  services.pipewire.pulse.enable = true;
 
   services.xserver.enable = true;
   services.xserver.displayManager.lightdm.enable = false;
 
-  services.xserver.libinput = {
-    enable = true;
-    mouse.accelProfile = "flat";
-    mouse.accelSpeed = "0";
-    mouse.middleEmulation = false;
+  services.xserver.libinput.enable = true;
+  services.xserver.libinput.mouse = {
+    accelProfile = "flat";
+    accelSpeed = "0";
+    middleEmulation = false;
   };
 
-  networking.wireless.iwd.enable = true;
   services.xserver.wacom.enable = true;
   programs.kdeconnect.enable = true;
   services.blueman.enable = true;
+  services.flatpak.enable = true;
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      (pkgs.xdg-desktop-portal-gtk.override {
-        buildPortalsInGnome = false;
-      })
-    ];
-    wlr = {
-      enable = true;
-      settings.screencast = {
-        chooser_type = "simple";
-        chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
-      };
-    };
+  xdg.portal.enable = true;
+  xdg.portal.wlr.enable = true;
+  xdg.portal.wlr.settings.screencast = {
+    chooser_type = "simple";
+    chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
   };
 
   programs.dconf.enable = true;
@@ -57,4 +45,8 @@
   programs.seahorse.enable = true;
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
+
+  environment.persistence."/nix/state".directories = [
+    "/var/lib/flatpak"
+  ];
 }

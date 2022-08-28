@@ -49,6 +49,7 @@
   programs.alacritty.settings = {
     window.decorations = "none";
     window.dynamic_padding = true;
+    window.opacity = 0.8;
     shell.program = "fish";
     env.SHELL = "fish";
     font.normal.family = "MesloLGS NF";

@@ -1,0 +1,131 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 32,
+    "modules-left": [
+        "wlr/workspaces",
+    ],
+    "modules-center": [
+        "clock",
+    ],
+    "modules-right": [
+        "keyboard-state",
+        "tray",
+        "network",
+        "pulseaudio",
+        "backlight",
+        "battery",
+    ],
+    "wlr/workspaces": {
+        "icon": false,
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "󰎤",
+            "2": "󰎧",
+            "3": "󰎪",
+            "4": "󰎭",
+            "5": "󰎱",
+            "6": "󰎳",
+            "7": "󰎶",
+            "8": "󰎹",
+            "9": "󰎼",
+            "10": "󰎡",
+        }
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 8
+    },
+    "clock": {
+        "format": "{: %H:%M %a %d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+    "battery": {
+        "tooltip-format": "{capacity}% \n{time}",
+        "interval": 30,
+        "states": {
+            // "good": 80,
+            "warning": 30,
+            "critical": 20
+        },
+        "full-at": "95",
+        "format": "{icon}",
+        "format-icons": [
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ],
+        "format-critical": "󰂃{capacity}%",
+        "format-full": "󱟢",
+        "format-charging": "󰂄{capacity}%"
+    },
+    "network": {
+        "interval": 5,
+        "format-linked": "󰤥",
+        "format-wifi": "{icon}",
+        "format-icons": [
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
+        "format-disconnected": "󰤭",
+        "interface": "wlp166s0",
+        "tooltip-format-wifi": "{essid} {signalStrength}\n{bandwidthDownBits}\n{bandwidthUpBits}\n{ipaddr}"
+    },
+    "pulseaudio": {
+        "tooltip-format": "{desc} {volume}%",
+        "on-scroll-up": "pamixer --increase 1",
+        "on-scroll-down": "pamixer --decrease 1",
+        "on-click": "pamixer --toggle-mute",
+        "format": "{icon}",
+        "format-source": "{icon} {volume}%",
+        "format-muted": "󰖁",
+        "format-icons": {
+            "headphone": "󰋌",
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        },
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon}",
+        "format-icons": [
+            "󰃞",
+            "󰃟",
+            "󰃠"
+        ],
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "on-click": "wlsunset"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "keyboard-state": {
+        "capslock": true,
+        "format": "{icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+}

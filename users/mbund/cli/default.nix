@@ -15,6 +15,7 @@ in {
   home.packages = with pkgs; [
     fortune
     cowsay
+    cava
     lolcat
     cbonsai
     grc

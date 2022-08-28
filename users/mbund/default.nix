@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   self,
   impermanence,
   ...
@@ -47,7 +48,7 @@ in {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
     ];
     uid = 1000;
-
+    shell = pkgs.fish;
     passwordFile = config.age.secrets.mbundPassword.path;
   };
 
@@ -73,7 +74,7 @@ in {
       ]
       ++ optionals config.services.xserver.enable [
         ./gui.nix
-        ./gnome.nix
+        ./hyprland
       ];
 
     home.username = config.users.users.mbund.name;

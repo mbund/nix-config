@@ -54,9 +54,6 @@
     device = "/dev/disk/by-label/root";
     allowDiscards = true;
 
-    keyFile = "/dev/zero";
-    keyFileSize = 1;
-
     fallbackToPassword = true;
   };
 
@@ -81,7 +78,7 @@
       "/etc/ssh/ssh_host_rsa_key.pub"
     ];
     directories = [
-      "/var/log"
+      # "/var/log"
 
       "/var/lib/fprint"
     ];

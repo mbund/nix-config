@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
 
     ../../graphics
-    ../../graphics/gnome.nix
+    ../../graphics/hyprland.nix
 
     ../../users/mbund
   ];
@@ -29,7 +29,6 @@
   # services.xserver.dpi = 200;
 
   security.pam.yubico.enable = true;
-  security.pam.yubico.debug = true;
   security.pam.yubico.mode = "challenge-response";
 
   nix.gc.automatic = true;
