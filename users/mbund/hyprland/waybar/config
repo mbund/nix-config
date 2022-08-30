@@ -43,7 +43,7 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     },
     "battery": {
-        "tooltip-format": "{capacity}% \n{time}",
+        "tooltip-format": "{capacity}%\n{time}",
         "interval": 30,
         "states": {
             // "good": 80,
@@ -65,9 +65,9 @@
             "󰂂",
             "󰁹"
         ],
-        "format-critical": "󰂃{capacity}%",
+        "format-critical": "󰂃",
         "format-full": "󱟢",
-        "format-charging": "󰂄{capacity}%"
+        "format-charging": "󰂄"
     },
     "network": {
         "interval": 5,
