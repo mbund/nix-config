@@ -19,6 +19,14 @@
 
   services.auto-cpufreq.enable = true;
   services.thermald.enable = true;
+  powerManagement.powertop.enable = true;
+  services.tlp.enable = true;
+  services.tlp.settings = {
+    START_CHARGE_THRESH_BAT0 = 90;
+    STOP_CHARGE_THRESH_BAT0 = 97;
+    PCIE_ASPM_ON_BAT = "powersupersave";
+    RUNTIME_PM_ON_BAT = "auto";
+  };
 
   programs.wireshark.enable = true;
   programs.adb.enable = true;
