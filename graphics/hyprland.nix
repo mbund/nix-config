@@ -42,10 +42,6 @@
     auth include login
   '';
 
-  programs.seahorse.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.login.enableGnomeKeyring = true;
-
   environment.persistence."/nix/state".directories = [
     "/var/lib/flatpak"
   ];
