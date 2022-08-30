@@ -19,6 +19,7 @@ in {
     lolcat
     cbonsai
     grc
+    htop
     gnumake
     bandwhich
     bat
@@ -28,7 +29,10 @@ in {
     exa
     exiftool
     fd
+    s-tui
     gdu
+    zip
+    unzip
     joshuto
     lazydocker
     monero-cli

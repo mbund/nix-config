@@ -12,6 +12,8 @@
       slurp
       wf-recorder
       imv
+      zathura
+      dolphin
       swaybg
       swaylock-effects
       wlr-randr
@@ -95,6 +97,9 @@
       ".var/app"
 
       ".config/hypr"
+    ];
+    files = [
+      ".config/dolphinrc"
     ];
   };
 

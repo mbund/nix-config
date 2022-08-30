@@ -26,7 +26,7 @@
   home.persistence."/nix/state/home/mbund" = {
     allowOther = true;
     directories = [
-      ".local/share/keyrings"
+      # ".local/share/keyrings"
       ".yubico"
       ".ssh"
       "data"

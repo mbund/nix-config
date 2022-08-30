@@ -13,6 +13,8 @@
     kdenlive
     onlyoffice-bin
     vlc
+    xournalpp
+    eclipses.eclipse-java
 
     godot
     wireshark
@@ -27,6 +29,7 @@
     tor-browser-bundle-bin
     firefox
     librewolf
+    xorg.xeyes
   ];
 
   programs.vscode = {
@@ -123,5 +126,8 @@
     ".config/Nextcloud"
     ".config/inkscape"
     ".config/krita"
+    ".config/xournalpp"
+    ".config/vlc"
+    ".local/share/onlyoffice"
   ];
 }
