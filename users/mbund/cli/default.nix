@@ -52,6 +52,35 @@ in {
     lazygit
     distrobox
     git-sign-github
+
+    nodePackages.dockerfile-language-server-nodejs
+    nodePackages.typescript-language-server
+    nodePackages.bash-language-server
+    nodePackages.vls
+    nodePackages.svelte-language-server
+    nodePackages.vscode-css-languageserver-bin
+    nodePackages.vscode-html-languageserver-bin
+    nodePackages.vscode-json-languageserver-bin
+    ocamlPackages.ocaml-lsp
+    rubyPackages.solargraph
+    elmPackages.elm-language-server
+    python310Packages.python-lsp-server
+    clang-tools
+    cmake-language-server
+    dart
+    deno
+    elixir_ls
+    gopls
+    haskell-language-server
+    jdt-language-server
+    kotlin-language-server
+    sumneko-lua-language-server
+    metals
+    nimlsp
+    rnix-lsp
+    rust-analyzer
+    taplo
+    zls
   ];
 
   programs.zellij.enable = true;
