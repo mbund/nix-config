@@ -14,6 +14,7 @@
       imv
       zathura
       dolphin
+      ark
       swaybg
       swaylock-effects
       wlr-randr

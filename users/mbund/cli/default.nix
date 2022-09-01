@@ -50,6 +50,7 @@ in {
     git-extras
     git-lfs
     lazygit
+    distrobox
     git-sign-github
   ];
 
