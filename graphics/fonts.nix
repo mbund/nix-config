@@ -35,6 +35,7 @@
     fonts = with pkgs; [
       (nerdfonts.override {fonts = ["Hack" "FiraCode" "JetBrainsMono"];})
       meslo-lgs-nf
+      liberation_ttf
       jetbrains-mono
       material-icons
       material-design-icons
