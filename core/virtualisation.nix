@@ -3,25 +3,17 @@
   security.polkit.enable = true;
 
   virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemu = {
-    package = pkgs.qemu_kvm;
-    ovmf = {
-      enable = true;
-      packages = with pkgs; [OVMFFull];
-    };
-    swtpm.enable = true;
-  };
-
+  virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
+  virtualisation.libvirtd.qemu.ovmf.enable = true;
+  virtualisation.libvirtd.qemu.ovmf.packages = with pkgs; [OVMFFull];
+  virtualisation.libvirtd.qemu.swtpm.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
-
   virtualisation.lxd.enable = true;
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.autoPrune.enable = true;
   virtualisation.podman.enable = true;
 
   environment.persistence."/nix/state".directories = [
-    "/var/lib/docker"
+    "/var/lib/containers"
     "/var/lib/libvirt"
   ];
 }
