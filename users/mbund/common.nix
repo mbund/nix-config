@@ -5,6 +5,9 @@
   xdg.mimeApps.defaultApplications = {
     "application/pdf" = "zathura.desktop";
     "inode/directory" = "dolphin.desktop";
+    "image/png" = "imv-folder.desktop";
+    "image/jpeg" = "imv-folder.desktop";
+    "image/tiff" = "imv-folder.desktop";
     "text/html" = "firefox.desktop";
     "x-scheme-handler/http" = "firefox.desktop";
     "x-scheme-handler/https" = "firefox.desktop";
@@ -31,9 +34,18 @@
   home.persistence."/nix/state/home/mbund" = {
     allowOther = true;
     directories = [
-      "data"
-      "school"
-      "dev"
+      {
+        directory = "data";
+        method = "symlink";
+      }
+      {
+        directory = "school";
+        method = "symlink";
+      }
+      {
+        directory = "dev";
+        method = "symlink";
+      }
 
       ".config/git"
       ".local/share/keyrings"

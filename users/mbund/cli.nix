@@ -92,6 +92,7 @@
       ".local/share/atuin"
       ".local/share/zoxide"
       ".config/gh"
+      ".config/git"
       ".config/lazygit"
       ".config/helix"
       ".config/zellij"
