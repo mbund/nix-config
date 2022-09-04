@@ -126,9 +126,6 @@
     eww = {
       url = "github:elkowar/eww";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.naersk.follows = "naersk";
     };
-
-    nix-colors.url = "github:Misterio77/nix-colors";
   };
 }

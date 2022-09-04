@@ -20,6 +20,7 @@
   nixRegistry = {
     nix.registry = {
       templates.flake = templates;
+      t.flake = templates;
       nixpkgs.flake = nixpkgs;
       np.flake = nixpkgs;
     };

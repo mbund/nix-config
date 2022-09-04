@@ -1,39 +1,50 @@
-{
-  pkgs,
-  host,
-  ...
-}: {
+{pkgs, ...}: {
   xdg.enable = true;
+  xdg.configFile."mimeapps.list".force = true;
+  xdg.mimeApps.enable = true;
+  xdg.mimeApps.defaultApplications = {
+    "application/pdf" = "zathura.desktop";
+    "inode/directory" = "dolphin.desktop";
+    "text/html" = "firefox.desktop";
+    "x-scheme-handler/http" = "firefox.desktop";
+    "x-scheme-handler/https" = "firefox.desktop";
+    "x-scheme-handler/chrome" = "firefox.desktop";
+    "application/x-extension-htm" = "firefox.desktop";
+    "application/x-extension-html" = "firefox.desktop";
+    "application/x-extension-shtml" = "firefox.desktop";
+    "application/xhtml+xml" = "firefox.desktop";
+    "application/x-extension-xhtml" = "firefox.desktop";
+    "application/x-extension-xht" = "firefox.desktop";
+  };
   xdg.userDirs = {
     enable = pkgs.stdenv.isLinux;
     pictures = "$HOME/data/pictures";
     videos = "$HOME/data/videos";
+    music = "$HOME/data/music";
+    publicShare = "$HOME/data/public";
+    templates = "$HOME/data/templates";
+    desktop = "$HOME/data";
+    documents = "$HOME/data";
     download = "$HOME/download";
-    desktop = "$HOME/xdg";
-    documents = "$HOME/xdg";
-    music = "$HOME/xdg";
-    publicShare = "$HOME/xdg";
-    templates = "$HOME/xdg";
-  };
-
-  home.sessionVariables = {
-    NIX_CONFIG_DIR =
-      if host == "kodai"
-      then "$HOME/data/nix-config"
-      else null;
   };
 
   home.persistence."/nix/state/home/mbund" = {
     allowOther = true;
     directories = [
-      # ".local/share/keyrings"
+      "data"
+      "school"
+      "dev"
+
+      ".config/git"
+      ".local/share/keyrings"
+      ".local/share/flatpak"
+      ".var/app"
       ".yubico"
       ".ssh"
-      "data"
-      "xdg"
-    ];
-    files = [
-      ".config/mimeapps.list"
+      {
+        directory = ".local/share/Steam";
+        method = "symlink";
+      }
     ];
   };
 }

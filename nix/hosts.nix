@@ -1,31 +1,10 @@
 let
   hosts = {
-    kodai = {
-      type = "nixos";
-      address = "100.86.8.121";
-      localSystem = "x86_64-linux";
-      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILCXxKk/l/+A4xbYcYsyHPRuvBD70yf76vHGokfDFIwn";
-    };
-
-    kyoudai = {
-      type = "nixos";
-      address = "100.91.133.110";
-      localSystem = "x86_64-linux";
-      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAQzQjmwmUtuS/yfmggOn4HPuL+rNEurrX9DjZkrULaC";
-    };
-
     kumitate = {
       type = "nixos";
       address = "100.76.15.3";
       localSystem = "x86_64-linux";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK6iPA+2bocVbk9iK/RxjmCIjPsC4qciuQSlkclfJJOT ";
-    };
-
-    kuro = {
-      type = "nixos";
-      address = "100.115.127.107";
-      localSystem = "x86_64-linux";
-      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYbI8KHg/IjWijggQK8q9PV65PsHt82QsQtCOOag2Mp";
     };
   };
 

@@ -26,13 +26,12 @@
     RUNTIME_PM_ON_BAT = "auto";
   };
 
+  programs.steam.enable = true;
   programs.wireshark.enable = true;
   programs.adb.enable = true;
   virtualisation.waydroid.enable = true;
   services.fwupd.enable = true;
-  services.fprintd.enable = false;
-  # hardware.video.hidpi.enable = lib.mkDefault true;
-  # services.xserver.dpi = 200;
+  services.fprintd.enable = true;
 
   security.pam.yubico.enable = true;
   security.pam.yubico.mode = "challenge-response";
@@ -42,8 +41,6 @@
   nix.settings.max-jobs = 16;
   nix.settings.system-features = ["benchmark" "nixos-test" "big-parallel" "kvm"];
 
-  # age.secrets.rootPassword.file = ./root-password.age;
-  # users.users.root.passwordFile = config.age.secrets.rootPassword.path;
   users.users.root.password = "root";
 
   environment.persistence."/nix/state".directories = [

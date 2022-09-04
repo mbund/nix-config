@@ -18,6 +18,7 @@
 
   virtualisation.docker.enable = true;
   virtualisation.docker.autoPrune.enable = true;
+  virtualisation.podman.enable = true;
 
   environment.persistence."/nix/state".directories = [
     "/var/lib/docker"
