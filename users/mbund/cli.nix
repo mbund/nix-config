@@ -13,8 +13,8 @@
     bat
     bottom
     du-dust
+    file
     duf
-    exa
     exiftool
     fd
     s-tui
