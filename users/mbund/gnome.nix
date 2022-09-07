@@ -149,18 +149,6 @@
     package = pkgs.adwaita-qt;
   };
 
-  home.persistence."/nix/state/home/mbund" = {
-    files = [
-      ".config/monitors.xml"
-    ];
-    directories = [
-      ".config/evolution"
-      ".local/share/evolution"
-      ".local/share/flatpak"
-      ".var/app"
-    ];
-  };
-
   home.sessionVariables = {
     XCURSOR_THEME = config.xsession.pointerCursor.name;
     XCURSOR_SIZE = config.xsession.pointerCursor.size;

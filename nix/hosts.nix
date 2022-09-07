@@ -2,7 +2,7 @@ let
   hosts = {
     kumitate = {
       type = "nixos";
-      address = "100.76.15.3";
+      address = "100.83.85.34";
       localSystem = "x86_64-linux";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK6iPA+2bocVbk9iK/RxjmCIjPsC4qciuQSlkclfJJOT ";
     };

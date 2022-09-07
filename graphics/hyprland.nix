@@ -26,7 +26,6 @@
   services.blueman.enable = true;
   services.flatpak.enable = true;
 
-  xdg.portal.enable = true;
   xdg.portal.wlr.enable = true;
   xdg.portal.wlr.settings.screencast = {
     chooser_type = "simple";
@@ -41,8 +40,4 @@
   security.pam.services.swaylock.text = ''
     auth include login
   '';
-
-  environment.persistence."/nix/state".directories = [
-    "/var/lib/flatpak"
-  ];
 }

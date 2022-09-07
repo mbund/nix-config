@@ -1,24 +1,10 @@
-{pkgs, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   xdg.enable = true;
-  xdg.configFile."mimeapps.list".force = true;
-  xdg.mimeApps.enable = true;
-  xdg.mimeApps.defaultApplications = {
-    "application/pdf" = "zathura.desktop";
-    "inode/directory" = "dolphin.desktop";
-    "image/png" = "imv-folder.desktop";
-    "image/jpeg" = "imv-folder.desktop";
-    "image/tiff" = "imv-folder.desktop";
-    "text/html" = "firefox.desktop";
-    "x-scheme-handler/http" = "firefox.desktop";
-    "x-scheme-handler/https" = "firefox.desktop";
-    "x-scheme-handler/chrome" = "firefox.desktop";
-    "application/x-extension-htm" = "firefox.desktop";
-    "application/x-extension-html" = "firefox.desktop";
-    "application/x-extension-shtml" = "firefox.desktop";
-    "application/xhtml+xml" = "firefox.desktop";
-    "application/x-extension-xhtml" = "firefox.desktop";
-    "application/x-extension-xht" = "firefox.desktop";
-  };
   xdg.userDirs = {
     enable = pkgs.stdenv.isLinux;
     pictures = "$HOME/data/pictures";
@@ -26,37 +12,20 @@
     music = "$HOME/data/music";
     publicShare = "$HOME/data/public";
     templates = "$HOME/data/templates";
-    desktop = "$HOME/data";
-    documents = "$HOME/data";
+    desktop = "$HOME/data/desktop";
+    documents = "$HOME/data/documents";
     download = "$HOME/download";
   };
 
-  home.persistence."/nix/state/home/mbund" = {
-    allowOther = true;
-    directories = [
-      {
-        directory = "data";
-        method = "symlink";
-      }
-      {
-        directory = "school";
-        method = "symlink";
-      }
-      {
-        directory = "dev";
-        method = "symlink";
-      }
+  home.file.".hm-env".text = let
+    export = n: v: ''export ${n}="${toString v}"'';
+    exportAll = vars: lib.concatStringsSep "\n" (lib.mapAttrsToList export vars);
+  in ''
+    # modules/programs/zsh.nix
 
-      ".config/git"
-      ".local/share/keyrings"
-      ".local/share/flatpak"
-      ".var/app"
-      ".yubico"
-      ".ssh"
-      {
-        directory = ".local/share/Steam";
-        method = "symlink";
-      }
-    ];
-  };
+    if [[ -z "$__HM_ZSH_SESS_VARS_SOURCED" ]]; then
+      export __HM_ZSH_SESS_VARS_SOURCED=1
+      ${exportAll config.home.sessionVariables}
+    fi
+  '';
 }

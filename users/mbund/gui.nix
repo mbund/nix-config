@@ -32,28 +32,4 @@
     moonlight-qt
     superTuxKart
   ];
-
-  home.persistence."/nix/state/home/mbund".directories = [
-    ".local/share/airshipper"
-    ".minecraft"
-    ".mozilla"
-    ".librewolf"
-    ".config/obs-studio"
-    ".config/Signal"
-    ".config/supertuxkart"
-    ".config/VSCodium"
-    ".vscode-oss"
-    ".config/chromium"
-    ".config/godot"
-    ".local/share/godot"
-    ".config/Ferdium"
-    ".config/alacritty"
-    ".config/Nextcloud"
-    ".config/inkscape"
-    ".config/krita"
-    ".config/xournalpp"
-    ".config/vlc"
-    ".config/mpv"
-    ".local/share/onlyoffice"
-  ];
 }

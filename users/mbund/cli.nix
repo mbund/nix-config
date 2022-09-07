@@ -82,32 +82,6 @@
     zls
   ];
 
-  home.persistence."/nix/state/home/mbund" = {
-    directories = [
-      ".cache/nix-index"
-      ".config/zsh"
-      ".zplug"
-      ".local/share/zsh"
-      ".local/share/direnv"
-      ".local/share/atuin"
-      ".local/share/zoxide"
-      ".config/gh"
-      ".config/git"
-      ".config/lazygit"
-      ".config/helix"
-      ".config/zellij"
-      ".kube"
-      ".gnupg"
-    ];
-    files = [
-      ".zshenv"
-      ".zprofile"
-      ".zshrc"
-      ".zlogin"
-      ".p10k.zsh"
-    ];
-  };
-
   systemd.user.startServices = "sd-switch";
   home.extraOutputsToInstall = ["doc" "devdoc"];
 }

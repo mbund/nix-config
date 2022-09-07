@@ -11,9 +11,7 @@
   virtualisation.lxd.enable = true;
 
   virtualisation.podman.enable = true;
-
-  environment.persistence."/nix/state".directories = [
-    "/var/lib/containers"
-    "/var/lib/libvirt"
-  ];
+  virtualisation.podman.dockerCompat = true;
+  virtualisation.podman.dockerSocket.enable = true;
+  virtualisation.podman.defaultNetwork.dnsname.enable = true;
 }

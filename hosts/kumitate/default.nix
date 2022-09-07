@@ -42,8 +42,4 @@
   nix.settings.system-features = ["benchmark" "nixos-test" "big-parallel" "kvm"];
 
   users.users.root.password = "root";
-
-  environment.persistence."/nix/state".directories = [
-    "/var/lib/waydroid"
-  ];
 }

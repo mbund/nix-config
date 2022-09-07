@@ -17,9 +17,4 @@
     load-module module-bluetooth-policy
     load-module module-switch-on-connect
   '';
-
-  environment.persistence."/nix/state".directories = [
-    "/var/lib/bluetooth"
-    "/etc/bluetooth"
-  ];
 }

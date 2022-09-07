@@ -12,7 +12,7 @@
     wf-recorder
     imv
     zathura
-    dolphin
+    cinnamon.nemo
     ark
     swaybg
     swaylock-effects
@@ -49,25 +49,13 @@
     package = pkgs.adwaita-qt;
   };
 
-  home.persistence."/nix/state/home/mbund" = {
-    directories = [
-      ".config/hypr"
-      ".config/waybar"
-      ".config/rofi"
-    ];
-    files = [
-      ".config/dolphinrc"
-    ];
-  };
-
-  systemd.user.sessionVariables = {
+  home.sessionVariables = {
     XCURSOR_THEME = config.xsession.pointerCursor.name;
     XCURSOR_SIZE = config.xsession.pointerCursor.size;
     MOZ_ENABLE_WAYLAND = 1;
     QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
     QT_QPA_PLATFORM = "wayland;xcb";
     GDK_BACKEND = "wayland,x11";
-    GTK_USE_PORTAL = 1;
     SDL_VIDEODRIVER = "wayland";
     NIXOS_OZONE_WL = 1;
     _JAVA_AWT_WM_NONREPARENTING = 1;
