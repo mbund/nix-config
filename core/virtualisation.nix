@@ -11,7 +11,5 @@
   virtualisation.lxd.enable = true;
 
   virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
-  virtualisation.podman.dockerSocket.enable = true;
-  virtualisation.podman.defaultNetwork.dnsname.enable = true;
+  # virtualisation.docker.enable = true;
 }
