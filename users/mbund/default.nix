@@ -31,12 +31,12 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2kbXZV9yOofK3s37lz5DDogOIp9EKuUxaOhVdczKDr"
     ];
     uid = 1000;
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     passwordFile = config.age.secrets.mbundPassword.path;
   };
 
-  programs.zsh.enable = true;
-  environment.pathsToLink = ["/share/zsh"];
+  programs.fish.enable = true;
+  environment.pathsToLink = ["/share/fish"];
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
@@ -57,7 +57,8 @@
       ]
       ++ lib.optionals config.services.xserver.enable [
         ./gui.nix
-        ./hyprland.nix
+        ./gnome.nix
+        # ./hyprland.nix
       ];
 
     home.username = config.users.users.mbund.name;

@@ -13,52 +13,39 @@
 
   networking.hostName = "kumitate";
 
-  environment.etc."NetworkManager/dispatcher.d/10-tzupdate".source = pkgs.writeScript "10-tzupdate" ''
-    ${pkgs.tzupdate}/bin/tzupdate -z /etc/zoneinfo -d /dev/null
-  '';
-
   services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.wacom.enable = true;
+  services.flatpak.enable = true;
+  services.packagekit.enable = true;
+  services.printing.enable = true;
+  programs.kdeconnect.enable = true;
+  programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
   services.pipewire.enable = true;
   services.pipewire.alsa.enable = true;
   services.pipewire.alsa.support32Bit = true;
   services.pipewire.jack.enable = true;
   services.pipewire.pulse.enable = true;
-  services.xserver.wacom.enable = true;
-  programs.kdeconnect.enable = true;
-  services.flatpak.enable = true;
-  hardware.bluetooth.enable = true;
-
-  programs.hyprland.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  programs.dconf.enable = true;
-  services.dbus.packages = with pkgs; [dconf];
-  services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
-  xdg.portal.wlr.enable = true;
-  xdg.portal.wlr.settings.screencast = {
-    chooser_type = "simple";
-    chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
-  };
-
-  # allow swaylock to unlock the screen
-  security.pam.services.swaylock.text = ''
-    auth include login
-  '';
+  hardware.pulseaudio.enable = false;
+  services.power-profiles-daemon.enable = false;
 
   services.auto-cpufreq.enable = true;
   services.thermald.enable = true;
-  powerManagement.powertop.enable = true;
-  services.tlp.enable = true;
-  services.tlp.settings = {
-    PCIE_ASPM_ON_BAT = "powersupersave";
-    RUNTIME_PM_ON_BAT = "auto";
-  };
+  # powerManagement.powertop.enable = true;
+  # services.tlp.enable = true;
+  # services.tlp.settings = {
+  #   PCIE_ASPM_ON_BAT = "powersupersave";
+  #   RUNTIME_PM_ON_BAT = "auto";
+  # };
 
   programs.steam.enable = true;
   programs.wireshark.enable = true;
   programs.adb.enable = true;
   virtualisation.waydroid.enable = true;
+  programs.evolution.enable = true;
+  programs.evolution.plugins = [pkgs.evolution-ews];
   services.fwupd.enable = true;
-  services.fprintd.enable = false;
 
   security.pam.yubico.enable = true;
   security.pam.yubico.mode = "challenge-response";
