@@ -23,13 +23,14 @@
     signal-desktop
     monero-gui
     qbittorrent
+    cool-retro-term
     # tor-browser-bundle-bin
     firefox
     librewolf
     xorg.xeyes
     airshipper
-    minecraft
     moonlight-qt
     superTuxKart
+    zoom-us
   ];
 }

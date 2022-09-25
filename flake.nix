@@ -47,6 +47,7 @@
             "steam-original"
             "steam-runtime"
             "steam"
+            "zoom"
           ];
       };
     });

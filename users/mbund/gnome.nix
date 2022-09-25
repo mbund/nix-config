@@ -4,6 +4,9 @@
     blanket
     celluloid
     fragments
+    gnome-firmware
+
+    wl-clipboard
 
     gnome.gnome-power-manager
     gnome.dconf-editor

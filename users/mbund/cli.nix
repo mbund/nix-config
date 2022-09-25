@@ -45,6 +45,8 @@
     atuin
     direnv
     xxh
+    nmap
+    dnsutils
 
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.typescript-language-server
