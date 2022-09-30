@@ -54,6 +54,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.05";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
     devshell.url = "github:numtide/devshell";
