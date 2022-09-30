@@ -32,12 +32,6 @@
 
   services.auto-cpufreq.enable = true;
   services.thermald.enable = true;
-  # powerManagement.powertop.enable = true;
-  # services.tlp.enable = true;
-  # services.tlp.settings = {
-  #   PCIE_ASPM_ON_BAT = "powersupersave";
-  #   RUNTIME_PM_ON_BAT = "auto";
-  # };
 
   programs.steam.enable = true;
   programs.wireshark.enable = true;
