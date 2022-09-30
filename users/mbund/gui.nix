@@ -15,7 +15,7 @@
     ungoogled-chromium
     alacritty
     foot
-    godot
+    godot4-beta
     wireshark
     obs-studio
     ferdium
