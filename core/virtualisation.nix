@@ -1,5 +1,10 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [virt-manager spice-gtk swtpm];
+  environment.systemPackages = with pkgs; [
+    virt-manager
+    spice-gtk
+    swtpm
+    docker-compose
+  ];
   security.polkit.enable = true;
 
   virtualisation.libvirtd.enable = true;
@@ -11,5 +16,5 @@
   virtualisation.lxd.enable = true;
 
   virtualisation.podman.enable = true;
-  # virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 }
