@@ -24,6 +24,5 @@
     };
 in {
   user = "root";
-  sudo = "doas -u";
   nodes = lib.mapAttrs genNode self.nixosConfigurations;
 }

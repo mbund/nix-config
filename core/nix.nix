@@ -7,7 +7,7 @@ in {
   environment.etc."nixos/configuration.nix".source = dummyConfig;
 
   # required superuser configuration for deploy-rs
-  security.sudo.enable = false;
+  # security.sudo.enable = false;
   security.doas.enable = true;
   security.doas.wheelNeedsPassword = false;
 
