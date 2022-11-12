@@ -43,6 +43,10 @@
 
   security.pam.yubico.enable = true;
   security.pam.yubico.mode = "challenge-response";
+  security.pam.services.login.fprintAuth = true;
+  security.pam.services.xscreensaver.fprintAuth = true;
+  security.pam.services.xlock.fprintAuth = true;
+  security.pam.services.sudo.fprintAuth = true;
 
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
