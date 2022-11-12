@@ -47,7 +47,9 @@
             "steam-original"
             "steam-runtime"
             "steam"
+            "steam-run"
             "zoom"
+            "ngrok"
           ];
       };
     });

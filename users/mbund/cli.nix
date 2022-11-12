@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     fortune
+    gnupg
+    ngrok
     helix
     cowsay
     cava
@@ -44,7 +46,7 @@
     zoxide
     atuin
     direnv
-    xxh
+    # xxh
     nmap
     dnsutils
 

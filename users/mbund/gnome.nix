@@ -8,6 +8,8 @@
 
     wl-clipboard
 
+    papirus-icon-theme
+
     gnome.gnome-power-manager
     gnome.dconf-editor
     gnome.gnome-tweaks

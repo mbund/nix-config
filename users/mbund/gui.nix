@@ -18,13 +18,15 @@
     godot4-beta
     wireshark
     obs-studio
-    ferdium
+    element-desktop
+    discord
     nextcloud-client
     signal-desktop
     monero-gui
     qbittorrent
     cool-retro-term
-    # tor-browser-bundle-bin
+    tor-browser-bundle-bin
+    gparted
     firefox
     librewolf
     xorg.xeyes
@@ -32,5 +34,6 @@
     moonlight-qt
     superTuxKart
     zoom-us
+    ghidra
   ];
 }

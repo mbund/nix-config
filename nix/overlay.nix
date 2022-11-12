@@ -11,7 +11,7 @@ in
     composeManyExtensions (localOverlays
       ++ [
         deploy-rs.overlay
-        ragenix.overlay
+        ragenix.overlays.default
         nur.overlay
         hyprland.overlays.default
         devshell.overlay
