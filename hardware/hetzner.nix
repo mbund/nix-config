@@ -1,5 +1,5 @@
 # #!/bin/sh
-# curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | doNetConf=y NIX_CHANNEL=nixos-22.05 bash 2>&1 | tee /tmp/infect.log
+# curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | doNetConf=y NIX_CHANNEL=nixos-22.11 bash 2>&1 | tee /tmp/infect.log
 {modulesPath, ...}: {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")

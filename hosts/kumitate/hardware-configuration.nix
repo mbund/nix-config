@@ -9,7 +9,7 @@
     ../../hardware/intel.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_19;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_0;
   zramSwap.enable = true;
   swapDevices = [
     {

@@ -15,7 +15,7 @@
     ungoogled-chromium
     alacritty
     foot
-    godot4-beta
+    godot_4
     wireshark
     obs-studio
     element-desktop

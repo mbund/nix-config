@@ -20,5 +20,5 @@
   services.openssh.enable = lib.mkForce true;
   services.openssh.permitRootLogin = lib.mkForce "yes";
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }

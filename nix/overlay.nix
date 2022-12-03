@@ -22,10 +22,10 @@ in
             };
 
             master = import nixpkgs-master config;
-            stable = import nixpkgs-stable config;
+            wpa = import nixpkgs-wpa config;
           in {
             inherit (master) vscodium;
-            inherit (stable) wpa_supplicant;
+            inherit (wpa) wpa_supplicant;
           }
         )
       ])

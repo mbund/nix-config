@@ -56,6 +56,6 @@ in {
       cp -rf ${../.} $out/full-config
     '';
 
-    stateVersion = "22.05";
+    stateVersion = "22.11";
   };
 }
