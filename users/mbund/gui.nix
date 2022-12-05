@@ -31,6 +31,7 @@
     librewolf
     xorg.xeyes
     airshipper
+    xonotic
     moonlight-qt
     superTuxKart
     zoom-us

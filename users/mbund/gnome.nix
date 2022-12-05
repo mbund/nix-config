@@ -13,6 +13,7 @@
     gnome.gnome-power-manager
     gnome.dconf-editor
     gnome.gnome-tweaks
+    gnome.gnome-boxes
 
     gnomeExtensions.blur-my-shell
     gnomeExtensions.just-perfection

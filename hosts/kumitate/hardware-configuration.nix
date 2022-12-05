@@ -68,9 +68,10 @@
   age.identityPaths = ["/etc/ssh/ssh_host_ed25519_key"];
 
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.editor = false;
-  boot.loader.systemd-boot.configurationLimit = 5;
+  # boot.lodaer.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.useOSProber = true;
   boot.loader.timeout = 1;
 
   environment.systemPackages = with pkgs; [
