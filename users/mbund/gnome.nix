@@ -5,10 +5,13 @@
     celluloid
     fragments
     gnome-firmware
+    gnome-extension-manager
 
     wl-clipboard
 
     papirus-icon-theme
+    adw-gtk3
+    adwaita-qt
 
     gnome.gnome-power-manager
     gnome.dconf-editor
@@ -18,7 +21,7 @@
     gnomeExtensions.blur-my-shell
     gnomeExtensions.just-perfection
     gnomeExtensions.caffeine
-    gnomeExtensions.appindicator
     gnomeExtensions.tiling-assistant
+    gnomeExtensions.tactile
   ];
 }
