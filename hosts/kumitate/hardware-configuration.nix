@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   nixos-hardware,
   ...
@@ -14,7 +15,7 @@
   swapDevices = [
     {
       device = "/swap/swapfile";
-      size = 8 * 1024;
+      size = (32 + 2) * 1024;
     }
   ];
 
@@ -30,6 +31,12 @@
     fsType = "btrfs";
     options = ["subvol=root" "compress=zstd" "noatime"];
     neededForBoot = true;
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/mapper/root";
+    fsType = "btrfs";
+    options = ["subvol=home" "compress=zstd" "noatime"];
   };
 
   fileSystems."/nix" = {
@@ -68,10 +75,7 @@
   age.identityPaths = ["/etc/ssh/ssh_host_ed25519_key"];
 
   boot.loader.efi.canTouchEfiVariables = true;
-  # boot.lodaer.efi.efiSysMountPoint = "/boot/efi";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 1;
 
   environment.systemPackages = with pkgs; [
@@ -99,6 +103,7 @@
     DefaultTimeoutStopSec=10s
   '';
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 }
