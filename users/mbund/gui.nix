@@ -34,7 +34,6 @@
     xonotic
     moonlight-qt
     superTuxKart
-    zoom-us
     ghidra
   ];
 }

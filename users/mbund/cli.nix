@@ -7,6 +7,7 @@
     helix
     cowsay
     cava
+    kubectl
     lolcat
     cbonsai
     grc

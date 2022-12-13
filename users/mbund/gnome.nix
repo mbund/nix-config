@@ -6,6 +6,7 @@
     fragments
     gnome-firmware
     gnome-extension-manager
+    blackbox-terminal
 
     wl-clipboard
 

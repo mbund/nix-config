@@ -19,12 +19,16 @@ in
           _: prev: let
             config = {
               inherit (prev.stdenv.hostPlatform) system;
+              config.allowUnfreePredicate = pkg:
+                builtins.elem (nixpkgs.lib.getName pkg) [
+                  "discord"
+                ];
             };
 
             master = import nixpkgs-master config;
             wpa = import nixpkgs-wpa config;
           in {
-            inherit (master) vscodium;
+            inherit (master) vscodium discord;
             inherit (wpa) wpa_supplicant;
           }
         )
