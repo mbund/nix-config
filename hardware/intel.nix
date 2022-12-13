@@ -5,6 +5,8 @@
 }: {
   imports = [nixos-hardware.common-cpu-intel];
 
+  services.hardware.openrgb.motherboard = "intel";
+
   boot.kernelModules = ["kvm_intel"];
   boot.kernelParams = ["intel_iommu=on"];
   boot.extraModprobeConfig = ''

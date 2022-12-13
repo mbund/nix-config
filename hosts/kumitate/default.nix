@@ -21,6 +21,7 @@
   services.packagekit.enable = true;
   programs.kdeconnect.enable = true;
   programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
+  services.hardware.openrgb.enable = true;
   services.pipewire.enable = true;
   services.pipewire.alsa.enable = true;
   services.pipewire.alsa.support32Bit = true;
