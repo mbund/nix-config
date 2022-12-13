@@ -19,7 +19,6 @@
   services.xserver.wacom.enable = true;
   services.flatpak.enable = true;
   services.packagekit.enable = true;
-  services.printing.enable = true;
   programs.kdeconnect.enable = true;
   programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
   services.pipewire.enable = true;
@@ -29,6 +28,16 @@
   services.pipewire.pulse.enable = true;
   hardware.pulseaudio.enable = false;
   services.power-profiles-daemon.enable = false;
+
+  services.avahi.enable = true;
+  services.avahi.openFirewall = true;
+  services.avahi.nssmdns = true;
+  services.printing.enable = true;
+  services.printing.drivers = with pkgs; [
+    gutenprint
+    gutenprintBin
+    hplip
+  ];
 
   services.auto-cpufreq.enable = true;
   services.thermald.enable = true;
