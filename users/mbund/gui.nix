@@ -14,13 +14,9 @@
     vscodium.fhs
     ungoogled-chromium
     alacritty
-    foot
     godot_4
     wireshark
     obs-studio
-    element-desktop
-    discord
-    nextcloud-client
     signal-desktop
     monero-gui
     qbittorrent
@@ -28,7 +24,6 @@
     tor-browser-bundle-bin
     gparted
     firefox
-    librewolf
     xorg.xeyes
     airshipper
     xonotic
