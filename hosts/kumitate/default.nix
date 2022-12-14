@@ -62,6 +62,4 @@
   nix.gc.dates = "weekly";
   nix.settings.max-jobs = 16;
   nix.settings.system-features = ["benchmark" "nixos-test" "big-parallel" "kvm"];
-
-  users.users.root.password = "root";
 }
