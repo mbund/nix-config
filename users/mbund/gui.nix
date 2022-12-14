@@ -11,7 +11,7 @@
     mpv
     xournalpp
     eclipses.eclipse-java
-    vscodium.fhs
+    vscodium
     ungoogled-chromium
     alacritty
     godot_4
