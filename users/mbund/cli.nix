@@ -8,6 +8,10 @@
     cowsay
     cava
     kubectl
+    kubernetes-helm
+    fluxcd
+    terraform
+    sqlite
     lolcat
     cbonsai
     grc
@@ -77,6 +81,7 @@
     jdt-language-server
     kotlin-language-server
     sumneko-lua-language-server
+    terraform-ls
     metals
     nimlsp
     rnix-lsp

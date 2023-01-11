@@ -12,6 +12,7 @@
     xournalpp
     eclipses.eclipse-java
     vscodium
+    lapce
     ungoogled-chromium
     alacritty
     godot_4
