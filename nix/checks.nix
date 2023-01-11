@@ -10,7 +10,6 @@ with self.pkgs.${system};
       {
         src = lib.cleanSource ../.;
         hooks = {
-          nix-linter.enable = true;
           alejandra.enable = true;
           statix.enable = true;
           actionlint = {
@@ -20,28 +19,6 @@ with self.pkgs.${system};
             entry = "${actionlint}/bin/actionlint";
           };
         };
-        settings.nix-linter.checks = [
-          "DIYInherit"
-          "EmptyInherit"
-          "EmptyLet"
-          "EtaReduce"
-          "LetInInheritRecset"
-          "ListLiteralConcat"
-          "NegateAtom"
-          "SequentialLet"
-          "SetLiteralUpdate"
-          "UnfortunateArgName"
-          "UnneededRec"
-          "UnusedArg"
-          "UnusedLetBind"
-          "UpdateEmptySet"
-          "BetaReduction"
-          "EmptyVariadicParamSet"
-          "UnneededAntiquote"
-          "no-FreeLetInFunc"
-          "no-AlphabeticalArgs"
-          "no-AlphabeticalBindings"
-        ];
       };
   }
   // (deploy-rs.lib.deployChecks self.deploy)

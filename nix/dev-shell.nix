@@ -4,7 +4,6 @@ with self.pkgs.${system};
     name = "nix-config";
     packages = [
       deploy-rs.deploy-rs
-      nix-linter
       alejandra
       ragenix
       rnix-lsp
