@@ -79,6 +79,7 @@
   boot.loader.timeout = 1;
 
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
+  boot.blacklistedKernelModules = ["hid_sensor_hub"]; # fix brightness keys on 12th gen intel framework
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
