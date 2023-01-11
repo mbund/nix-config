@@ -10,12 +10,12 @@
     ../../hardware/intel.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_0;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
   zramSwap.enable = true;
   swapDevices = [
     {
       device = "/swap/swapfile";
-      size = (32 + 2) * 1024;
+      size = 4 * 1024;
     }
   ];
 
@@ -78,13 +78,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 1;
 
-  environment.systemPackages = with pkgs; [
-    # one time reboot with 10 second timeout in the boot loader menu
-    (writeShellScriptBin "reboot-to-menu" "systemctl reboot --boot-loader-menu=10")
-  ];
-
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
-  boot.blacklistedKernelModules = ["hid_sensor_hub"]; # fix brightness keys on 12th gen intel framework
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
