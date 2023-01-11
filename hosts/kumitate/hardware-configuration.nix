@@ -97,7 +97,7 @@
 
   # get the resume offset with
   # filefrag -v /swap/swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'
-  boot.kernelParams = ["mem_sleep_default=deep" "resume_offset=8960946"];
+  boot.kernelParams = ["mem_sleep_default=deep" "resume_offset=12331908"];
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
