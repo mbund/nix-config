@@ -83,21 +83,8 @@
     (writeShellScriptBin "reboot-to-menu" "systemctl reboot --boot-loader-menu=10")
   ];
 
-  boot.resumeDevice = "/dev/mapper/root";
-  systemd.sleep.extraConfig = "HibernateDelaySec=30m";
-  services.logind.lidSwitch = "suspend-then-hibernate";
-  services.logind.extraConfig = ''
-    HandlePowerKey=suspend-then-hibernate
-    IdleAction=suspend-then-hibernate
-    IdleActionSec=2m
-  '';
-
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
   boot.blacklistedKernelModules = ["hid_sensor_hub"]; # fix brightness keys on 12th gen intel framework
-
-  # get the resume offset with
-  # filefrag -v /swap/swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'
-  boot.kernelParams = ["mem_sleep_default=deep" "resume_offset=12331908"];
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
