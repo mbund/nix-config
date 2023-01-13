@@ -30,23 +30,6 @@
     moonlight-qt
     superTuxKart
     ghidra
-
-    (with eclipses;
-      eclipseWithPlugins {
-        eclipse = eclipse-java;
-        plugins = [
-          plugins.checkstyle
-          plugins.spotbugs
-          (plugins.buildEclipseUpdateSite rec {
-            name = "subclipse-${version}";
-            version = "4.3.0";
-            src = fetchzip {
-              stripRoot = false;
-              url = "https://subclipse.github.io/updates/subclipse/subclipse-${version}.zip";
-              sha256 = "sha256-9N4tuvh/ByhwC/nFDQO/Ow0FDq15vw/XWMxOrY7Y36Y=";
-            };
-          })
-        ];
-      })
+    eclipses.eclipse-java
   ];
 }
