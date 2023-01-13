@@ -17,6 +17,11 @@
     man-pages
   ];
 
+  environment.variables = {
+    EDITOR = "hx";
+    VISUAL = "hx";
+  };
+
   programs.mosh.enable = true;
   services.openssh.enable = true;
 
