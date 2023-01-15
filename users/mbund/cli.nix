@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    # utilities
     fortune
     bear
     gnupg
@@ -52,10 +53,11 @@
     zoxide
     atuin
     direnv
-    # xxh
     nmap
     dnsutils
+    just
 
+    # lsp
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.typescript-language-server
     nodePackages.bash-language-server
@@ -70,11 +72,9 @@
     python310Packages.python-lsp-server
     python310Packages.autopep8
     black
-    nim
     clang-tools
     cmake-language-server
     dart
-    deno
     elixir_ls
     gopls
     haskell-language-server
@@ -87,10 +87,21 @@
     rnix-lsp
     alejandra
     rust-analyzer
-    rustfmt
     taplo
+
+    # dev toolchains
     zig
+    nim
+    go
     zls
+    bun
+    deno
+    yarn
+    nodejs-18_x
+    nodePackages_latest.pnpm
+    rustup
+    python312
+    clang
   ];
 
   systemd.user.startServices = "sd-switch";
