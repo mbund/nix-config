@@ -31,5 +31,6 @@
     superTuxKart
     ghidra
     eclipses.eclipse-java
+    jetbrains.idea-community
   ];
 }
