@@ -41,6 +41,11 @@
   ];
 
   services.auto-cpufreq.enable = true;
+  services.tlp.enable = true;
+  services.tlp.settings = {
+    PCIE_ASPM_ON_BAT = "powersupersave";
+  };
+  powerManagement.powertop.enable = true;
   services.thermald.enable = true;
 
   programs.steam.enable = true;
