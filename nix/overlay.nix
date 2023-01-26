@@ -22,13 +22,14 @@ in
               config.allowUnfreePredicate = pkg:
                 builtins.elem (nixpkgs.lib.getName pkg) [
                   "discord"
+                  "vscode"
                 ];
             };
 
             master = import nixpkgs-master config;
             wpa = import nixpkgs-wpa config;
           in {
-            inherit (master) vscodium discord;
+            inherit (master) vscode vscodium discord;
             inherit (wpa) wpa_supplicant;
           }
         )

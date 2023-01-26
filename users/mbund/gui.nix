@@ -10,7 +10,8 @@
     vlc
     mpv
     xournalpp
-    vscodium
+    # vscodium
+    vscode
     lapce
     ungoogled-chromium
     alacritty
@@ -30,7 +31,12 @@
     moonlight-qt
     superTuxKart
     ghidra
-    eclipses.eclipse-java
+    filezilla
+    (with eclipses;
+      eclipseWithPlugins {
+        eclipse = eclipse-java;
+        jvmArgs = ["--add-opens=java.base/java.lang=ALL-UNNAMED"];
+      })
     jetbrains.idea-community
   ];
 }
