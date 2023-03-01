@@ -56,6 +56,7 @@
     nmap
     dnsutils
     just
+    powershell
 
     # lsp
     nodePackages.dockerfile-language-server-nodejs
