@@ -5,7 +5,6 @@
     bear
     gnupg
     ngrok
-    helix
     cowsay
     cava
     kubectl
@@ -19,13 +18,8 @@
     htop
     gnumake
     bandwhich
-    bat
-    bottom
-    du-dust
     file
-    duf
     exiftool
-    fd
     s-tui
     gh
     gdu
@@ -36,27 +30,47 @@
     monero-cli
     neofetch
     nix-index
-    exa
     libnotify
     nix-prefetch-scripts
     nix-tree
     nix-update
     nixpkgs-review
     powertop
-    ripgrep
     termshark
     git-extras
     git-lfs
     lazygit
     distrobox
-    zellij
-    zoxide
     atuin
     direnv
     nmap
     dnsutils
     just
     powershell
+
+    # modern unix
+    helix
+    zellij
+    bat
+    bottom
+    du-dust
+    duf
+    exa
+    ripgrep
+    fd
+    broot
+    delta
+    gping
+    procs
+    hyperfine
+    httpie
+    curlie
+    xh
+    zoxide
+    sd
+    jq
+    fzf
+    tldr
 
     # lsp
     nodePackages.dockerfile-language-server-nodejs
