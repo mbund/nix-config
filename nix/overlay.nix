@@ -14,7 +14,7 @@ in
         ragenix.overlays.default
         nur.overlay
         hyprland.overlays.default
-        devshell.overlay
+        devshell.overlays.default
         (
           _: prev: let
             config = {
