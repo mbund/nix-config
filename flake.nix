@@ -132,5 +132,7 @@
       url = "github:elkowar/eww";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fw-ectool.url = "github:ssddq/fw-ectool";
   };
 }

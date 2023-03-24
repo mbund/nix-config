@@ -210,6 +210,38 @@
         "type": "github"
       }
     },
+    "ec-git": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672877366,
+        "narHash": "sha256-m7Zb6a4azmpLxFHUdLh3mj8EmJaaCmueuJihfdtBVlc=",
+        "ref": "refs/heads/hx20-hx30",
+        "rev": "38c1b38254793a2ed25861330ebc786daa5b48fb",
+        "revCount": 16715,
+        "type": "git",
+        "url": "https://github.com/FrameworkComputer/EmbeddedController"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/FrameworkComputer/EmbeddedController"
+      }
+    },
+    "ec-local": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672877366,
+        "narHash": "sha256-m7Zb6a4azmpLxFHUdLh3mj8EmJaaCmueuJihfdtBVlc=",
+        "ref": "refs/heads/hx20-hx30",
+        "rev": "38c1b38254793a2ed25861330ebc786daa5b48fb",
+        "revCount": 16715,
+        "type": "git",
+        "url": "file:./EmbeddedController"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:./EmbeddedController"
+      }
+    },
     "eww": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -322,6 +354,26 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "fw-ectool": {
+      "inputs": {
+        "ec-git": "ec-git",
+        "ec-local": "ec-local",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1676940045,
+        "narHash": "sha256-6+KEjo2LtQaX0n01iEuvLRuPaT09hLOB4wdhtpgc1r8=",
+        "owner": "ssddq",
+        "repo": "fw-ectool",
+        "rev": "7d3a68cabbcef3efbbf2b75e49439a72d289685e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ssddq",
+        "repo": "fw-ectool",
         "type": "github"
       }
     },
@@ -628,6 +680,21 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1676931714,
+        "narHash": "sha256-Zh2q9it1lpLHD/Bj1EaQjmfRmireQ1v48pgLFsPLz+U=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "be2cc24ae2e6160118f344c7e8216acce6c1cc45",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1677932085,
         "narHash": "sha256-+AB4dYllWig8iO6vAiGGYl0NEgmMgGHpy9gzWJ3322g=",
         "owner": "NixOS",
@@ -756,13 +823,14 @@
         "devshell": "devshell",
         "eww": "eww",
         "flake-compat": "flake-compat_2",
+        "fw-ectool": "fw-ectool",
         "helix": "helix",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "impermanence": "impermanence",
         "naersk": "naersk",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-wpa": "nixpkgs-wpa",

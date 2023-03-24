@@ -8,6 +8,7 @@
   ragenix,
   hyprland,
   templates,
+  fw-ectool,
   ...
 }: let
   inherit (nixpkgs) lib;
@@ -48,7 +49,7 @@
         hyprland.nixosModules.default
       ];
       specialArgs = {
-        inherit self;
+        inherit self fw-ectool;
         impermanence = impermanence.nixosModules;
         nixos-hardware = nixos-hardware.nixosModules;
       };
