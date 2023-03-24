@@ -47,6 +47,7 @@
     dnsutils
     just
     powershell
+    awscli
 
     # modern unix
     helix
@@ -71,6 +72,9 @@
     jq
     fzf
     tldr
+    nushell
+    starship
+    hexyl
 
     # lsp
     nodePackages.dockerfile-language-server-nodejs
