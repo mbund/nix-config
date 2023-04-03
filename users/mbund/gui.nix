@@ -12,6 +12,7 @@
     xournalpp
     # vscodium
     vscode
+    endeavour
     lapce
     ungoogled-chromium
     alacritty
