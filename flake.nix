@@ -14,8 +14,6 @@
 
       homeConfigurations = import ./nix/home-manager.nix inputs;
 
-      lib = import ./lib inputs;
-
       nixosConfigurations = import ./nix/nixos.nix inputs;
     }
     // utils.lib.eachSystem (with utils.lib.system; [x86_64-linux aarch64-linux]) (system: {

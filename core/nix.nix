@@ -12,7 +12,7 @@ in {
   security.doas.wheelNeedsPassword = false;
 
   # speed up nix builds
-  boot.tmpOnTmpfs = true;
+  boot.tmp.useTmpfs = true;
 
   nix = {
     nixPath = [
