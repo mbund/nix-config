@@ -108,10 +108,11 @@
     metals
     nimlsp
     rnix-lsp
+    nix-analyzer.packages.x86_64-linux.default
+    nil
     alejandra
     rust-analyzer
     taplo
-    nix-analyzer.packages.x86_64-linux.default
 
     # dev toolchains
     zig
@@ -127,13 +128,6 @@
     python312
     clang
   ];
-
-  # set environment variables in home manager
-  home.sessionVariables = {
-    GOPATH = "$HOME/.go";
-    EDITOR = "hx";
-    VISUAL = "hx";
-  };
 
   systemd.user.startServices = "sd-switch";
   home.extraOutputsToInstall = ["doc" "devdoc"];

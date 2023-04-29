@@ -256,11 +256,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1682369601,
-        "narHash": "sha256-3T5ZfXGtIJebUbl0DpcWCuA35e7bHC1teKUImAZHaFw=",
+        "lastModified": 1682805134,
+        "narHash": "sha256-bKPtB7kEs0e45AJjxXQQZZatY40XWvQwL1jPLl53i4Q=",
         "owner": "jm8",
         "repo": "nix-analyzer",
-        "rev": "f3ab3c19d1b171f1cd89f14e2088a889b7fd3612",
+        "rev": "443f81f39656efb9df9b46326936cc1177a3d9a4",
         "type": "github"
       },
       "original": {

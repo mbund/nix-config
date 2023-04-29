@@ -2,9 +2,8 @@
   config,
   lib,
   pkgs,
-  self,
   ...
-} @ inputs: {
+}: {
   age.secrets.mbundPassword.file = ./password.age;
   users.groups.mbund.gid = config.users.users.mbund.uid;
   users.users.mbund = {
@@ -36,34 +35,4 @@
 
   programs.fish.enable = true;
   environment.pathsToLink = ["/share/fish"];
-
-  # home-manager = {
-  #   useGlobalPkgs = true;
-  #   useUserPackages = true;
-  #   verbose = true;
-
-  #   extraSpecialArgs =
-  #     {
-  #       inherit self;
-  #       host = config.networking.hostName;
-  #     }
-  #     // inputs;
-
-  #   users.mbund = {...}: {};
-
-  #   users.mbund = {
-  #     imports =
-  #       [
-  #         ./common.nix
-  #         ./cli.nix
-  #       ]
-  #       ++ lib.optionals config.services.xserver.enable [
-  #         ./gui.nix
-  #         ./gnome.nix
-  #       ];
-
-  #     home.username = config.users.users.mbund.name;
-  #     home.stateVersion = "22.05";
-  #   };
-  # };
 }

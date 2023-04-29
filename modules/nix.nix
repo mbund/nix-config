@@ -10,11 +10,20 @@
 in {
   environment.etc."nixos/configuration.nix".source = dummyConfig;
 
-  security.sudo.enable = false;
-  security.doas.enable = true;
-  security.doas.wheelNeedsPassword = false;
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    helix
+    wget
+    curl
+    man-pages
+  ];
 
-  # speed up nix builds
+  environment.variables = {
+    EDITOR = "hx";
+    VISUAL = "hx";
+  };
+
   boot.tmp.useTmpfs = true;
 
   nix = {
@@ -25,6 +34,7 @@ in {
     ];
 
     registry = {
+      nixpkgs.flake = nixpkgs;
       np.flake = nixpkgs;
     };
 

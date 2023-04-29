@@ -1,4 +1,4 @@
-{pkgs, ...} @ inputs: {
+{pkgs, ...}: {
   networking.hostName = "kumitate";
 
   users.mutableUsers = false;

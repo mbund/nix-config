@@ -87,6 +87,9 @@
       ];
     };
 
-    packages.x86_64-linux.kumitate = self.nixosConfigurations.kumitate.config.system.build.toplevel;
+    packages.x86_64-linux = {
+      kumitate = self.nixosConfigurations.kumitate.config.system.build.toplevel;
+      "mbund@kumitate" = self.homeConfigurations."mbund@kumitate".activationPackage;
+    };
   };
 }
