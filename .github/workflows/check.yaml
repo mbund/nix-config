@@ -21,11 +21,3 @@ jobs:
       - name: Check
         run: |
           nix flake check
-
-      - name: Build kumitate
-        run: |
-          nix build .#kumitate
-
-      - name: Build mbund@kumitate
-        run: |
-          nix build .#mbund@kumitate
