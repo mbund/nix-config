@@ -21,11 +21,5 @@
     gnome.dconf-editor
     gnome.gnome-tweaks
     gnome.gnome-boxes
-
-    # gnomeExtensions.blur-my-shell
-    # gnomeExtensions.just-perfection
-    # gnomeExtensions.caffeine
-    # gnomeExtensions.tiling-assistant
-    # gnomeExtensions.tactile
   ];
 }

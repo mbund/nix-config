@@ -6,38 +6,32 @@
     inkscape
     krita
     kdenlive
-    onlyoffice-bin
+    obs-studio
     vlc
     mpv
     xournalpp
-    # vscodium
-    vscode
     endeavour
+    onlyoffice-bin
+    libreoffice
+    vscodium
     lapce
-    ungoogled-chromium
     alacritty
-    godot_4
-    wireshark
-    obs-studio
-    signal-desktop
-    monero-gui
-    qbittorrent
+    jetbrains.idea-community
     cool-retro-term
-    tor-browser-bundle-bin
-    gparted
-    firefox
     xorg.xeyes
+    tor-browser-bundle-bin
+    ungoogled-chromium
+    firefox
+    ghidra
+    wireshark
+    superTuxKart
     airshipper
     xonotic
-    moonlight-qt
-    superTuxKart
-    ghidra
+    qbittorrent
+    monero-gui
+    godot_4
+    gparted
     filezilla
-    (with eclipses;
-      eclipseWithPlugins {
-        eclipse = eclipse-java;
-        jvmArgs = ["--add-opens=java.base/java.lang=ALL-UNNAMED"];
-      })
-    jetbrains.idea-community
+    signal-desktop
   ];
 }

@@ -1,13 +1,16 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  nixpkgs,
+  ...
+}: let
   dummyConfig = pkgs.writeText "configuration.nix" ''
-    assert builtins.trace "This is a dummy config, use deploy-rs!" false;
+    assert builtins.trace "Use the custom flake instead!" false;
     { }
   '';
 in {
   environment.etc."nixos/configuration.nix".source = dummyConfig;
 
-  # required superuser configuration for deploy-rs
-  # security.sudo.enable = false;
+  security.sudo.enable = false;
   security.doas.enable = true;
   security.doas.wheelNeedsPassword = false;
 
@@ -20,6 +23,10 @@ in {
       "nixpkgs=/run/current-system/nixpkgs"
       "nixpkgs-overlays=/run/current-system/overlays"
     ];
+
+    registry = {
+      np.flake = nixpkgs;
+    };
 
     settings = {
       allowed-users = ["*"];
@@ -49,7 +56,6 @@ in {
   system = {
     extraSystemBuilderCmds = ''
       ln -sv ${pkgs.path} $out/nixpkgs
-      ln -sv ${../nix/overlays} $out/overlays
 
       # Copy over full nixos-config to `/var/run/current-system/full-config/`
       # (available to the currently active derivation for safety/debugging)

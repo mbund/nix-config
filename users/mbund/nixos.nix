@@ -3,9 +3,8 @@
   lib,
   pkgs,
   self,
-  impermanence,
   ...
-}: {
+} @ inputs: {
   age.secrets.mbundPassword.file = ./password.age;
   users.groups.mbund.gid = config.users.users.mbund.uid;
   users.users.mbund = {
@@ -38,31 +37,33 @@
   programs.fish.enable = true;
   environment.pathsToLink = ["/share/fish"];
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.verbose = true;
+  # home-manager = {
+  #   useGlobalPkgs = true;
+  #   useUserPackages = true;
+  #   verbose = true;
 
-  home-manager.extraSpecialArgs = {
-    inherit self;
-    host = config.networking.hostName;
-  };
+  #   extraSpecialArgs =
+  #     {
+  #       inherit self;
+  #       host = config.networking.hostName;
+  #     }
+  #     // inputs;
 
-  home-manager.users.mbund = {
-    imports =
-      [
-        impermanence.home-manager.impermanence
-        ./modules
-        ./cli.nix
-        ./common.nix
-      ]
-      ++ lib.optionals config.services.xserver.enable [
-        ./gui.nix
-        ./gnome.nix
-        # ./hyprland.nix
-      ];
+  #   users.mbund = {...}: {};
 
-    home.username = config.users.users.mbund.name;
-    home.uid = config.users.users.mbund.uid;
-    home.stateVersion = "22.05";
-  };
+  #   users.mbund = {
+  #     imports =
+  #       [
+  #         ./common.nix
+  #         ./cli.nix
+  #       ]
+  #       ++ lib.optionals config.services.xserver.enable [
+  #         ./gui.nix
+  #         ./gnome.nix
+  #       ];
+
+  #     home.username = config.users.users.mbund.name;
+  #     home.stateVersion = "22.05";
+  #   };
+  # };
 }

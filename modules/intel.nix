@@ -1,10 +1,4 @@
-{
-  pkgs,
-  nixos-hardware,
-  ...
-}: {
-  imports = [nixos-hardware.common-cpu-intel];
-
+{pkgs, ...}: {
   services.hardware.openrgb.motherboard = "intel";
 
   boot.kernelModules = ["kvm_intel"];

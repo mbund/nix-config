@@ -1,17 +1,7 @@
-{pkgs, ...}: {
-  imports = [
-    ../../core
-    ../../core/virtualisation.nix
-
-    ./hardware-configuration.nix
-
-    ../../graphics
-    # ../../graphics/hyprland.nix
-
-    ../../users/mbund
-  ];
-
+{pkgs, ...} @ inputs: {
   networking.hostName = "kumitate";
+
+  users.mutableUsers = false;
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -42,9 +32,9 @@
 
   services.auto-cpufreq.enable = true;
   services.tlp.enable = true;
-  # services.tlp.settings = {
-  #   PCIE_ASPM_ON_BAT = "powersupersave";
-  # };
+  services.tlp.settings = {
+    PCIE_ASPM_ON_BAT = "powersupersave";
+  };
   powerManagement.powertop.enable = true;
   services.thermald.enable = true;
 

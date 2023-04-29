@@ -2,19 +2,8 @@
   config,
   lib,
   pkgs,
-  nixos-hardware,
-  fw-ectool,
   ...
-}: {
-  imports = [
-    nixos-hardware.framework
-    ../../hardware/intel.nix
-  ];
-
-  environment.systemPackages = with pkgs; [
-    fw-ectool.packages.x86_64-linux.default
-  ];
-
+} @ inputs: {
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
   zramSwap.enable = true;
   swapDevices = [
