@@ -79,6 +79,7 @@
     nushell
     starship
     hexyl
+    dogdns
 
     # lsp
     nodePackages.dockerfile-language-server-nodejs
