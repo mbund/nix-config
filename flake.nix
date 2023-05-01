@@ -71,10 +71,11 @@
         inputs.agenix.nixosModules.default
         ./hosts/kumitate
         ./hosts/kumitate/hardware-configuration.nix
+        ./modules/fonts.nix
         ./modules/intel.nix
+        ./modules/networking.nix
         ./modules/nix.nix
         ./modules/virtualisation.nix
-        ./modules/fonts.nix
         ./users/mbund/nixos.nix
       ];
     };
