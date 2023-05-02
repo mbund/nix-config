@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
-    nixpkgs-wpa.url = "github:NixOS/nixpkgs/26eb67abc9a7370a51fcb86ece18eaf19ae9207f";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nur.url = "github:nix-community/nur";
     devshell.url = "github:numtide/devshell";
@@ -32,17 +31,6 @@
 
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [
-        (
-          _: prev: let
-            wpa = import inputs.nixpkgs-wpa {
-              inherit (prev.stdenv.hostPlatform) system;
-            };
-          in {
-            inherit (wpa) wpa_supplicant;
-          }
-        )
-      ];
 
       config.allowUnfreePredicate = pkg:
         builtins.elem (nixpkgs.lib.getName pkg) [
