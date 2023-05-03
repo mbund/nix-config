@@ -6,6 +6,11 @@
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.displayManager.autoLogin.enable = true;
+  # services.xserver.displayManager.autoLogin.user = "mbund";
+  # services.xserver.displayManager.defaultSession = "plasmawayland";
+  # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.wacom.enable = true;
   services.flatpak.enable = true;
   services.packagekit.enable = true;
@@ -31,10 +36,6 @@
   ];
 
   services.auto-cpufreq.enable = true;
-  services.tlp.enable = true;
-  services.tlp.settings = {
-    PCIE_ASPM_ON_BAT = "powersupersave";
-  };
   powerManagement.powertop.enable = true;
   services.thermald.enable = true;
 

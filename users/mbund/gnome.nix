@@ -11,7 +11,6 @@
     wl-clipboard
     libgda
     gsound
-    gnomeExtensions.pano
 
     papirus-icon-theme
     adw-gtk3

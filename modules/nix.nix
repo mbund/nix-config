@@ -16,7 +16,6 @@ in {
     helix
     wget
     curl
-    man-pages
   ];
 
   environment.variables = {
