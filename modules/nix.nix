@@ -1,6 +1,7 @@
 {
   pkgs,
   nixpkgs,
+  nur,
   ...
 }: let
   dummyConfig = pkgs.writeText "configuration.nix" ''
@@ -35,6 +36,7 @@ in {
     registry = {
       nixpkgs.flake = nixpkgs;
       np.flake = nixpkgs;
+      nur.flake = nur;
     };
 
     settings = {

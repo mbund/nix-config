@@ -15,6 +15,8 @@
     libreoffice
     vscodium
     lapce
+    openlens
+    metadata-cleaner
     alacritty
     jetbrains.idea-community
     cool-retro-term
