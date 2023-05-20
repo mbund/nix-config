@@ -125,7 +125,6 @@
     yarn
     nodejs-18_x
     nodePackages_latest.pnpm
-    rustup
     python312
     clang
   ];
