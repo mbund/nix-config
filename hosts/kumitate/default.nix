@@ -25,6 +25,9 @@
   hardware.pulseaudio.enable = false;
   # services.power-profiles-daemon.enable = false;
 
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+
   services.avahi.enable = true;
   services.avahi.openFirewall = true;
   services.avahi.nssmdns = true;
