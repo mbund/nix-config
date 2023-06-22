@@ -39,7 +39,6 @@
     nix-tree
     nix-update
     nixpkgs-review
-    powertop
     termshark
     git-extras
     git-lfs

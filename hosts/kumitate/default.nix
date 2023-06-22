@@ -39,8 +39,8 @@
   ];
 
   # services.auto-cpufreq.enable = true;
-  powerManagement.powertop.enable = true;
-  services.thermald.enable = true;
+  # powerManagement.powertop.enable = true;
+  # services.thermald.enable = true;
 
   programs.steam.enable = true;
   programs.wireshark.enable = true;
