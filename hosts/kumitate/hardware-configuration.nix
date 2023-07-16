@@ -50,6 +50,11 @@
     fsType = "vfat";
   };
 
+  fileSystems."/data" = {
+    device = "truenas:/mnt/Main/data";
+    fsType = "nfs";
+  };
+
   boot.initrd.luks.devices.root = {
     device = "/dev/disk/by-label/root";
     allowDiscards = true;
