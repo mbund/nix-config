@@ -7,6 +7,7 @@
     gnome-firmware
     gnome-extension-manager
     blackbox-terminal
+    popsicle
 
     wl-clipboard
     libgda

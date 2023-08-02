@@ -51,6 +51,7 @@
     just
     powershell
     awscli
+    teleport
 
     # modern unix
     helix
