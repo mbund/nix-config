@@ -23,7 +23,7 @@
   services.pipewire.jack.enable = true;
   services.pipewire.pulse.enable = true;
   hardware.pulseaudio.enable = false;
-  # services.power-profiles-daemon.enable = false;
+  services.power-profiles-daemon.enable = false;
 
   services.mullvad-vpn.enable = true;
   services.mullvad-vpn.package = pkgs.mullvad-vpn;
@@ -38,9 +38,9 @@
     hplip
   ];
 
-  # services.auto-cpufreq.enable = true;
-  # powerManagement.powertop.enable = true;
-  # services.thermald.enable = true;
+  services.auto-cpufreq.enable = true;
+  powerManagement.powertop.enable = true;
+  services.thermald.enable = true;
 
   programs.steam.enable = true;
   programs.wireshark.enable = true;
