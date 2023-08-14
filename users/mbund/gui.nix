@@ -27,7 +27,7 @@
     ghidra
     wireshark
     superTuxKart
-    airshipper
+    prismlauncher
     xonotic
     qbittorrent
     monero-gui
