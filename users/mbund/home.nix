@@ -25,6 +25,15 @@
     VISUAL = "hx";
   };
 
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+    x11 = {
+      enable = true;
+      defaultCursor = "Adwaita";
+    };
+  };
+
   programs.home-manager.enable = true;
 
   home.homeDirectory = "/home/mbund";
