@@ -50,6 +50,7 @@
     dnsutils
     just
     powershell
+    powertop
     awscli
     teleport
 
