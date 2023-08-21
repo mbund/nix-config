@@ -4,7 +4,7 @@
   pkgs,
   ...
 } @ inputs: {
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   zramSwap.enable = true;
   swapDevices = [
     {
