@@ -23,6 +23,7 @@
     xorg.xeyes
     tor-browser-bundle-bin
     ungoogled-chromium
+    octaveFull
     firefox
     ghidra
     wireshark
