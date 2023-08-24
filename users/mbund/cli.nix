@@ -115,6 +115,8 @@
     alejandra
     rust-analyzer
     taplo
+    typst-lsp
+    typstfmt
 
     # dev toolchains
     zig
@@ -128,6 +130,7 @@
     nodePackages_latest.pnpm
     python312
     clang
+    typst
   ];
 
   systemd.user.startServices = "sd-switch";
