@@ -8,9 +8,9 @@
     options i915 enable_guc=3 enable_fbc=1 fastboot=1
   '';
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
-  };
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+  # };
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver # LIBVA_DRIVER_NAME=iHD

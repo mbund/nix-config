@@ -13,7 +13,7 @@
   virtualisation.libvirtd.qemu.ovmf.packages = with pkgs; [OVMFFull];
   virtualisation.libvirtd.qemu.swtpm.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
-  virtualisation.lxd.enable = true;
+  # virtualisation.lxd.enable = true;
 
   virtualisation.podman.enable = true;
   virtualisation.docker.enable = true;

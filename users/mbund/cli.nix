@@ -53,6 +53,7 @@
     powertop
     awscli
     teleport
+    pulumi-bin
 
     # modern unix
     helix
@@ -61,7 +62,7 @@
     bottom
     du-dust
     duf
-    exa
+    eza
     ripgrep
     fd
     broot

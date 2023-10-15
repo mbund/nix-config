@@ -23,7 +23,7 @@
   services.pipewire.jack.enable = true;
   services.pipewire.pulse.enable = true;
   hardware.pulseaudio.enable = false;
-  services.power-profiles-daemon.enable = false;
+  # services.power-profiles-daemon.enable = false;
 
   services.mullvad-vpn.enable = true;
   services.mullvad-vpn.package = pkgs.mullvad-vpn;
@@ -39,8 +39,8 @@
   ];
 
   # powerManagement.powertop.enable = true;
-  services.auto-cpufreq.enable = true;
-  services.thermald.enable = true;
+  # services.auto-cpufreq.enable = true;
+  # services.thermald.enable = true;
   # services.tlp = {
   #   settings = {
   #     CPU_BOOST_ON_AC = 1;

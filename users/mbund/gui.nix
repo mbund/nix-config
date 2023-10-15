@@ -14,6 +14,8 @@
     onlyoffice-bin
     libreoffice
     vscodium
+    vscode-fhs
+    beekeeper-studio
     lapce
     openlens
     metadata-cleaner

@@ -30,7 +30,7 @@
     ];
     uid = 1000;
     shell = pkgs.fish;
-    passwordFile = config.age.secrets.mbundPassword.path;
+    hashedPasswordFile = config.age.secrets.mbundPassword.path;
   };
 
   programs.fish.enable = true;

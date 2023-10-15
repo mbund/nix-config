@@ -46,6 +46,9 @@
           "steam-run"
           "zoom"
           "ngrok"
+          "vscode"
+          "code"
+          "terraform"
         ];
     };
   in {
