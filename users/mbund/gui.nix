@@ -7,6 +7,7 @@
     krita
     kdenlive
     obs-studio
+    anki
     vlc
     mpv
     xournalpp
