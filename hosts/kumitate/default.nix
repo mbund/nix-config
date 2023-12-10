@@ -50,6 +50,7 @@
   #   };
   # };
 
+  services.openssh.enable = true;
   programs.steam.enable = true;
   programs.wireshark.enable = true;
   programs.adb.enable = true;
