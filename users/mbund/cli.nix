@@ -90,7 +90,6 @@
     nodePackages.vls
     nodePackages.svelte-language-server
     nodePackages.vscode-css-languageserver-bin
-    nodePackages.vscode-html-languageserver-bin
     nodePackages.vscode-json-languageserver-bin
     ocamlPackages.ocaml-lsp
     rubyPackages.solargraph
@@ -116,8 +115,6 @@
     alejandra
     rust-analyzer
     taplo
-    typst-lsp
-    typstfmt
 
     # dev toolchains
     zig
@@ -131,7 +128,6 @@
     nodePackages_latest.pnpm
     python312
     clang
-    typst
   ];
 
   systemd.user.startServices = "sd-switch";

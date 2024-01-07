@@ -25,12 +25,15 @@
   hardware.pulseaudio.enable = false;
   # services.power-profiles-daemon.enable = false;
 
+  environment.systemPackages = [ pkgs.cifs-utils ];
+  services.gvfs.enable = true;
+
   services.mullvad-vpn.enable = true;
   services.mullvad-vpn.package = pkgs.mullvad-vpn;
 
   services.avahi.enable = true;
   services.avahi.openFirewall = true;
-  services.avahi.nssmdns = true;
+  services.avahi.nssmdns4 = true;
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [
     gutenprint

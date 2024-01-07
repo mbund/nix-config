@@ -10,6 +10,7 @@
     anki
     vlc
     mpv
+    freetube
     xournalpp
     endeavour
     onlyoffice-bin
