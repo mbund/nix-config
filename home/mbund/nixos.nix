@@ -4,7 +4,6 @@
   pkgs,
   ...
 }: {
-  age.secrets.mbundPassword.file = ./password.age;
   users.groups.mbund.gid = config.users.users.mbund.uid;
   users.users.mbund = {
     createHome = true;
@@ -22,7 +21,7 @@
       ++ lib.optionals config.virtualisation.podman.enable ["podman"]
       ++ lib.optionals config.virtualisation.libvirtd.enable ["libvirtd"]
       ++ lib.optionals config.virtualisation.kvmgt.enable ["kvm"]
-      ++ lib.optionals config.programs.adb.enable ["adbusers"]
+      ++ lib.optionals (lib.elem pkgs.android-tools config.environment.systemPackages) [ "adbusers" ]
       ++ lib.optionals config.services.xserver.enable ["input" "video" "audio"]
       ++ lib.optionals config.programs.wireshark.enable ["wireshark"];
     openssh.authorizedKeys.keys = [
@@ -30,7 +29,6 @@
     ];
     uid = 1000;
     shell = pkgs.fish;
-    hashedPasswordFile = config.age.secrets.mbundPassword.path;
   };
 
   programs.fish.enable = true;

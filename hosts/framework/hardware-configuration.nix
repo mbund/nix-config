@@ -9,13 +9,12 @@
   swapDevices = [
     {
       device = "/swap/swapfile";
-      size = 4 * 1024;
+      size = 8 * 1024;
     }
   ];
 
-  services.xserver.layout = "us";
-  # services.xserver.xkbVariant = "colemak_dh";
-  services.xserver.xkbOptions = "caps:escape_shifted_capslock";
+  services.xserver.xkb.layout = "us";
+  services.xserver.xkb.options = "caps:escape_shifted_capslock";
   console.useXkbConfig = true;
 
   networking.interfaces.wlp166s0.useDHCP = true;
@@ -66,18 +65,12 @@
     "/nix"
   ];
 
-  age.identityPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 1;
 
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
   boot.blacklistedKernelModules = ["hid_sensor_hub"]; # fix brightness keys on 12th gen intel framework
-
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=10s
-  '';
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = true;
