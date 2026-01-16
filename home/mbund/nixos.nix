@@ -21,7 +21,7 @@
       ++ lib.optionals config.virtualisation.podman.enable ["podman"]
       ++ lib.optionals config.virtualisation.libvirtd.enable ["libvirtd"]
       ++ lib.optionals config.virtualisation.kvmgt.enable ["kvm"]
-      ++ lib.optionals (lib.elem pkgs.android-tools config.environment.systemPackages) [ "adbusers" ]
+      ++ lib.optionals (lib.elem pkgs.android-tools config.environment.systemPackages) ["adbusers"]
       ++ lib.optionals config.services.xserver.enable ["input" "video" "audio"]
       ++ lib.optionals config.programs.wireshark.enable ["wireshark"];
     openssh.authorizedKeys.keys = [

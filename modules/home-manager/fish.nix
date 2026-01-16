@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs.nix-index = {
     enable = true;
     enableFishIntegration = true;
@@ -24,7 +26,7 @@
     '';
   };
 
-  home.activation.configure-tide = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+  home.activation.configure-tide = lib.hm.dag.entryAfter ["linkGeneration"] ''
     ${pkgs.fish}/bin/fish -c '
       if functions -q tide
         tide configure --auto \
