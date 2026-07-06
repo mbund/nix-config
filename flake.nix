@@ -48,7 +48,8 @@
       modules = [
         ./modules/home-manager/cli.nix
         ./modules/home-manager/fish.nix
-        ./modules/home-manager/gnome-desktop.nix
+        # ./modules/home-manager/gnome-desktop.nix
+        ./modules/home-manager/kde-desktop.nix
         ./home/mbund
       ];
     };

@@ -53,7 +53,7 @@
     device = "/dev/disk/by-label/root";
     allowDiscards = true;
 
-    fallbackToPassword = true;
+    # fallbackToPassword = true;
   };
 
   boot.supportedFilesystems = ["ntfs" "nfs"];
