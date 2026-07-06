@@ -11,21 +11,23 @@
     ./hardware-configuration.nix
   ];
 
-  time.timeZone = "America/New_York";
+  # time.timeZone = "America/New_York";
+  services.automatic-timezoned.enable = true;
+  services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
 
   networking.hostName = "framework";
   networking.networkmanager.enable = true;
 
   services.xserver.enable = true;
-  # services.displayManager.gdm.enable = true;
-  # services.desktopManager.gnome.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
   services.xserver.wacom.enable = true;
   services.flatpak.enable = true;
   services.packagekit.enable = true;
   programs.kdeconnect.enable = true;
-  # programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
+  programs.kdeconnect.package = pkgs.gnomeExtensions.gsconnect;
 
   programs.nix-ld.enable = true;
 

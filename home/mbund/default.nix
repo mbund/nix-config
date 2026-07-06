@@ -8,7 +8,9 @@
     libreoffice
     signal-desktop
     vscodium
-    xorg.xeyes
+    xeyes
+    gnucash
+    prismlauncher
   ];
 
   home.sessionVariables = {
